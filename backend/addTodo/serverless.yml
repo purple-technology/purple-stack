@@ -1,0 +1,71 @@
+service: ${self:custom.settings.common.projectName}-${self:custom.serviceName}
+
+plugins:
+  - serverless-step-functions
+  - serverless-plugin-aws-alerts
+  - "@purple/serverless-git-branch-stage-plugin"
+  - serverless-webpack
+
+provider:
+  name: aws
+  region: ${self:custom.settings.common.region}
+  versionFunctions: ${self:custom.settings.common.versionFunctions}
+  stage: ${git:stage}
+  runtime: ${self:custom.settings.common.runtime}
+  apiGateway:
+    # https://www.serverless.com/framework/docs/deprecations/#AWS_API_GATEWAY_NAME_STARTING_WITH_SERVICE
+    shouldStartNameWithService: ${self:custom.settings.common.apiGatewayShouldStartNameWithService}
+  logRetentionInDays: ${self:custom.settings.common.logRetentionInDays}
+  vpc: ${self:custom.settings.vpc}
+  deploymentBucket:
+    name: ${self:custom.settings.common.deploymentBucket}
+  environment:
+    STAGE: ${self:provider.stage}
+    DYNAMODB_TABLE_TODOS: {"Fn::ImportValue": "${self:custom.settings.common.projectName}-resources-${self:provider.stage}-todos-table-name"}
+  timeout: 300
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource: {"Fn::ImportValue": "${self:custom.settings.common.projectName}-resources-${self:provider.stage}-todos-table-arn"}
+
+custom:
+  serviceName: add-todo
+  settings: ${file(../../serverless.settings.yml)}
+  webpack:
+    includeModules: true
+  alerts:
+    stages: ${self:custom.settings.monitoring.stages}
+    topics:
+      alarm: ${self:custom.settings.monitoring.topic}
+    definitions:
+      functionErrors:
+        statistic: Sum
+        treatMissingData: notBreaching
+    alarms:
+      - functionErrors
+
+functions:
+  add:
+    handler: src/add/index.handler
+
+stepFunctions:
+  stateMachines:
+    addTodo:
+      id: AddTodoStateMachine
+      name: ${self:custom.settings.common.projectName}-${self:provider.stage}-${self:custom.serviceName}
+      definition:
+        StartAt: add
+        States:
+          add:
+            Type : Task
+            Resource: { "Fn::GetAtt" : [ "add", "Arn" ] }
+            End: true
+
+resources:
+  Outputs:
+    AddTodosSM:
+      Value:
+        Ref: AddTodoStateMachine
+      Export:
+        Name: ${self:service}-${self:provider.stage}-add-todo-sm-arn

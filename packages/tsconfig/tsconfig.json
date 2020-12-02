@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"lib": ["es2017", "dom"],
+		"types": ["node", "jest"],
+		"moduleResolution": "node",
+		"module": "es6",
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"sourceMap": true,
+		"target": "es2017",
+		"outDir": "lib",
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
+		"allowJs": true,
+		"preserveSymlinks": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"strictFunctionTypes": true
+	},
+	"exclude": ["/**/node_modules"]
+}

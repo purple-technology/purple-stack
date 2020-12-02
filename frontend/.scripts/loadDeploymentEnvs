@@ -1,0 +1,13 @@
+#!/bin/sh
+
+API_INFO=$(npx lerna --scope='api' run ci:info)
+
+FE_INFO=$(npx lerna --scope='frontend' run ci:info)
+
+export CDN_URL=$(echo "$FE_INFO" | awk '/CloudFrontUrl: ([A-Z0-9]*)/{print $2}')
+
+export API_URL=$(echo "$API_INFO" | awk '/GraphQlApiUrl: ([A-Z0-9]*)/{print $2}')
+
+export API_KEY=$(echo "$API_INFO" | awk '/GraphQlApiKeyDefault: ([A-Z0-9]*)/{print $2}')
+
+export AWS_REGION=$(echo "$API_INFO" | awk '/region: ([a-z0-9-]*)/{print $2}')

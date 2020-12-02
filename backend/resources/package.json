@@ -1,0 +1,43 @@
+{
+	"name": "@be-prioritized/resources",
+	"author": "Purple Technology",
+	"private": true,
+	"engines": {
+		"node": ">= 12.16.1"
+	},
+	"scripts": {
+		"env": "env-cmd -f ../../.env",
+		"test": "npm run env -- npm run ci:test",
+		"tdd": "npm test -- -- --watchAll",
+		"package": "npm run env -- npm run ci:package",
+		"deploy": "npm run env -- npm run ci:deploy",
+		"remove": "npm run env -- npm run ci:remove",
+		"info": "npm run env -- npm run ci:info",
+		"offline": "npm run env -- serverless offline",
+		"ci:package": "serverless package",
+		"ci:deploy": "serverless deploy",
+		"ci:remove": "serverless remove",
+		"ci:info": "serverless info --verbose",
+		"ci:test": "NODE_ENV=test jest --coverage --detectOpenHandles --forceExit --passWithNoTests"
+	},
+	"devDependencies": {
+		"@package/sls-macros": "^1.0.0",
+		"@package/tsconfig": "^1.0.0",
+		"@package/webpack": "^1.0.0",
+		"@purple/serverless-git-branch-stage-plugin": "^1.2.0",
+		"@types/jest": "^26.0.15",
+		"env-cmd": "^10.1.0",
+		"jest": "^26.6.3",
+		"serverless": "^2.12.0",
+		"serverless-offline": "^6.8.0",
+		"serverless-plugin-aws-alerts": "^1.6.1",
+		"serverless-webpack": "^5.3.5",
+		"ts-jest": "^26.4.4",
+		"ts-loader": "^8.0.11",
+		"typescript": "^4.1.2",
+		"webpack": "^4.44.2"
+	},
+	"dependencies": {
+		"source-map-support": "^0.5.19"
+	}
+}

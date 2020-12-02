@@ -1,0 +1,256 @@
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@0.1.13
+
+references:
+  general:
+    context: &context
+      pt-serverless
+    image: &image
+      circleci/node:12.16.1
+
+  commands:
+    assume_aws_role: &commands_assume_aws_role
+      name: Assume AWS Role
+      command: cat .circleci/aws_assume_role.sh >> $BASH_ENV
+    npm_auth: &commands_npm_auth
+      name: NPM Auth
+      command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+    install_dependencies: &install_dependencies
+      name: Install Dependencies
+      command: |
+        n=0
+        until [ "$n" -ge 3 ]
+        do
+          npm ci && exit 0
+          n=$((n+1))
+          npx lerna clean -y && rm -rf node_modules
+        done
+        exit 1
+
+  prod_branch_filter: &prod_branch_filter
+    branches:
+      only:
+        - master
+
+  staging_branch_filter: &staging_branch_filter
+    branches:
+      only:
+        - staging
+
+  test_branch_filter: &test_branch_filter
+    branches:
+      only:
+        - /dependabot\/.*/
+        - /feature\/.*/
+        - /hotfix\/.*/
+        - /fix\/.*/
+        - /h\/.*/
+        - /f\/.*/
+
+  feature_branch_filter: &feature_branch_filter
+    branches:
+      only:
+        - /feature\/.*/
+        - /hotfix\/.*/
+        - /fix\/.*/
+        - /h\/.*/
+        - /f\/.*/
+
+jobs:
+  test:
+    docker:
+      - image: *image
+    steps:
+      - checkout
+      - run: *commands_npm_auth
+      - aws-cli/install
+      - run: *commands_assume_aws_role
+      - run: *install_dependencies
+      - run:
+          name: Run Linter
+          command: npm run lint
+      - run:
+          name: Graphql CodeGen check
+          command: npm run graphql-codegen && git diff --quiet && git diff-index --exit-code HEAD -- packages/graphql-types
+      - run:
+          name: Run Tests
+          command: npm run ci:test
+
+  compilation_check:
+    docker:
+      - image: *image
+    steps:
+      - checkout
+      - run: *commands_npm_auth
+      - run: *install_dependencies
+      - aws-cli/install
+      - run: *commands_assume_aws_role
+      - run:
+          name: Compilation Check
+          command: npm run ci:compilation-check
+
+  deploy:
+    docker:
+      - image: *image
+    steps:
+      - checkout
+      - run: *commands_npm_auth
+      - run: *install_dependencies
+      - aws-cli/install
+      - run: *commands_assume_aws_role
+      - run:
+          name: Package
+          command: npm run ci:package
+      - deploy:
+          name: Deploy
+          command: npm run ci:deploy
+      - deploy:
+          name: Invalidate Frontend Cache
+          command: "aws cloudfront create-invalidation --paths '/*' --distribution-id=$(npx lerna --scope='frontend' run ci:info | awk '/CloudFrontDistributionId: ([A-Z0-9]*)/{print $2}') || true"
+
+  smart_deploy:
+    docker:
+      - image: *image
+    steps:
+      - checkout
+      - run: *commands_npm_auth
+      - run: *install_dependencies
+      - aws-cli/install
+      - run: *commands_assume_aws_role
+      - run:
+          name: Smart Package
+          command: npm run smart:ci:package
+      - deploy:
+          name: Smart Deploy
+          command: npm run smart:ci:deploy
+      - deploy:
+          name: Invalidate Frontend Cache
+          command: "aws cloudfront create-invalidation --paths '/*' --distribution-id=$(npx lerna --scope='frontend' run ci:info | awk '/CloudFrontDistributionId: ([A-Z0-9]*)/{print $2}') || true"
+
+  remove:
+    docker:
+      - image: *image
+    steps:
+      - checkout
+      - run: *commands_npm_auth
+      - run: *install_dependencies
+      - aws-cli/install
+      - run: *commands_assume_aws_role
+      - deploy:
+          name: Remove
+          command: npm run ci:remove
+
+  smart_remove:
+    docker:
+      - image: *image
+    steps:
+      - checkout
+      - run: *commands_npm_auth
+      - run: *install_dependencies
+      - aws-cli/install
+      - run: *commands_assume_aws_role
+      - deploy:
+          name: Remove
+          command: npm run ci:remove && npm run delete-tag
+
+workflows:
+  version: 2
+
+  test:
+    jobs:
+      - test:
+          context: *context
+          filters: *test_branch_filter
+      - compilation_check:
+          context: *context
+          filters: *test_branch_filter
+
+  deploy_prod:
+    jobs:
+      - approve_deploy:
+          type: approval
+          filters: *prod_branch_filter
+      - deploy:
+          requires:
+            - approve_deploy
+          context: *context
+          filters: *prod_branch_filter
+
+  deploy_staging:
+    jobs:
+      - approve_deploy:
+          type: approval
+          filters: *staging_branch_filter
+      - deploy:
+          requires:
+            - approve_deploy
+          context: *context
+          filters: *staging_branch_filter
+
+  deploy_feature:
+    jobs:
+      - approve_deploy:
+          type: approval
+          filters: *feature_branch_filter
+      - deploy:
+          requires:
+            - approve_deploy
+          context: *context
+          filters: *feature_branch_filter
+
+  smart_deploy_prod:
+    jobs:
+      - approve_smart_deploy:
+          type: approval
+          filters: *prod_branch_filter
+      - smart_deploy:
+          requires:
+            - approve_smart_deploy
+          context: *context
+          filters: *prod_branch_filter
+
+  smart_deploy_staging:
+    jobs:
+      - approve_smart_deploy:
+          type: approval
+          filters: *staging_branch_filter
+      - smart_deploy:
+          requires:
+            - approve_smart_deploy
+          context: *context
+          filters: *staging_branch_filter
+
+  smart_deploy_feature:
+    jobs:
+      - approve_smart_deploy:
+          type: approval
+          filters: *feature_branch_filter
+      - smart_deploy:
+          requires:
+            - approve_smart_deploy
+          context: *context
+          filters: *feature_branch_filter
+
+  remove_feature:
+    jobs:
+      - approve_remove:
+          type: approval
+          filters: *feature_branch_filter
+      - remove:
+          requires:
+            - approve_remove
+          context: *context
+          filters: *feature_branch_filter
+
+  smart_remove_feature:
+    jobs:
+      - approve_smart_remove:
+          type: approval
+          filters: *feature_branch_filter
+      - smart_remove:
+          requires:
+            - approve_smart_remove
+          context: *context
+          filters: *feature_branch_filter

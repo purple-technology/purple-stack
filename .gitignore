@@ -1,0 +1,24 @@
+node_modules
+.next
+out/
+
+# Coverage directory used by jest
+coverage
+
+# Serverless
+.serverless
+
+# environment configuration file
+.env
+
+# Webpack directories
+.webpack
+
+#Lerna debug info
+lerna-debug.log
+
+# appsync offline
+.dynamodb
+
+# VS code
+.vscode/launch.json

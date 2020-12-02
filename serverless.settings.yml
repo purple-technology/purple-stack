@@ -1,0 +1,24 @@
+common:
+  projectName: purple-stack
+  dnsRandomString: xwtce
+  region: REGION # e.g. eu-central-1
+  runtime: nodejs12.x
+  deploymentBucket: purple-stack-deployments # your S3 bucket
+  logRetentionInDays: 90
+  versionFunctions: false
+  apiGatewayShouldStartNameWithService: true # https://www.serverless.com/framework/docs/deprecations/#AWS_API_GATEWAY_NAME_STARTING_WITH_SERVICE
+
+vpc: ~
+  # securityGroupIds:
+  #   - SC_ID
+  # subnetIds:
+  #   - SUBNET_ID
+
+monitoring:
+  stages:
+    - some-stage-here
+  topic: arn:aws:sns:REGION:ACCOUNT_ID:TOPIC_NAME
+
+frontend:
+  domain: purple-stack.com
+  certificate: arn:aws:acm:us-east-1:ACCOUNT_ID:certificate/CERT_ID

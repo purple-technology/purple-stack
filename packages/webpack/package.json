@@ -1,0 +1,11 @@
+{
+	"name": "@package/webpack",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Package with default Webpack configuration",
+	"main": "webpack.config.js",
+	"dependencies": {
+		"webpack": "^4.44.2",
+		"webpack-node-externals": "^2.5.2"
+	}
+}

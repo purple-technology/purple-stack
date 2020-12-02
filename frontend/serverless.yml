@@ -1,0 +1,130 @@
+service: ${self:custom.settings.common.projectName}-frontend
+
+plugins:
+  - serverless-plugin-aws-alerts
+  - serverless-finch
+  - "@purple/serverless-s3-remover"
+  - "@purple/serverless-git-branch-stage-plugin"
+
+provider:
+  name: aws
+  region: ${self:custom.settings.common.region}
+  versionFunctions: ${self:custom.settings.common.versionFunctions}
+  stage: ${git:stage}
+  runtime: ${self:custom.settings.common.runtime}
+  logRetentionInDays: ${self:custom.settings.common.logRetentionInDays}
+  deploymentBucket:
+    name: ${self:custom.settings.common.deploymentBucket}
+
+custom:
+  settings: ${file(../serverless.settings.yml)}
+  certificate: ${self:custom.settings.frontend.certificate}
+  dnsAddress: ${git:basePath}-${self:custom.settings.common.dnsRandomString}-${self:custom.settings.common.projectName}.${self:custom.settings.frontend.domain}
+  client:
+    bucketName: ${self:service}.${self:provider.region}.${git:basePath}
+    distributionFolder: out
+    indexDocument: index.html
+    errorDocument: 404.html
+    uploadOrder:
+      - \/frontend\/out\/img\/.*$
+      - \/frontend\/out\/_next\/.*$
+      - \/frontend\/out\/locales\/.*$
+      - \.html$
+  remover:
+    buckets:
+      - ${self:custom.client.bucketName}
+  alerts:
+    stages: ${self:custom.settings.monitoring.stages}
+    topics:
+      alarm: ${self:custom.settings.monitoring.topic}
+    definitions:
+      functionErrors:
+        treatMissingData: notBreaching
+    alarms:
+      - functionErrors
+
+resources:
+  Resources:
+    FrontendBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.client.bucketName}
+        WebsiteConfiguration:
+          ErrorDocument: index.html
+          IndexDocument: index.html
+        Tags:
+          - Key: description
+            Value: Bucket for storing ${self:custom.settings.common.projectName} frontend. 
+          - Key: project
+            Value: ${self:custom.settings.common.projectName}
+          - Key: stage
+            Value: ${self:provider.stage}
+    FrontendDistribution:
+      Type: "AWS::CloudFront::Distribution"
+      Properties:
+        DistributionConfig: 
+          Aliases: 
+            - ${self:custom.dnsAddress}
+          ViewerCertificate:
+            AcmCertificateArn: ${self:custom.certificate}
+            SslSupportMethod: sni-only
+          Enabled: true
+          Comment: ${self:custom.settings.common.projectName}-${self:provider.stage} frontend
+          DefaultRootObject: index.html
+          PriceClass: PriceClass_All
+          Origins:
+            - Id: frontendOrigin
+              CustomOriginConfig:
+                OriginProtocolPolicy: http-only
+              DomainName: { "Fn::Select": [1, { "Fn::Split": ["http://", { "Fn::GetAtt": ["FrontendBucket", "WebsiteURL"] }] }] }
+          DefaultCacheBehavior:
+            AllowedMethods: ["GET", "HEAD", "OPTIONS"]
+            CachedMethods: ["HEAD", "GET"]
+            Compress: true
+            ForwardedValues:
+              QueryString: true # "true" because of LambdaFunctionAssociations
+            DefaultTTL: 3600
+            TargetOriginId: frontendOrigin
+            ViewerProtocolPolicy : redirect-to-https
+            # LambdaFunctionAssociations:
+            #   - EventType: origin-response
+            #     LambdaFunctionARN: ${file(macros.js):getLambdaEdgeFunctionArn}
+        Tags: 
+          - Key: description
+            Value: CF distribution for serving ${self:custom.settings.common.projectName} frontend from S3 bucket.
+          - Key: project
+            Value: ${self:custom.settings.common.projectName}
+          - Key: stage
+            Value: ${self:provider.stage}
+    DnsRecordIPv4:
+      Type: AWS::Route53::RecordSet
+      Properties: 
+        AliasTarget: 
+          DNSName: { "Fn::GetAtt": ["FrontendDistribution", "DomainName"] }
+          EvaluateTargetHealth: false
+          HostedZoneId: Z2FDTNDATAQYW2 # Constant hosted zone of CloudFront defined by AWS itself
+        Comment: ${self:service}-${self:provider.stage}-A
+        HostedZoneName: ${self:custom.settings.frontend.domain}.
+        Name: ${self:custom.dnsAddress}.
+        Type: A
+    DnsRecordIPv6:
+      Type: AWS::Route53::RecordSet
+      Properties: 
+        AliasTarget: 
+          DNSName: { "Fn::GetAtt": ["FrontendDistribution", "DomainName"] }
+          EvaluateTargetHealth: false
+          HostedZoneId: Z2FDTNDATAQYW2 # Constant hosted zone of CloudFront defined by AWS itself
+        Comment: ${self:service}-${self:provider.stage}-AAAA
+        HostedZoneName: ${self:custom.settings.frontend.domain}.
+        Name: ${self:custom.dnsAddress}.
+        Type: AAAA
+  Outputs:
+    FrontendUrl:
+      Description: Frontend URL address
+      Value: { "Fn::Join": ["", ["https://", "${self:custom.dnsAddress}"] ] }
+    CloudFrontUrl:
+      Description: Cloudfront URL address 
+      Value: { "Fn::Join": ["", ["https://", { "Fn::GetAtt": ["FrontendDistribution", "DomainName"] }] ] }
+    CloudFrontDistributionId:
+      Description: ID of Cloudfront distribution
+      Value: { "Ref": "FrontendDistribution" }

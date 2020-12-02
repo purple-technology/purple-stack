@@ -1,0 +1,7 @@
+{
+	"name": "@package/sls-macros",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Serverless Macros to be used in serverless.yml files",
+	"main": "src/index.js"
+}

@@ -1,0 +1,6 @@
+{
+	"name": "@package/tsconfig",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Package with default tsconfig file"
+}

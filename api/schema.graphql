@@ -1,0 +1,23 @@
+schema {
+	query: Query
+	mutation: Mutation
+}
+type Query {
+	todos: [Todo!]!
+}
+type Mutation {
+	addTodo(text: String!): Status!
+	switchCheck(createdTimestamp: ID!): Status!
+	removeTodo(createdTimestamp: ID!): Status!
+}
+
+type Todo {
+	text: String!
+	createdTimestamp: ID!
+	checked: Boolean!
+}
+
+enum Status {
+	SUCCESS
+	FAIL
+}

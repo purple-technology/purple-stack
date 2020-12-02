@@ -1,0 +1,16 @@
+{
+	"version": "2017-02-28",
+	"operation": "BatchInvoke",
+	"payload": {
+		"arguments": $utils.toJson($ctx.arguments),
+		"source": $utils.toJson($ctx.source),
+		"identity": $utils.toJson($ctx.identity),
+		"request": $utils.toJson($ctx.request),
+		"info": {
+			"fieldName": $utils.toJson($ctx.info.fieldName),
+			"parentTypeName": $utils.toJson($ctx.info.parentTypeName),
+			"variables": $utils.toJson($ctx.info.variables),
+			"selectionSetList": $utils.toJson($ctx.info.selectionSetList)
+		}
+	}
+}

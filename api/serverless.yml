@@ -1,0 +1,89 @@
+service: ${self:custom.settings.common.projectName}-api
+
+plugins:
+  - serverless-webpack
+  - serverless-plugin-aws-alerts
+  - serverless-appsync-plugin
+  - serverless-appsync-simulator
+  - serverless-offline
+  - "@purple/serverless-git-branch-stage-plugin"
+
+provider:
+  name: aws
+  region: ${self:custom.settings.common.region}
+  versionFunctions: ${self:custom.settings.common.versionFunctions}
+  stage: ${git:stage}
+  environment:
+    STAGE: ${self:provider.stage}
+    ADD_TODO_SM: {"Fn::ImportValue": "${self:custom.settings.common.projectName}-add-todo-${self:provider.stage}-add-todo-sm-arn"}
+    DYNAMODB_TABLE_TODOS: {"Fn::ImportValue": "${self:custom.settings.common.projectName}-resources-${self:provider.stage}-todos-table-name"}
+  timeout: 29
+  memorySize: 512
+  runtime: ${self:custom.settings.common.runtime}
+  apiGateway:
+    # https://www.serverless.com/framework/docs/deprecations/#AWS_API_GATEWAY_NAME_STARTING_WITH_SERVICE
+    shouldStartNameWithService: ${self:custom.settings.common.apiGatewayShouldStartNameWithService}
+  deploymentBucket:
+    name: ${self:custom.settings.common.deploymentBucket}
+  vpc: ${self:custom.settings.vpc}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:UpdateItem
+        - dynamodb:GetItem
+        - dynamodb:DeleteItem
+        - dynamodb:Scan
+      Resource: {"Fn::ImportValue": "${self:custom.settings.common.projectName}-resources-${self:provider.stage}-todos-table-arn"}
+    - Effect: Allow
+      Action:
+        - states:StartExecution
+      Resource: {"Fn::ImportValue": "${self:custom.settings.common.projectName}-add-todo-${self:provider.stage}-add-todo-sm-arn"}
+
+
+functions:
+  - ${file(.generator/index.js):functions}
+ 
+custom:
+  settings: ${file(../serverless.settings.yml)}
+  webpack:
+    includeModules: true
+  appsync-simulator:
+    apiKey: da2-fakeApiId123456
+    port: 62222
+    wsPort: 62223
+    location: .webpack/service
+    lambda:
+      loadLocalEnv: true
+    #                                                                    #
+    # All these mappings are only for the GraphQL API resolver functions #
+    #           This is not applied to API Gateway endpoints!            #
+    #                                                                    #
+    importValueMap:
+      - key: ${self:custom.settings.common.projectName}-add-todo-${self:provider.stage}-add-todo-sm-arn
+        value: ${env:ADD_TODO_SM, "arn:aws:states:eu-central-1:652410854465:stateMachine:purple-stack-master-add-todo"}
+      - key: ${self:custom.settings.common.projectName}-resources-${self:provider.stage}-todos-table-name
+        value: ${env:DYNAMODB_TABLE_TODOS, "purple-stack-resources-master-todos"}
+  alerts:
+    stages: ${self:custom.settings.monitoring.stages}
+    topics:
+      alarm: ${self:custom.settings.monitoring.topic}
+    definitions:
+      functionErrors:
+        treatMissingData: notBreaching
+    alarms:
+      - functionErrors
+  appSync:
+    name: ${self:service}-${self:provider.stage}
+    authenticationType: API_KEY
+    logConfig:
+      level: ERROR # Logging Level: NONE | ERROR | ALL
+    mappingTemplatesLocation: ./.mapping-templates
+    schema: ./schema.graphql
+    mappingTemplates: ${file(./.generator/index.js):mappingTemplates}
+    dataSources: ${file(./.generator/index.js):dataSources}
+  storageResourcePolicy: &storageResourcePolicy
+    DeletionPolicy: ${file(macros.js):getStorageResourcePolicy}
+    UpdateReplacePolicy: ${file(macros.js):getStorageResourcePolicy}
+
+# resources:
+#   Resources:

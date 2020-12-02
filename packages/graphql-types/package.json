@@ -1,0 +1,10 @@
+{
+	"name": "@package/graphql-types",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Graphql types generated from *.graphql files and from schema",
+	"main": "src/index.ts",
+	"dependencies": {
+		"@package/tsconfig": "^1.0.0"
+	}
+}

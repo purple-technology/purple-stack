@@ -1,0 +1,10 @@
+node_modules
+coverage
+.serverless
+.webpack
+frontend/.next
+frontend/.scripts
+frontend/out
+
+package-lock.json
+*/**/locales/**/*.json

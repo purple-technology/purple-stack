@@ -1,0 +1,10 @@
+{
+	"name": "@package/logger",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Purple Stack library for structured logging",
+	"main": "src/index.ts",
+	"devDependencies": {
+		"@package/tsconfig": "^1.0.0"
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"name": "api",
+	"private": true,
+	"engines": {
+		"node": "12.x"
+	},
+	"description": "API of the purple-stack application",
+	"scripts": {
+		"env": "env-cmd -f ../.env",
+		"deploy": "npm run env -- npm run ci:deploy",
+		"package": "npm run env -- npm run ci:package",
+		"remove": "npm run env -- npm run ci:remove",
+		"info": "npm run env -- npm run ci:info",
+		"dev": "npm run env -- serverless offline start",
+		"tdd": "npm test -- -- --watchAll",
+		"test": "npm run env -- npm run ci:test",
+		"ci:package": "serverless package",
+		"smart:ci:package": "npm run ci:package",
+		"smart:ci:deploy": "npm run ci:deploy",
+		"ci:deploy": "serverless deploy",
+		"ci:remove": "serverless remove",
+		"ci:info": "serverless info --verbose",
+		"ci:test": "NODE_ENV=test jest --coverage --detectOpenHandles --forceExit --passWithNoTests"
+	},
+	"devDependencies": {
+		"@package/appsync-types": "^1.0.0",
+		"@package/graphql-types": "^1.0.0",
+		"@package/sls-macros": "^1.0.0",
+		"@package/tsconfig": "^1.0.0",
+		"@package/webpack": "^1.0.0",
+		"@purple/serverless-git-branch-stage-plugin": "^1.2.0",
+		"@types/aws-lambda": "^8.10.64",
+		"@types/jest": "^26.0.15",
+		"@types/node": "^12.12.29",
+		"aws-sdk": "^2.799.0",
+		"env-cmd": "^10.1.0",
+		"jest": "^26.6.3",
+		"serverless": "^2.12.0",
+		"serverless-appsync-plugin": "^1.4.0",
+		"serverless-appsync-simulator": "^0.8.1",
+		"serverless-offline": "^6.8.0",
+		"serverless-plugin-aws-alerts": "^1.6.1",
+		"serverless-webpack": "^5.3.5",
+		"split-camelcase": "^1.0.1",
+		"ts-jest": "^26.4.4",
+		"ts-loader": "^8.0.11",
+		"typescript": "^4.1.2",
+		"webpack": "^4.44.2"
+	},
+	"dependencies": {
+		"@package/config": "^1.0.0",
+		"@package/env-vars": "^1.0.0",
+		"source-map-support": "^0.5.19"
+	}
+}

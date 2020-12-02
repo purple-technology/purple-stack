@@ -1,0 +1,14 @@
+{
+	"name": "@package/config",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Purple Stack library for configurations",
+	"main": "src/index.ts",
+	"devDependencies": {
+		"@package/tsconfig": "^1.0.0",
+		"@types/deep-freeze": "^0.1.2"
+	},
+	"dependencies": {
+		"deep-freeze": "^0.0.1"
+	}
+}

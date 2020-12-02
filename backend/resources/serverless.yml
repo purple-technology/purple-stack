@@ -1,0 +1,69 @@
+service: ${self:custom.settings.common.projectName}-resources
+
+plugins:
+  - serverless-plugin-aws-alerts
+  - serverless-offline
+  - "@purple/serverless-git-branch-stage-plugin"
+  # - serverless-webpack
+
+provider:
+  name: aws
+  region: ${self:custom.settings.common.region}
+  versionFunctions: ${self:custom.settings.common.versionFunctions}
+  stage: ${git:stage}
+  runtime: ${self:custom.settings.common.runtime}
+  apiGateway:
+    # https://www.serverless.com/framework/docs/deprecations/#AWS_API_GATEWAY_NAME_STARTING_WITH_SERVICE
+    shouldStartNameWithService: ${self:custom.settings.common.apiGatewayShouldStartNameWithService}
+  environment:
+    STAGE: ${self:provider.stage}
+  vpc: ${self:custom.settings.vpc}
+  logRetentionInDays: ${self:custom.settings.common.logRetentionInDays}
+  deploymentBucket:
+    name: ${self:custom.settings.common.deploymentBucket}
+  
+custom:
+  settings: ${file(../../serverless.settings.yml)}
+  tables:
+    todos: ${self:service}-${self:provider.stage}-todos
+  webpack:
+    includeModules: true
+  alerts:
+    stages: ${self:custom.settings.monitoring.stages}
+    topics:
+      alarm: ${self:custom.settings.monitoring.topic}
+    definitions:
+      functionErrors:
+        statistic: Sum
+        treatMissingData: notBreaching
+    alarms:
+      - functionErrors
+  storageResourcePolicy: &storageResourcePolicy
+    DeletionPolicy: ${file(macros.js):getStorageResourcePolicy}
+    UpdateReplacePolicy: ${file(macros.js):getStorageResourcePolicy}
+
+resources:
+  Resources:
+    TodosTable:
+      <<: *storageResourcePolicy
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: ${self:custom.tables.todos}
+        PointInTimeRecoverySpecification:
+          PointInTimeRecoveryEnabled: ${file(macros.js):isPointInTimeRecoveryEnabled}
+        AttributeDefinitions:
+          - AttributeName: createdTimestamp
+            AttributeType: S
+        KeySchema:
+          - AttributeName: createdTimestamp
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+  Outputs:
+    TodosTableName:
+      Value: { "Ref": "TodosTable" }
+      Export:
+        Name: ${self:service}-${self:provider.stage}-todos-table-name
+    TodosTableArn:
+      Value: { "Fn::GetAtt" : [ "TodosTable", "Arn" ] }
+      Export:
+        Name: ${self:service}-${self:provider.stage}-todos-table-arn

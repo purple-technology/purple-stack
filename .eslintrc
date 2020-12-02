@@ -1,0 +1,47 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"extends": [
+		"plugin:react/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier/@typescript-eslint",
+		"plugin:prettier/recommended"
+	],
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "module"
+	},
+	"plugins": [
+		"@typescript-eslint",
+		"prettier",
+		"simple-import-sort",
+		"react-hooks"
+	],
+	"rules": {
+		"@typescript-eslint/ban-ts-comment": [
+			"error",
+			{
+				"ts-expect-error": "allow-with-description",
+				"ts-ignore": "allow-with-description",
+				"ts-nocheck": true,
+				"ts-check": false
+			}
+		],
+		"@typescript-eslint/ban-types": ["off"],
+		"@typescript-eslint/explicit-function-return-type": "warn",
+		"@typescript-eslint/no-explicit-any": ["warn"],
+		"@typescript-eslint/no-unused-vars": "error",
+		"@typescript-eslint/no-use-before-define": ["warn"],
+		"@typescript-eslint/prefer-optional-chain": "error",
+		"prettier/prettier": "error",
+		"react-hooks/exhaustive-deps": "warn",
+		"react-hooks/rules-of-hooks": "error",
+		"react/prop-types": ["off"],
+		"simple-import-sort/exports": "error",
+		"simple-import-sort/imports": "error"
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	}
+}

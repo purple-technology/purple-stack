@@ -1,0 +1,56 @@
+{
+	"name": "purple-stack",
+	"version": "1.0.0",
+	"private": true,
+	"engines": {
+		"node": "12.x"
+	},
+	"scripts": {
+		"env": "env-cmd -f ./.env",
+		"bootstrap": "lerna bootstrap",
+		"postinstall": "npm run bootstrap",
+		"test": "lerna run test",
+		"lint": "eslint 'frontend' 'api' 'backend' 'packages' --ext .ts,.tsx,.js,.jsx,.json && prettier -c \"**/*.{graphql,gql,html}\"",
+		"lint:fix": "eslint 'frontend' 'api' 'backend' 'packages' --ext .ts,.tsx,.js,.jsx,.json --fix && prettier --write \"**/*.{graphql,gql,html}\"",
+		"ci:test": "lerna --stream --concurrency=3 run ci:test",
+		"ci:package": "lerna --stream --concurrency 3 --scope='@be-prioritized/*' --scope='@be/*' --scope='api' run ci:package",
+		"smart:ci:package": "smartRun smart:ci:package --concurrency 3 --runFirst='@be-prioritized/*' --runFirst='api'",
+		"ci:compilation-check": "lerna --stream --concurrency 4 --scope='@be-prioritized/*' --scope='@be/*' --scope='api' --scope='frontend' run ci:package",
+		"ci:deploy": "lerna --stream --scope='@be-prioritized/*' run ci:deploy -- -- -p .serverless && lerna --stream --scope='@be/*' run ci:deploy -- -- -p .serverless && lerna --stream --scope='api' run ci:deploy -- -- -p .serverless && lerna --stream --scope='frontend' run ci:deploy",
+		"smart:ci:deploy": "smartRun smart:ci:deploy --runFirst='@be-prioritized/*' --runFirst='@be/*' --runFirst='api' --runLast='frontend' --tagOnSuccess",
+		"ci:remove": "lerna --stream --scope='frontend' run ci:remove && lerna --stream --scope='api' run ci:remove && lerna --stream --scope='@be/*' run ci:remove && lerna --stream --scope='@be-prioritized/*' run ci:remove",
+		"graphql-codegen": "graphql-codegen --config codegen.yml",
+		"delete-tag": "smartRun --deleteTag"
+	},
+	"lint-staged": {
+		"*.{ts,tsx,js,jsx,json}": "eslint --fix",
+		"*.{graphql,gql,html}": "prettier --write"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"devDependencies": {
+		"@graphql-codegen/cli": "^1.19.2",
+		"@graphql-codegen/typescript": "^1.17.11",
+		"@graphql-codegen/typescript-operations": "^1.17.10",
+		"@purple/lerna-smart-run": "^0.3.1",
+		"@types/jest": "^26.0.15",
+		"@typescript-eslint/eslint-plugin": "^4.8.2",
+		"@typescript-eslint/parser": "^4.8.2",
+		"env-cmd": "^10.1.0",
+		"eslint": "^7.14.0",
+		"eslint-config-prettier": "^6.15.0",
+		"eslint-plugin-prettier": "^3.1.4",
+		"eslint-plugin-react": "^7.21.5",
+		"eslint-plugin-react-hooks": "^4.2.0",
+		"eslint-plugin-simple-import-sort": "^6.0.1",
+		"graphql": "^15.4.0",
+		"husky": "^4.3.0",
+		"lerna": "^3.22.1",
+		"lint-staged": "^10.5.2",
+		"prettier": "^2.2.0",
+		"typescript": "^4.1.2"
+	}
+}

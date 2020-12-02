@@ -1,0 +1,13 @@
+{
+	"name": "@package/env-vars",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Safeley access environments variables from within Lambda runtime",
+	"main": "src/index.ts",
+	"dependencies": {
+		"@package/logger": "^1.0.0"
+	},
+	"devDependencies": {
+		"@package/tsconfig": "^1.0.0"
+	}
+}
