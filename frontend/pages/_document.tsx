@@ -10,7 +10,7 @@ import Document, {
 import React, { ReactElement } from 'react'
 import { ServerStyleSheet } from 'styled-components'
 
-interface PurpleDocumentProps {
+type PurpleDocumentProps = {
 	styleTags: ReactElement[]
 }
 
@@ -24,15 +24,16 @@ export default class PurpleDocument extends Document<PurpleDocumentProps> {
 		const sheet = new ServerStyleSheet()
 
 		// Step 2: Retrieve styles from components in the page
-		ctx.renderPage((App: NextComponentType) => (props: object): ReactElement =>
-			sheet.collectStyles(<App {...props} />)
+		const page = await ctx.renderPage(
+			(App: NextComponentType) => (props: object): ReactElement =>
+				sheet.collectStyles(<App {...props} />)
 		)
 
 		// Step 3: Extract the styles as <style> tags
 		const styleTags = sheet.getStyleElement()
 
 		// Step 4: Pass styleTags as a prop
-		return { ...initialProps, styleTags }
+		return { ...initialProps, ...page, styleTags }
 	}
 
 	render(): JSX.Element {
