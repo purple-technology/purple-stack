@@ -5,6 +5,16 @@ const webpack = require('webpack')
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 
+const getSecretConfigEnvs = (slsw) => {
+	const { custom } = slsw.lib.serverless.service
+	const secretConfigEnvs =
+		custom && custom.secretConfigEnvs ? custom.secretConfigEnvs : {}
+
+	return {
+		'process.env.__SECRETS__': JSON.stringify(secretConfigEnvs)
+	}
+}
+
 module.exports = (slsw, dirname) => {
 	return {
 		context: dirname,
@@ -46,15 +56,5 @@ module.exports = (slsw, dirname) => {
 			new webpack.IgnorePlugin(/^pg-native$/),
 			new webpack.DefinePlugin({ ...getSecretConfigEnvs(slsw) })
 		]
-	}
-}
-
-const getSecretConfigEnvs = (slsw) => {
-	const { custom } = slsw.lib.serverless.service
-	const secretConfigEnvs =
-		custom && custom.secretConfigEnvs ? custom.secretConfigEnvs : {}
-
-	return {
-		'process.env.__SECRETS__': JSON.stringify(secretConfigEnvs)
 	}
 }
