@@ -13,6 +13,8 @@
 		"deploy": "npm run env -- npm run ci:deploy",
 		"remove": "npm run env -- npm run ci:remove",
 		"info": "npm run env -- npm run ci:info",
+		"smart:ci:package": "npm run ci:package",
+		"smart:ci:deploy": "npm run ci:deploy",
 		"ci:package": "serverless package",
 		"ci:deploy": "serverless deploy",
 		"ci:remove": "serverless remove",
