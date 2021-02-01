@@ -17,7 +17,7 @@
 		"smart:ci:package": "smartRun smart:ci:package --concurrency 3 --runFirst='@be-prioritized/*' --runFirst='@be/*' --runFirst='api'",
 		"ci:compilation-check": "lerna --stream --concurrency 4 --scope='@be-prioritized/*' --scope='@be/*' --scope='api' --scope='frontend' run ci:package",
 		"ci:deploy": "lerna --stream --scope='@be-prioritized/*' run ci:deploy -- -- -p .serverless && lerna --stream --scope='@be/*' run ci:deploy -- -- -p .serverless && lerna --stream --scope='api' run ci:deploy -- -- -p .serverless && lerna --stream --scope='frontend' run ci:deploy",
-		"smrt:cai:deploy": "smartRun smart:ci:deploy --runFirst='@be-prioritized/*' --runFirst='@be/*' --runFirst='api' --runLast='frontend' --tagOnSuccess",
+		"smart:ci:deploy": "smartRun smart:ci:deploy --runFirst='@be-prioritized/*' --runFirst='@be/*' --runFirst='api' --runLast='frontend' --tagOnSuccess",
 		"ci:remove": "lerna --stream --scope='frontend' run ci:remove && lerna --stream --scope='api' run ci:remove && lerna --stream --scope='@be/*' run ci:remove && lerna --stream --scope='@be-prioritized/*' run ci:remove",
 		"graphql-codegen": "graphql-codegen --config codegen.yml",
 		"delete-tag": "smartRun --deleteTag"
