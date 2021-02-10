@@ -18,7 +18,7 @@
 		"remove": "npm run env -- npm run ci:remove",
 		"info": "npm run env -- npm run ci:info",
 		"smart:ci:deploy": "npm run ci:deploy",
-		"ci:package": "serverless package",
+		"ci:package": "serverless package && npm run build",
 		"ci:deploy": "echo \"Timeout for SLS deployment is set to 30s. Might skip rest of the stack creation\" && (timeout 30s serverless deploy || true) && npm run ci:export && serverless client deploy --no-confirm --no-delete-contents",
 		"ci:remove": "echo \"Timeout for SLS stack removal is set to 30s. Might skip rest of the stack removal\" && (timeout 30s serverless remove || true)",
 		"ci:info": "serverless info --verbose",
