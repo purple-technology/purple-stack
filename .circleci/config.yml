@@ -65,8 +65,6 @@ jobs:
     steps:
       - checkout
       - run: *commands_npm_auth
-      - aws-cli/install
-      - run: *commands_assume_aws_role
       - run: *install_dependencies
       - run:
           name: Run Linter
