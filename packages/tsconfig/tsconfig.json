@@ -15,7 +15,8 @@
 		"preserveSymlinks": true,
 		"strict": true,
 		"noImplicitAny": true,
-		"strictFunctionTypes": true
+		"strictFunctionTypes": true,
+		"noErrorTruncation": true
 	},
 	"exclude": ["/**/node_modules"]
 }
