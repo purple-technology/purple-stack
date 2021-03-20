@@ -9,7 +9,7 @@
 		"env": "env-cmd -f ./.env",
 		"bootstrap": "lerna bootstrap",
 		"postinstall": "npm run bootstrap",
-		"test": "lerna run test",
+		"test": "lerna --stream=true run test",
 		"lint": "eslint 'frontend' 'api' 'backend' 'packages' --ext .ts,.tsx,.js,.jsx,.json && prettier -c \"**/*.{graphql,gql,html}\"",
 		"lint:fix": "eslint 'frontend' 'api' 'backend' 'packages' --ext .ts,.tsx,.js,.jsx,.json --fix && prettier --write \"**/*.{graphql,gql,html}\"",
 		"ci:test": "lerna --stream --concurrency=3 run ci:test",
