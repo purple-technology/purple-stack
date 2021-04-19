@@ -2,7 +2,7 @@
 	"name": "api",
 	"private": true,
 	"engines": {
-		"node": "12.x"
+		"node": "14.x"
 	},
 	"description": "API of the purple-stack application",
 	"scripts": {
