@@ -2,7 +2,7 @@ common:
   projectName: purple-stack
   dnsRandomString: xwtce
   region: REGION # e.g. eu-central-1
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   deploymentBucket: purple-stack-deployments # your S3 bucket
   logRetentionInDays: 90
   versionFunctions: false

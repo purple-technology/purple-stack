@@ -1,13 +1,13 @@
 {
 	"compilerOptions": {
-		"lib": ["es2017", "dom"],
+		"lib": ["es2020", "dom"],
 		"types": ["node", "jest"],
 		"moduleResolution": "node",
 		"module": "es6",
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"sourceMap": true,
-		"target": "es2017",
+		"target": "es2019",
 		"outDir": "lib",
 		"allowSyntheticDefaultImports": true,
 		"resolveJsonModule": true,

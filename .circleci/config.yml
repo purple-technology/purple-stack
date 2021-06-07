@@ -8,7 +8,7 @@ references:
     context: &context
       pt-serverless
     image: &image
-      circleci/node:12.16.1
+      circleci/node:14
 
   commands:
     assume_aws_role: &commands_assume_aws_role
