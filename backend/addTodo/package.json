@@ -3,7 +3,7 @@
 	"author": "Purple Technology",
 	"private": true,
 	"engines": {
-		"node": "12.x"
+		"node": "14.x"
 	},
 	"scripts": {
 		"env": "env-cmd -f ../../.env",
