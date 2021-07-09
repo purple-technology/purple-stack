@@ -25,14 +25,8 @@ export interface Todo {
 
 const TodosList: React.FC = () => {
 	const { t } = useTranslation()
-	const {
-		todos,
-		loadingTodos,
-		addTodo,
-		fetchTodos,
-		removeTodo,
-		switchCheck
-	} = useModel(TodosModel)
+	const { todos, loadingTodos, addTodo, fetchTodos, removeTodo, switchCheck } =
+		useModel(TodosModel)
 
 	useEffect(() => {
 		fetchTodos()

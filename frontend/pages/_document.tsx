@@ -25,8 +25,9 @@ export default class PurpleDocument extends Document<PurpleDocumentProps> {
 
 		// Step 2: Retrieve styles from components in the page
 		const page = await ctx.renderPage(
-			(App: NextComponentType) => (props: object): ReactElement =>
-				sheet.collectStyles(<App {...props} />)
+			(App: NextComponentType) =>
+				(props: object): ReactElement =>
+					sheet.collectStyles(<App {...props} />)
 		)
 
 		// Step 3: Extract the styles as <style> tags
