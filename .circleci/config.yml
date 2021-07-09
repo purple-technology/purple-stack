@@ -9,8 +9,6 @@ references:
       pt-serverless
     image: &image
       circleci/node:14
-    aws_role: &aws_role
-      arn:aws:iam::000000000000:role/ReplaceCiRole
 
   commands:
     assume_aws_role: &commands_assume_aws_role
@@ -99,11 +97,6 @@ jobs:
   deploy:
     docker:
       - image: *image
-    parameters:
-      aws_role:
-        type: string
-    environment:
-      AWS_ROLE: << parameters.aws_role >>
     steps:
       - checkout
       - run: *commands_npm_auth
@@ -124,11 +117,6 @@ jobs:
   remove:
     docker:
       - image: *image
-    parameters:
-      aws_role:
-        type: string
-    environment:
-      AWS_ROLE: << parameters.aws_role >>
     steps:
       - checkout
       - run: *commands_npm_auth
@@ -160,7 +148,6 @@ workflows:
             - approve_deploy
           context: *context
           filters: *prod_branch_filter
-          aws_role: *aws_role
   deploy_staging:
     jobs:
       - approve_deploy:
@@ -171,7 +158,6 @@ workflows:
             - approve_deploy
           context: *context
           filters: *staging_branch_filter
-          aws_role: *aws_role
   deploy_feature:
     jobs:
       - approve_deploy:
@@ -182,7 +168,6 @@ workflows:
             - approve_deploy
           context: *context
           filters: *feature_branch_filter
-          aws_role: *aws_role
   remove_feature:
     jobs:
       - approve_remove:
@@ -193,4 +178,3 @@ workflows:
             - approve_remove
           context: *context
           filters: *feature_branch_filter
-          aws_role: *aws_role

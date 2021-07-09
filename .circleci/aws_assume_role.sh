@@ -1,6 +1,7 @@
 unset AWS_SESSION_TOKEN
 
 PROJECT_NAME=$(yq e '.common.projectName' serverless.settings.yml)
+AWS_ROLE=$(yq e '.ci.awsRole' serverless.settings.yml)
 
 temp_role=$(aws sts assume-role --role-arn $AWS_ROLE --role-session-name $PROJECT_NAME)
 
