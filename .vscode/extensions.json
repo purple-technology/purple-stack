@@ -1,11 +1,12 @@
 {
 	"recommendations": [
-		"editorconfig.editorconfig",
+		"dbaeumer.vscode-eslint",
 		"eamodio.gitlens",
+		"editorconfig.editorconfig",
+		"esbenp.prettier-vscode",
+		"jpoissonnier.vscode-styled-components",
 		"kumar-harsh.graphql-for-vscode",
 		"sodatea.velocity",
-		"dbaeumer.vscode-eslint",
-		"esbenp.prettier-vscode",
-		"jpoissonnier.vscode-styled-components"
+		"vivaxy.vscode-conventional-commits"
 	]
 }
