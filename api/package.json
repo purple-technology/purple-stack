@@ -15,8 +15,6 @@
 		"tdd": "npm test -- -- --watchAll",
 		"test": "npm run env -- npm run ci:test",
 		"ci:package": "serverless package",
-		"smart:ci:package": "npm run ci:package",
-		"smart:ci:deploy": "npm run ci:deploy",
 		"ci:deploy": "serverless deploy",
 		"ci:remove": "serverless remove",
 		"ci:info": "serverless info --verbose",
