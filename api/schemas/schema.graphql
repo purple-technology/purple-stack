@@ -10,14 +10,3 @@ type Mutation {
 	switchCheck(createdTimestamp: ID!): Status!
 	removeTodo(createdTimestamp: ID!): Status!
 }
-
-type Todo {
-	text: String!
-	createdTimestamp: ID!
-	checked: Boolean!
-}
-
-enum Status {
-	SUCCESS
-	FAIL
-}

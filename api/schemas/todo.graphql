@@ -1,0 +1,10 @@
+type Todo {
+	text: String!
+	createdTimestamp: ID!
+	checked: Boolean!
+}
+
+enum Status {
+	SUCCESS
+	FAIL
+}
