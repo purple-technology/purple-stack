@@ -1,14 +1,12 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@0.1.13
+  aws-cli: circleci/aws-cli@2.0.3
 
 references:
   general:
-    context: &context
-      pt-serverless
-    image: &image
-      circleci/node:14
+    context: &context pt-serverless
+    image: &image circleci/node:14
 
   commands:
     assume_aws_role: &commands_assume_aws_role
