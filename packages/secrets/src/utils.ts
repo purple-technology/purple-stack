@@ -9,7 +9,7 @@ function getSecrets(): { [key: string]: any } {
 		return mockedConfig
 	}
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	return (process.env.__SECRETS__ as unknown) as { [key: string]: any }
+	return process.env.__SECRETS__ as unknown as { [key: string]: any }
 }
 
 export function getEnvVar<T>(
@@ -17,7 +17,7 @@ export function getEnvVar<T>(
 	condition: (env: T) => boolean
 ): T {
 	const secrets = getSecrets()
-	const env = (secrets[envName] as unknown) as T
+	const env = secrets[envName] as unknown as T
 	if (typeof env === 'undefined') {
 		throw new LogError('secret_env_var_not_found', { envName })
 	}

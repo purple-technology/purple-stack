@@ -1,6 +1,9 @@
 unset AWS_SESSION_TOKEN
 
-temp_role=$(aws sts assume-role --role-arn "ROLE_ARN_HERE" --role-session-name "purple-stack-deployment")
+PROJECT_NAME=$(yq e '.common.projectName' serverless.settings.yml)
+AWS_ROLE=$(yq e '.ci.awsRole' serverless.settings.yml)
+
+temp_role=$(aws sts assume-role --role-arn $AWS_ROLE --role-session-name $PROJECT_NAME)
 
 export AWS_ACCESS_KEY_ID=$(echo $temp_role | jq .Credentials.AccessKeyId | xargs)
 export AWS_SECRET_ACCESS_KEY=$(echo $temp_role | jq .Credentials.SecretAccessKey | xargs)

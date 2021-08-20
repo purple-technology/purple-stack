@@ -26,6 +26,10 @@ references:
           npx lerna clean -y && rm -rf node_modules
         done
         exit 1
+    install_yq: &install_yq
+      name: Install yq
+      command: |
+        wget https://github.com/mikefarah/yq/releases/download/v4.9.8/yq_linux_amd64.tar.gz -O - | tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
 
   prod_branch_filter: &prod_branch_filter
     branches:
@@ -81,6 +85,7 @@ jobs:
       - checkout
       - run: *commands_npm_auth
       - run: *install_dependencies
+      - run: *install_yq
       - aws-cli/install
       - run: *commands_assume_aws_role
       - run:
@@ -94,6 +99,7 @@ jobs:
       - checkout
       - run: *commands_npm_auth
       - run: *install_dependencies
+      - run: *install_yq
       - aws-cli/install
       - run: *commands_assume_aws_role
       - run:
@@ -106,25 +112,6 @@ jobs:
           name: Invalidate Frontend Cache
           command: "aws cloudfront create-invalidation --paths '/*' --distribution-id=$(npx lerna --scope='frontend' run ci:info | awk '/CloudFrontDistributionId: ([A-Z0-9]*)/{print $2}') || true"
 
-  smart_deploy:
-    docker:
-      - image: *image
-    steps:
-      - checkout
-      - run: *commands_npm_auth
-      - run: *install_dependencies
-      - aws-cli/install
-      - run: *commands_assume_aws_role
-      - run:
-          name: Smart Package
-          command: npm run smart:ci:package
-      - deploy:
-          name: Smart Deploy
-          command: npm run smart:ci:deploy
-      - deploy:
-          name: Invalidate Frontend Cache
-          command: "aws cloudfront create-invalidation --paths '/*' --distribution-id=$(npx lerna --scope='frontend' run ci:info | awk '/CloudFrontDistributionId: ([A-Z0-9]*)/{print $2}') || true"
-
   remove:
     docker:
       - image: *image
@@ -132,19 +119,7 @@ jobs:
       - checkout
       - run: *commands_npm_auth
       - run: *install_dependencies
-      - aws-cli/install
-      - run: *commands_assume_aws_role
-      - deploy:
-          name: Remove
-          command: npm run ci:remove
-
-  smart_remove:
-    docker:
-      - image: *image
-    steps:
-      - checkout
-      - run: *commands_npm_auth
-      - run: *install_dependencies
+      - run: *install_yq
       - aws-cli/install
       - run: *commands_assume_aws_role
       - deploy:
@@ -153,7 +128,6 @@ jobs:
 
 workflows:
   version: 2
-
   test:
     jobs:
       - test:
@@ -162,7 +136,6 @@ workflows:
       - compilation_check:
           context: *context
           filters: *test_branch_filter
-
   deploy_prod:
     jobs:
       - approve_deploy:
@@ -173,7 +146,6 @@ workflows:
             - approve_deploy
           context: *context
           filters: *prod_branch_filter
-
   deploy_staging:
     jobs:
       - approve_deploy:
@@ -184,7 +156,6 @@ workflows:
             - approve_deploy
           context: *context
           filters: *staging_branch_filter
-
   deploy_feature:
     jobs:
       - approve_deploy:
@@ -195,40 +166,6 @@ workflows:
             - approve_deploy
           context: *context
           filters: *feature_branch_filter
-
-  smart_deploy_prod:
-    jobs:
-      - approve_smart_deploy:
-          type: approval
-          filters: *prod_branch_filter
-      - smart_deploy:
-          requires:
-            - approve_smart_deploy
-          context: *context
-          filters: *prod_branch_filter
-
-  smart_deploy_staging:
-    jobs:
-      - approve_smart_deploy:
-          type: approval
-          filters: *staging_branch_filter
-      - smart_deploy:
-          requires:
-            - approve_smart_deploy
-          context: *context
-          filters: *staging_branch_filter
-
-  smart_deploy_feature:
-    jobs:
-      - approve_smart_deploy:
-          type: approval
-          filters: *feature_branch_filter
-      - smart_deploy:
-          requires:
-            - approve_smart_deploy
-          context: *context
-          filters: *feature_branch_filter
-
   remove_feature:
     jobs:
       - approve_remove:
@@ -237,16 +174,5 @@ workflows:
       - remove:
           requires:
             - approve_remove
-          context: *context
-          filters: *feature_branch_filter
-
-  smart_remove_feature:
-    jobs:
-      - approve_smart_remove:
-          type: approval
-          filters: *feature_branch_filter
-      - smart_remove:
-          requires:
-            - approve_smart_remove
           context: *context
           filters: *feature_branch_filter

@@ -15,7 +15,7 @@ enum Stage {
 
 export const getConfig = (stage: string): Config => {
 	function branch<T>(defaultValue: T, config: { [stage in Stage]?: T }): T {
-		const targetStage = (Stage[(stage as unknown) as Stage] as unknown) as Stage
+		const targetStage = Stage[stage as unknown as Stage] as unknown as Stage
 		const cfgValue = config[targetStage]
 		if (typeof cfgValue !== 'undefined') {
 			return cfgValue

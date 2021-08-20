@@ -15,9 +15,8 @@ import { TodosState } from './types'
 
 export default modelify<TodosState>(() => {
 	const [todos, setTodos] = useState<TodosState['todos']>(null)
-	const [loadingTodos, setLoadingTodos] = useState<TodosState['loadingTodos']>(
-		false
-	)
+	const [loadingTodos, setLoadingTodos] =
+		useState<TodosState['loadingTodos']>(false)
 
 	const fetchTodos: TodosState['fetchTodos'] = async () => {
 		if (loadingTodos) return
