@@ -1,19 +1,18 @@
 import 'source-map-support/register'
 
-import { AppSyncHandler } from '@package/appsync-types'
 import { getEnvVar } from '@package/env-vars'
 import {
 	Mutation,
 	MutationSwitchCheckArgs,
 	Status
 } from '@package/graphql-types'
+import { AppSyncResolverHandler } from 'aws-lambda'
 import AWS from 'aws-sdk'
 
 const dynamoDb = new AWS.DynamoDB()
 
-export const handler: AppSyncHandler<
+export const handler: AppSyncResolverHandler<
 	MutationSwitchCheckArgs,
-	{},
 	Mutation['switchCheck']
 > = async (event): Promise<Mutation['switchCheck']> => {
 	try {
