@@ -1,19 +1,18 @@
 import 'source-map-support/register'
 
-import { AppSyncHandler } from '@package/appsync-types'
 import { getEnvVar } from '@package/env-vars'
 import {
 	Mutation,
 	MutationRemoveTodoArgs,
 	Status
 } from '@package/graphql-types'
+import { AppSyncResolverHandler } from 'aws-lambda'
 import AWS from 'aws-sdk'
 
 const dynamoDb = new AWS.DynamoDB()
 
-export const handler: AppSyncHandler<
+export const handler: AppSyncResolverHandler<
 	MutationRemoveTodoArgs,
-	{},
 	Mutation['removeTodo']
 > = async (event): Promise<Mutation['removeTodo']> => {
 	try {

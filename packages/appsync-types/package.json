@@ -1,7 +1,0 @@
-{
-	"name": "@package/appsync-types",
-	"private": true,
-	"version": "1.0.0",
-	"description": "Typescript appsync types definitions for API",
-	"main": "src/index.ts"
-}

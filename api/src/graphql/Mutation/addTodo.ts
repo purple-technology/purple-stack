@@ -1,16 +1,15 @@
 import 'source-map-support/register'
 
-import { AppSyncHandler } from '@package/appsync-types'
 import { getConfig } from '@package/config'
 import { getEnvVar } from '@package/env-vars'
 import { Mutation, MutationAddTodoArgs, Status } from '@package/graphql-types'
+import { AppSyncResolverHandler } from 'aws-lambda'
 import AWS from 'aws-sdk'
 
 const stepFunctions = new AWS.StepFunctions()
 
-export const handler: AppSyncHandler<
+export const handler: AppSyncResolverHandler<
 	MutationAddTodoArgs,
-	{},
 	Mutation['addTodo']
 > = async (event): Promise<Mutation['addTodo']> => {
 	const config = getConfig(getEnvVar('STAGE'))
