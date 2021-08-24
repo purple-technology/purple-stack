@@ -1,11 +1,11 @@
 import 'source-map-support/register'
 
-import { AppSyncBatchHandler } from '@package/appsync-types'
 import { getEnvVar } from '@package/env-vars'
 import { Query, Todo } from '@package/graphql-types'
+import { AppSyncBatchResolverHandler } from 'aws-lambda'
 import AWS from 'aws-sdk'
 
-export const handler: AppSyncBatchHandler<{}, {}, Query['todos']> = async (
+export const handler: AppSyncBatchResolverHandler<{}, Query['todos']> = async (
 	event
 ): Promise<Query['todos'][]> => {
 	const dynamoDb = new AWS.DynamoDB.DocumentClient()
