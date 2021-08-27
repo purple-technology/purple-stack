@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/purple-technology/purple-stack/compare/v2.3.0...v2.4.0) (2021-08-27)
+
+
+### Features
+
+* create api-utils package to stringify API unkown errors ([757b257](https://github.com/purple-technology/purple-stack/commit/757b257eae905cceb2a89e1b7cdfb7199bbf91a4))
+
+
+### Bug Fixes
+
+* add missing tsconfig to env-vars package ([651ac1d](https://github.com/purple-technology/purple-stack/commit/651ac1d3924144db41e4209fa6e2c4934b339a93))
+
 ## [2.3.0](https://github.com/purple-technology/purple-stack/compare/v2.2.0...v2.3.0) (2021-08-27)
 
 
