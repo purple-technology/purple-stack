@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/purple-technology/purple-stack/compare/v2.2.0...v2.3.0) (2021-08-27)
+
+
+### Features
+
+* upgrade to TypeScript 4.4 ([ff5d2cc](https://github.com/purple-technology/purple-stack/commit/ff5d2ccd5ddc72f4dd37aa72889d418d96c1d647))
+
 ## [2.2.0](https://github.com/purple-technology/purple-stack/compare/v2.1.0...v2.2.0) (2021-08-24)
 
 
