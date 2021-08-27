@@ -1,5 +1,6 @@
 import 'source-map-support/register'
 
+import { stringifyError } from '@package/api-utils'
 import { getEnvVar } from '@package/env-vars'
 import {
 	Mutation,
@@ -29,6 +30,6 @@ export const handler: AppSyncResolverHandler<
 		return Status.Success
 	} catch (err) {
 		console.error(err)
-		throw err.message
+		throw stringifyError(err)
 	}
 }

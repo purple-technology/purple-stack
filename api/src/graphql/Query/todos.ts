@@ -1,5 +1,6 @@
 import 'source-map-support/register'
 
+import { stringifyError } from '@package/api-utils'
 import { getEnvVar } from '@package/env-vars'
 import { Query, Todo } from '@package/graphql-types'
 import { AppSyncBatchResolverHandler } from 'aws-lambda'
@@ -32,6 +33,6 @@ export const handler: AppSyncBatchResolverHandler<{}, Query['todos']> = async (
 		return await Promise.all(event.map(async () => await getAllTodos()))
 	} catch (err) {
 		console.error(err)
-		throw err.message
+		throw stringifyError(err)
 	}
 }

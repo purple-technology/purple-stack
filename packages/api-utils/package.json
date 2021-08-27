@@ -1,0 +1,10 @@
+{
+	"name": "@package/api-utils",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Utils for the API",
+	"main": "src/index.ts",
+	"devDependencies": {
+		"@package/tsconfig": "^1.0.0"
+	}
+}
