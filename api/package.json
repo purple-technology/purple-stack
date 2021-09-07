@@ -21,6 +21,7 @@
 		"ci:test": "NODE_ENV=test jest --coverage --detectOpenHandles --forceExit --passWithNoTests"
 	},
 	"devDependencies": {
+		"@package/api-utils": "^1.0.0",
 		"@package/graphql-types": "^1.0.0",
 		"@package/sls-macros": "^1.0.0",
 		"@package/tsconfig": "^1.0.0",
@@ -41,7 +42,7 @@
 		"split-camelcase": "^1.0.1",
 		"ts-jest": "^26.4.4",
 		"ts-loader": "^8.0.11",
-		"typescript": "^4.1.2",
+		"typescript": "^4.4.2",
 		"webpack": "^4.44.2"
 	},
 	"dependencies": {

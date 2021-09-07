@@ -1,5 +1,6 @@
 import 'source-map-support/register'
 
+import { stringifyError } from '@package/api-utils'
 import { getConfig } from '@package/config'
 import { getEnvVar } from '@package/env-vars'
 import { Mutation, MutationAddTodoArgs, Status } from '@package/graphql-types'
@@ -34,6 +35,6 @@ export const handler: AppSyncResolverHandler<
 		return Status.Success
 	} catch (err) {
 		console.error(err)
-		throw err.message
+		throw stringifyError(err)
 	}
 }

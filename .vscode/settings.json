@@ -18,5 +18,6 @@
 	"eslint.format.enable": true,
 	"editor.formatOnSave": true,
 	"prettier.ignorePath": ".eslintignore",
-	"prettier.useEditorConfig": true
+	"prettier.useEditorConfig": true,
+	"typescript.tsdk": "node_modules/typescript/lib"
 }

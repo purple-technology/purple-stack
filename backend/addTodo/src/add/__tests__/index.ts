@@ -34,7 +34,7 @@ describe('#addTodo', () => {
 		try {
 			await handler(i as Input)
 		} catch (err) {
-			error = err
+			error = err as Error
 		}
 		expect(error.message).toEqual('"text" must be a string')
 	})

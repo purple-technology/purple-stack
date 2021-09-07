@@ -23,7 +23,7 @@ async function fetch<T extends object, V extends object = object>(
 		}
 		return response as GraphQLResult<T>
 	} catch (err) {
-		return err
+		return err as GraphQLResult<T>
 	}
 }
 
