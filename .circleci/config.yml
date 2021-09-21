@@ -6,7 +6,7 @@ orbs:
 references:
   general:
     context: &context pt-serverless
-    image: &image circleci/node:14
+    image: &image cimg/node:14.17
 
   commands:
     assume_aws_role: &commands_assume_aws_role
