@@ -9,7 +9,8 @@ common:
   apiGatewayShouldStartNameWithService: true # https://www.serverless.com/framework/docs/deprecations/#AWS_API_GATEWAY_NAME_STARTING_WITH_SERVICE
 
 ci:
-  awsRole: arn:aws:iam::000000000000:role/ReplaceCiRole
+  prodAwsRole: arn:aws:iam::000000000000:role/ReplaceCiRole
+  stagingAwsRole: arn:aws:iam::000000000000:role/ReplaceCiRole
 
 vpc: ~
   # securityGroupIds:
