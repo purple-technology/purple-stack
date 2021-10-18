@@ -4,6 +4,8 @@ out/
 
 # Coverage directory used by jest
 coverage
+coverage-report
+.nyc_output
 
 # Serverless
 .serverless
