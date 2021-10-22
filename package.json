@@ -14,6 +14,7 @@
 		"lint": "eslint 'frontend' 'api' 'backend' 'packages' --ext .ts,.tsx,.js,.jsx,.json && prettier -c \"**/*.{graphql,gql,html}\"",
 		"lint:fix": "eslint 'frontend' 'api' 'backend' 'packages' --ext .ts,.tsx,.js,.jsx,.json --fix && prettier --write \"**/*.{graphql,gql,html}\"",
 		"ci:test": "lerna --stream --concurrency=3 run ci:test",
+		"ci:generate-coverage": ".circleci/generate-coverage.sh",
 		"ci:package": "smartRun ci:package --concurrency 3 --runFirst='@be-prioritized/*' --runFirst='@be/*' --runFirst='api'",
 		"ci:compilation-check": "lerna --stream --concurrency 4 --scope='@be-prioritized/*' --scope='@be/*' --scope='api' --scope='frontend' run ci:package",
 		"ci:deploy": "smartRun ci:deploy --runFirst='@be-prioritized/*' --runFirst='@be/*' --runFirst='api' --runLast='frontend' --tagOnSuccess",
@@ -47,6 +48,7 @@
 		"husky": "^7.0.1",
 		"lerna": "^4.0.0",
 		"lint-staged": "^11.0.0",
+		"nyc": "^15.1.0",
 		"prettier": "^2.3.1",
 		"standard-version": "^9.3.0",
 		"typescript": "^4.4.2"

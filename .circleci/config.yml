@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   aws-cli: circleci/aws-cli@2.0.3
+  codecov: codecov/codecov@3.1.1
 
 references:
   general:
@@ -77,6 +78,14 @@ jobs:
       - run:
           name: Run Tests
           command: npm run ci:test
+      - run:
+          name: Generate coverage
+          command: npm run ci:generate-coverage
+      - codecov/upload:
+          file: coverage-final.json
+          xtra_args: -s ./coverage/
+      - store_artifacts:
+          path: coverage-report
 
   compilation_check:
     docker:
