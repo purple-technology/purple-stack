@@ -42,9 +42,21 @@ references:
       only:
         - staging
 
+  compilation_branch_filter: &compilation_branch_filter
+    branches:
+      only:
+        - /dependabot\/.*/
+        - /feature\/.*/
+        - /hotfix\/.*/
+        - /fix\/.*/
+        - /h\/.*/
+        - /f\/.*/
+
   test_branch_filter: &test_branch_filter
     branches:
       only:
+        - master
+        - staging
         - /dependabot\/.*/
         - /feature\/.*/
         - /hotfix\/.*/
@@ -144,7 +156,7 @@ workflows:
           filters: *test_branch_filter
       - compilation_check:
           context: *context
-          filters: *test_branch_filter
+          filters: *compilation_branch_filter
   deploy_prod:
     jobs:
       - approve_deploy:
