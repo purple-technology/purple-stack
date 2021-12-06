@@ -82,7 +82,11 @@ jobs:
       - run: *commands_npm_auth
       - run: *install_dependencies
       - run:
-          name: Run Linter
+          name: Run Commit Linter
+          # The commit hash since when the history is checked
+          command: npx commitlint --from e20ae1d8d7e47409d6e10cf1ab9bb6374e7e53a0 --to HEAD
+      - run:
+          name: Run Code Linter
           command: npm run lint
       - run:
           name: Graphql CodeGen check
