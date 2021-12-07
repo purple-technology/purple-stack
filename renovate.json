@@ -1,5 +1,10 @@
 {
 	"extends": [
-		"config:base"
+		"config:base",
+		"monorepo:lerna",
+		"schedule:earlyMondays",
+		"group:allNonMajor",
+		":automergePatch",
+		":automergeMinor"
 	]
 }

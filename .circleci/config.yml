@@ -46,6 +46,7 @@ references:
     branches:
       only:
         - /dependabot\/.*/
+        - /renovate\/.*/
         - /feature\/.*/
         - /hotfix\/.*/
         - /fix\/.*/
