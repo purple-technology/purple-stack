@@ -5,7 +5,9 @@
 		"schedule:earlyMondays",
 		"group:allNonMajor",
 		":automergePatch",
-		":automergeMinor"
+		":automergeMinor",
+		":prHourlyLimit4",
+		":prConcurrentLimit10"
 	],
 	"timezone": "Europe/Prague"
 }
