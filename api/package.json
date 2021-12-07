@@ -27,9 +27,9 @@
 		"@package/tsconfig": "^1.0.0",
 		"@package/webpack": "^1.0.0",
 		"@purple/serverless-git-branch-stage-plugin": "^1.2.0",
-		"@types/aws-lambda": "^8.10.83",
+		"@types/aws-lambda": "8.10.86",
 		"@types/jest": "^26.0.15",
-		"@types/node": "^14.14.31",
+		"@types/node": "14.17.34",
 		"aws-sdk": "^2.799.0",
 		"env-cmd": "^10.1.0",
 		"jest": "^26.6.3",
@@ -37,17 +37,17 @@
 		"serverless-appsync-plugin": "^1.11.3",
 		"serverless-appsync-simulator": "^0.17.0",
 		"serverless-offline": "^6.8.0",
-		"serverless-plugin-aws-alerts": "^1.6.1",
-		"serverless-webpack": "^5.3.5",
+		"serverless-plugin-aws-alerts": "1.7.4",
+		"serverless-webpack": "5.5.5",
 		"split-camelcase": "^1.0.1",
 		"ts-jest": "^26.4.4",
 		"ts-loader": "^8.0.11",
-		"typescript": "^4.4.2",
+		"typescript": "4.4.4",
 		"webpack": "^4.44.2"
 	},
 	"dependencies": {
 		"@package/config": "^1.0.0",
 		"@package/env-vars": "^1.0.0",
-		"source-map-support": "^0.5.19"
+		"source-map-support": "0.5.21"
 	}
 }

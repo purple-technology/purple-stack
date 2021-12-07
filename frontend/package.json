@@ -25,31 +25,31 @@
 		"ci:test": "NODE_ENV=test echo \"tests here yet\""
 	},
 	"dependencies": {
-		"aws-amplify": "^3.3.10",
+		"aws-amplify": "3.3.27",
 		"clsx": "^1.1.1",
 		"graphql": "^15.4.0",
 		"graphql-tag": "^2.11.0",
-		"i18next": "^19.8.4",
+		"i18next": "19.8.9",
 		"next": "^10.0.2",
 		"react": "^16.12.0",
 		"react-i18next": "^11.3.4",
-		"styled-components": "^5.2.1"
+		"styled-components": "5.2.3"
 	},
 	"devDependencies": {
 		"@package/graphql-types": "^1.0.0",
 		"@purple/serverless-s3-remover": "^0.7.0",
 		"@purple/serverless-git-branch-stage-plugin": "^1.2.0",
 		"@types/exenv": "^1.2.0",
-		"@types/react": "^16.8.19",
-		"@types/react-dom": "^16.8.4",
-		"@types/styled-components": "^5.1.4",
-		"babel-plugin-styled-components": "^1.12.0",
+		"@types/react": "16.9.56",
+		"@types/react-dom": "16.9.14",
+		"@types/styled-components": "5.1.17",
+		"babel-plugin-styled-components": "1.12.1",
 		"env-cmd": "^10.1.0",
 		"react-dom": "^16.8.6",
 		"serve": "^11.3.2",
 		"serverless": "^2.12.0",
 		"serverless-finch": "^2.6.0",
 		"serverless-plugin-aws-alerts": "^1.6.1",
-		"typescript": "^4.4.2"
+		"typescript": "4.4.4"
 	}
 }

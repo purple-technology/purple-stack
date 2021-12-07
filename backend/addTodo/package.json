@@ -25,16 +25,16 @@
 		"@package/env-vars": "^1.0.0",
 		"@package/logger": "^1.0.0",
 		"moment": "^2.29.1",
-		"source-map-support": "^0.5.19"
+		"source-map-support": "0.5.21"
 	},
 	"devDependencies": {
 		"@package/sls-macros": "^1.0.0",
 		"@package/tsconfig": "^1.0.0",
 		"@package/webpack": "^1.0.0",
 		"@purple/serverless-git-branch-stage-plugin": "^1.2.0",
-		"@types/hapi__joi": "^17.1.6",
-		"@types/jest": "^26.0.15",
-		"@types/node": "^14.14.31",
+		"@types/hapi__joi": "17.1.7",
+		"@types/jest": "26.0.24",
+		"@types/node": "14.17.34",
 		"aws-sdk": "^2.799.0",
 		"aws-sdk-mock": "^5.1.0",
 		"env-cmd": "^10.1.0",
@@ -45,8 +45,8 @@
 		"serverless-step-functions": "^2.29.0",
 		"serverless-webpack": "^5.3.5",
 		"ts-jest": "^26.4.4",
-		"ts-loader": "^8.0.11",
-		"typescript": "^4.4.2",
+		"ts-loader": "8.0.18",
+		"typescript": "4.4.4",
 		"webpack": "^4.44.2"
 	}
 }
