@@ -4,6 +4,7 @@
 		"monorepo:lerna",
 		"schedule:earlyMondays",
 		"group:allNonMajor",
+		":automergeDigest",
 		":automergePatch",
 		":automergeMinor",
 		":prHourlyLimit4",
