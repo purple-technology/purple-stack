@@ -6,5 +6,6 @@
 		"group:allNonMajor",
 		":automergePatch",
 		":automergeMinor"
-	]
+	],
+	"timezone": "Europe/Prague"
 }
