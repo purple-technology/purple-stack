@@ -5,7 +5,7 @@
 	"description": "Package with default Webpack configuration",
 	"main": "webpack.config.js",
 	"dependencies": {
-		"webpack": "^4.44.2",
+		"webpack": "4.46.0",
 		"webpack-node-externals": "^2.5.2"
 	}
 }
