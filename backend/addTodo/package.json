@@ -21,10 +21,10 @@
 		"func:add": "npm run env -- serverless invoke local --function add --path src/add/__io__/add.json"
 	},
 	"dependencies": {
-		"@hapi/joi": "^17.1.1",
+		"@hapi/joi": "17.1.1",
 		"@package/env-vars": "^1.0.0",
 		"@package/logger": "^1.0.0",
-		"moment": "^2.29.1",
+		"moment": "2.29.1",
 		"source-map-support": "0.5.21"
 	},
 	"devDependencies": {
@@ -37,8 +37,8 @@
 		"@types/node": "14.18.0",
 		"aws-sdk": "2.1044.0",
 		"aws-sdk-mock": "5.5.0",
-		"env-cmd": "^10.1.0",
-		"jest": "^26.6.3",
+		"env-cmd": "10.1.0",
+		"jest": "26.6.3",
 		"lodash": "^4.17.20",
 		"serverless": "2.68.0",
 		"serverless-plugin-aws-alerts": "1.7.4",

@@ -6,9 +6,9 @@
 	"main": "src/index.ts",
 	"devDependencies": {
 		"@package/tsconfig": "^1.0.0",
-		"@types/deep-freeze": "^0.1.2"
+		"@types/deep-freeze": "0.1.2"
 	},
 	"dependencies": {
-		"deep-freeze": "^0.0.1"
+		"deep-freeze": "0.0.1"
 	}
 }
