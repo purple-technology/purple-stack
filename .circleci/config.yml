@@ -59,6 +59,7 @@ references:
         - master
         - staging
         - /dependabot\/.*/
+        - /renovate\/.*/
         - /feature\/.*/
         - /hotfix\/.*/
         - /fix\/.*/
