@@ -40,7 +40,7 @@
 		"@purple/serverless-s3-remover": "^0.7.0",
 		"@purple/serverless-git-branch-stage-plugin": "1.3.2",
 		"@types/exenv": "^1.2.0",
-		"@types/react": "16.14.21",
+		"@types/react": "17.0.37",
 		"@types/react-dom": "16.9.14",
 		"@types/styled-components": "5.1.17",
 		"babel-plugin-styled-components": "1.13.3",
