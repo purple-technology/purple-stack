@@ -28,8 +28,8 @@
 		"*.{graphql,gql,html}": "prettier --write"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^12.1.1",
-		"@commitlint/config-conventional": "^12.1.1",
+		"@commitlint/cli": "^15.0.0",
+		"@commitlint/config-conventional": "^15.0.0",
 		"@graphql-codegen/cli": "1.21.8",
 		"@graphql-codegen/typescript": "1.23.0",
 		"@graphql-codegen/typescript-operations": "1.18.4",
