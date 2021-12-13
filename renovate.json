@@ -17,7 +17,7 @@
 	],
 	"timezone": "Europe/Prague",
 	"baseBranches": ["master"],
-	"reviewers": ["FilipPyrek"],
+	"reviewers": ["FilipPyrek", "team:platform-team"],
 	"labels": ["dependencies"],
 	"encrypted": {
 		"npmToken": "wcFMA/xDdHCJBTolARAAk1AxcdCApIbxouhgM0NMvOs4HBKqpTfv3anU1Pwg6/8clQVCBxHDZ0rEMAVpAgcxcwbzUBpZC3kJl7e/Y4G9SjHb6j4lPTSodHXK+fxk4bo3qyaqVjFCND99PINQBaAVuWQ8IWTsrz82xivY/36p9mruemc4aKoG1nc0OsnvBDSP5t3dG0n+GhjzSptuY5Hmk5KE7My+qneuVmZ0jHwvhsP4cMBvlXxKUd/nY6R2thptTMDzX65E3nxLv6CU6ddP0uu5zAPr+OVTthvBgoL7oyjy1z+EKZnegdIrvDhBchvkKc2kB380Yjvk3ZnlMz0wQzI+u+vfKy8WWf6FSjN/yTEdFkYcYcM/8ifGF3tfsEcndAqoqtdfPMmouEgg8Thj7QLFNoTUXQUcq8sFdj+oXqc5PQ7SiOVHxL6UTIQ7n0u83SuyLrnG44cv2SAcTwC1XbsDbASfVI8naUeYaC8YLw+TLhgFNGl4mFQGMW7kyX3y6DpXwBNe07Y4BhNKQXGarzQCx9EZOz6FX1fqxapC9miQlH+ZixtHBUDBc96G7eUzcewGcuGTJP3JyoU0Ih07u5p2bilQT+Dr2SDYOmE3voqbg7IWbusmGjesQRR92l/LMJf1BBdXkNuQnffo2ymHt04j17OMzmFUWTrBDbZ0exoK/b09eBK36HEDQkcQL2fSfAGSKXjwi5Ax8XFZJ0i+JLT4UY/WB9hzwHgte7DUAXQx+XCC2IK6TyRllZ16E4AYnKEy/yXMERmRPJt+KZXayuEY0yWN21NGRz4Q1AaCR0XKSwhk2e2Bt+mliH3iF7ZKR2ty1jWYjo0TTnsyrVtZ8R/4QhJNzHC1ygfRSCw"
