@@ -27,7 +27,7 @@
 	"dependencies": {
 		"aws-amplify": "3.4.3",
 		"clsx": "^1.1.1",
-		"graphql": "15.8.0",
+		"graphql": "16.2.0",
 		"graphql-tag": "2.12.6",
 		"i18next": "19.9.2",
 		"next": "^10.0.2",
