@@ -36,7 +36,7 @@
 		"serverless": "2.69.1",
 		"serverless-appsync-plugin": "1.12.1",
 		"serverless-appsync-simulator": "0.19.2",
-		"serverless-offline": "^6.8.0",
+		"serverless-offline": "^8.0.0",
 		"serverless-plugin-aws-alerts": "1.7.4",
 		"serverless-webpack": "5.6.0",
 		"split-camelcase": "^1.0.1",
