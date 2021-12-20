@@ -33,7 +33,7 @@
 		"aws-sdk": "2.1046.0",
 		"env-cmd": "^10.1.0",
 		"jest": "^26.6.3",
-		"serverless": "2.68.0",
+		"serverless": "2.69.1",
 		"serverless-appsync-plugin": "1.12.1",
 		"serverless-appsync-simulator": "0.19.2",
 		"serverless-offline": "^6.8.0",
