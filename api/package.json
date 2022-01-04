@@ -2,7 +2,7 @@
 	"name": "api",
 	"private": true,
 	"engines": {
-		"node": "14.x"
+		"node": "16.x"
 	},
 	"description": "API of the purple-stack application",
 	"scripts": {
@@ -29,7 +29,7 @@
 		"@purple/serverless-git-branch-stage-plugin": "^1.2.0",
 		"@types/aws-lambda": "8.10.88",
 		"@types/jest": "^26.0.15",
-		"@types/node": "14.18.3",
+		"@types/node": "16.11.19",
 		"aws-sdk": "2.1048.0",
 		"env-cmd": "^10.1.0",
 		"jest": "^26.6.3",
