@@ -28,6 +28,7 @@
 		"source-map-support": "0.5.21"
 	},
 	"devDependencies": {
+		"@package/checkov": "^1.0.0",
 		"@package/sls-macros": "^1.0.0",
 		"@package/tsconfig": "^1.0.0",
 		"@package/webpack": "^1.0.0",

@@ -22,6 +22,7 @@
 	},
 	"devDependencies": {
 		"@package/api-utils": "^1.0.0",
+		"@package/checkov": "^1.0.0",
 		"@package/graphql-types": "^1.0.0",
 		"@package/sls-macros": "^1.0.0",
 		"@package/tsconfig": "^1.0.0",

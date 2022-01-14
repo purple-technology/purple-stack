@@ -19,6 +19,7 @@
 		"ci:compilation-check": "lerna --stream --concurrency 4 --scope='@be-prioritized/*' --scope='@be/*' --scope='api' --scope='frontend' run ci:package",
 		"ci:deploy": "smartRun ci:deploy --runFirst='@be-prioritized/*' --runFirst='@be/*' --runFirst='api' --runLast='frontend' --tagOnSuccess",
 		"ci:remove": "lerna --stream --scope='frontend' run ci:remove && lerna --stream --scope='api' run ci:remove && lerna --stream --scope='@be/*' run ci:remove && lerna --stream --scope='@be-prioritized/*' run ci:remove",
+		"ci:checkov": "lerna exec --stream --scope='@be/*' --scope='@be-prioritized/*' --scope='api' --scope='frontend' 'checkov --quiet --config-file node_modules/@package/checkov/.checkov.yaml -d .serverless'",
 		"graphql-codegen": "graphql-codegen --config codegen.yml",
 		"release": "standard-version && git push --follow-tags",
 		"delete-tag": "smartRun --deleteTag"

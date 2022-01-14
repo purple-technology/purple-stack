@@ -32,6 +32,7 @@ provider:
   deploymentBucket:
     name: ${self:custom.settings.common.deploymentBucket}
   vpc: ${self:custom.settings.vpc}
+  logRetentionInDays: ${self:custom.settings.common.logRetentionInDays}
   iamRoleStatements:
     - Effect: Allow
       Action:

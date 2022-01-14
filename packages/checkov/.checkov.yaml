@@ -1,0 +1,26 @@
+download-external-modules: false
+evaluate-variables: false
+framework:
+- cloudformation
+- serverless
+- json
+skip-check:
+- CKV_AWS_173 # Check encryption settings for Lambda environmental variable
+- CKV_AWS_158 # Ensure that CloudWatch Log Group is encrypted by KMS
+- CKV_AWS_7 # Ensure rotation for customer created CMKs is enabled
+- CKV_AWS_119 # Ensure DynamoDB Tables are encrypted using a KMS Customer Managed CMK
+- CKV_AWS_26 # Ensure all data stored in the SNS topic is encrypted
+- CKV_AWS_27 # Ensure all data stored in the SQS queue is encrypted
+- CKV_AWS_59 # Ensure there is no open access to back-end resources through API
+- CKV_AWS_116 # Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)
+- CKV_AWS_111 # Ensure IAM policies does not allow write access without constraints
+- CKV_AWS_68 # CloudFront Distribution should have WAF enabled
+- CKV_AWS_86 # Ensure Cloudfront distribution has Access Logging enabled
+- CKV_AWS_18 # Ensure the S3 bucket has access logging enabled
+- CKV_AWS_19 # Ensure the S3 bucket has server-side-encryption enabled
+- CKV_AWS_56 # Ensure S3 bucket has 'restrict_public_bucket' enabled
+- CKV_AWS_55 # Ensure S3 bucket has ignore public ACLs enabled
+- CKV_AWS_21 # Ensure the S3 bucket has versioning enabled
+- CKV_AWS_54 # Ensure S3 bucket has block public policy enabled
+- CKV_AWS_53 # Ensure S3 bucket has block public ACLS enabled
+- CKV_AWS_28 # Ensure Dynamodb point in time recovery (backup) is enabled
