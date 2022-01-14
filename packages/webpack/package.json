@@ -6,6 +6,6 @@
 	"main": "webpack.config.js",
 	"dependencies": {
 		"webpack": "4.46.0",
-		"webpack-node-externals": "^2.5.2"
+		"webpack-node-externals": "^3.0.0"
 	}
 }
