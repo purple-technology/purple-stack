@@ -47,7 +47,7 @@
 		"babel-plugin-styled-components": "2.0.2",
 		"env-cmd": "^10.1.0",
 		"react-dom": "16.14.0",
-		"serve": "^11.3.2",
+		"serve": "^13.0.0",
 		"serverless": "2.69.1",
 		"serverless-finch": "2.8.0",
 		"serverless-plugin-aws-alerts": "1.7.4",
