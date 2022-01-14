@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/purple-technology/purple-stack/compare/v2.4.0...v2.5.0) (2022-01-14)
+
+
+### Features
+
+* **ci:** circleci image replaced with cimg ([c35611b](https://github.com/purple-technology/purple-stack/commit/c35611b99df2da8a8af212af38adb7b587104a1d))
+* implement checkov ([4dfbd5a](https://github.com/purple-technology/purple-stack/commit/4dfbd5a886a0de5b69abd2377ce470e79fe80821))
+* implement static application security testing ([5f2e89d](https://github.com/purple-technology/purple-stack/commit/5f2e89d0f92af2b26748bd042473d052379848e3))
+
 ## [2.4.0](https://github.com/purple-technology/purple-stack/compare/v2.3.0...v2.4.0) (2021-08-27)
 
 
