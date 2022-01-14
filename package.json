@@ -36,7 +36,7 @@
 		"@graphql-codegen/typescript-operations": "1.18.4",
 		"@microsoft/eslint-plugin-sdl": "^0.1.8",
 		"@purple/lerna-smart-run": "^0.5.1",
-		"@types/jest": "^26.0.23",
+		"@types/jest": "^27.0.0",
 		"@typescript-eslint/eslint-plugin": "4.33.0",
 		"@typescript-eslint/parser": "4.33.0",
 		"env-cmd": "^10.1.0",
