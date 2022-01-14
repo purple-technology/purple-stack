@@ -1,4 +1,5 @@
 export type Maybe<T> = T | null
+export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = {
 	[K in keyof T]: T[K]
 }
@@ -20,19 +21,19 @@ export type Scalars = {
 export type Mutation = {
 	__typename?: 'Mutation'
 	addTodo: Status
-	switchCheck: Status
 	removeTodo: Status
+	switchCheck: Status
 }
 
 export type MutationAddTodoArgs = {
 	text: Scalars['String']
 }
 
-export type MutationSwitchCheckArgs = {
+export type MutationRemoveTodoArgs = {
 	createdTimestamp: Scalars['ID']
 }
 
-export type MutationRemoveTodoArgs = {
+export type MutationSwitchCheckArgs = {
 	createdTimestamp: Scalars['ID']
 }
 
@@ -42,51 +43,46 @@ export type Query = {
 }
 
 export enum Status {
-	Success = 'SUCCESS',
-	Fail = 'FAIL'
+	Fail = 'FAIL',
+	Success = 'SUCCESS'
 }
 
 export type Todo = {
 	__typename?: 'Todo'
-	text: Scalars['String']
-	createdTimestamp: Scalars['ID']
 	checked: Scalars['Boolean']
+	createdTimestamp: Scalars['ID']
+	text: Scalars['String']
 }
 
 export type FetchTodosQueryVariables = Exact<{ [key: string]: never }>
 
-export type FetchTodosQuery = { __typename?: 'Query' } & {
-	todos: Array<
-		{ __typename?: 'Todo' } & Pick<
-			Todo,
-			'text' | 'createdTimestamp' | 'checked'
-		>
-	>
+export type FetchTodosQuery = {
+	__typename?: 'Query'
+	todos: Array<{
+		__typename?: 'Todo'
+		text: string
+		createdTimestamp: string
+		checked: boolean
+	}>
 }
 
 export type AddTodoMutationVariables = Exact<{
 	text: Scalars['String']
 }>
 
-export type AddTodoMutation = { __typename?: 'Mutation' } & Pick<
-	Mutation,
-	'addTodo'
->
+export type AddTodoMutation = { __typename?: 'Mutation'; addTodo: Status }
 
 export type RemoveTodoMutationVariables = Exact<{
 	timestamp: Scalars['ID']
 }>
 
-export type RemoveTodoMutation = { __typename?: 'Mutation' } & Pick<
-	Mutation,
-	'removeTodo'
->
+export type RemoveTodoMutation = { __typename?: 'Mutation'; removeTodo: Status }
 
 export type SwitchCheckMutationVariables = Exact<{
 	timestamp: Scalars['ID']
 }>
 
-export type SwitchCheckMutation = { __typename?: 'Mutation' } & Pick<
-	Mutation,
-	'switchCheck'
->
+export type SwitchCheckMutation = {
+	__typename?: 'Mutation'
+	switchCheck: Status
+}
