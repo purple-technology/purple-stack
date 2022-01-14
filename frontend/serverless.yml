@@ -67,6 +67,7 @@ resources:
             - ${self:custom.dnsAddress}
           ViewerCertificate:
             AcmCertificateArn: ${self:custom.certificate}
+            MinimumProtocolVersion: TLSv1.2_2018
             SslSupportMethod: sni-only
           Enabled: true
           Comment: ${self:custom.settings.common.projectName}-${self:provider.stage} frontend

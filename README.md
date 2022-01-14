@@ -1,6 +1,43 @@
 ![Purple Stack Title Image](https://user-images.githubusercontent.com/6282843/99382243-8a14f200-28cc-11eb-99b1-114f4842874b.png)
 
-![Serverless Enabled](https://camo.githubusercontent.com/547c6da94c16fedb1aa60c9efda858282e22834f/687474703a2f2f7075626c69632e7365727665726c6573732e636f6d2f6261646765732f76332e737667)
+[![CircleCI](https://circleci.com/gh/purple-technology/purple-stack/tree/master.svg?style=svg)](https://circleci.com/gh/purple-technology/purple-stack/tree/master)
+[![Serverless Enabled](https://camo.githubusercontent.com/547c6da94c16fedb1aa60c9efda858282e22834f/687474703a2f2f7075626c69632e7365727665726c6573732e636f6d2f6261646765732f76332e737667)](https://www.serverless.com/framework/)
+[![codecov](https://codecov.io/gh/purple-technology/purple-stack/branch/master/graph/badge.svg?token=T6CGMAD4OE)](https://codecov.io/gh/purple-technology/purple-stack)
+[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+![GitHub top language](https://img.shields.io/github/languages/top/purple-technology/purple-stack)
+![GitHub last commit](https://img.shields.io/github/last-commit/purple-technology/purple-stack)
+![GitHub](https://img.shields.io/github/license/purple-technology/purple-stack)
+
+# What is Purple Stack
+
+It is a devstack for developing big complex serverless applications on AWS.
+
+It reflects our 5+ years of Serverless apps development experience.
+
+You can read more about how Purple Stack was born on our [blog](https://blog.purple-technology.com/cs/pribeh-o-tom-ako-vznikol-purplestack/).
+
+## Features
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [Serverless Framework](https://www.serverless.com/framework/)
+- [Next.js](https://nextjs.org/)
+- [React.js](https://reactjs.org/)
+- [Webpack](https://webpack.js.org/)
+- Monorepo - [Lerna](https://github.com/lerna/lerna)
+- Code Linting - [ESlint](https://eslint.org/) + [Prettier](https://prettier.io/)
+- GraphQL API - [AWS AppSync](https://aws.amazon.com/appsync/)
+- REST API - [Amazon API Gateway](https://aws.amazon.com/api-gateway/)
+- Complex background processes - [AWS Step Functions](https://aws.amazon.com/step-functions/)
+- IaC - [CloudFormation](https://aws.amazon.com/cloudformation/)
+- CI/CD - [CircleCI](https://circleci.com/) 
+- Dependencies patching - [Renovate](https://renovatebot.com/) 
+- IaC Security Scanning - [Checkov](https://www.checkov.io/)
+- Static Application Security Testing (SAST) - [ESlint Security Plugins](https://github.com/microsoft/eslint-plugin-sdl)
+- Unit Tests - [Jest](https://jestjs.io/)
+- Conventional Commits - [Commitlint](https://commitlint.js.org/)
+- GrahpQL TypeScript Types - [GraphQL Code Generator](https://www.graphql-code-generator.com/)
+- ... and more
+
 
 # Introduction
 

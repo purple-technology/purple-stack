@@ -111,11 +111,20 @@ jobs:
       - run: *commands_npm_auth
       - run: *install_dependencies
       - run: *install_yq
+      - run:
+          name: Install pip3
+          command: sudo apt update && sudo apt install python3-pip
+      - run:
+          name: Install Checkov
+          command: pip3 install -U checkov
       - aws-cli/install
       - run: *commands_assume_aws_role
       - run:
           name: Compilation Check
           command: npm run ci:compilation-check
+      - run:
+          name: Checkov Check
+          command: npm run ci:checkov
 
   deploy:
     docker:
