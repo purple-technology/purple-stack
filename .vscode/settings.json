@@ -11,6 +11,9 @@
 	"[graphql]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
 	"files.associations": {
 		"*.env": "ini"
 	},
