@@ -29,7 +29,7 @@
 		"clsx": "^1.1.1",
 		"graphql": "15.8.0",
 		"graphql-tag": "2.12.6",
-		"i18next": "21.6.6",
+		"i18next": "21.6.7",
 		"next": "^10.0.2",
 		"react": "17.0.2",
 		"react-i18next": "11.15.3",
@@ -43,7 +43,7 @@
 		"@types/exenv": "^1.2.0",
 		"@types/react": "16.14.21",
 		"@types/react-dom": "16.9.14",
-		"@types/styled-components": "5.1.20",
+		"@types/styled-components": "5.1.21",
 		"babel-plugin-styled-components": "2.0.2",
 		"env-cmd": "^10.1.0",
 		"react-dom": "17.0.2",
@@ -51,6 +51,6 @@
 		"serverless": "2.71.0",
 		"serverless-finch": "2.8.0",
 		"serverless-plugin-aws-alerts": "1.7.4",
-		"typescript": "4.5.4"
+		"typescript": "4.5.5"
 	}
 }
