@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/purple-technology/purple-stack/compare/v2.5.1...v2.6.0) (2022-02-04)
+
+
+### Features
+
+* add IAM Legend externsion as recommended ([6199096](https://github.com/purple-technology/purple-stack/commit/61990961421280683902d60258534eb664db6a87))
+
+
+### Bug Fixes
+
+* **deps:** update dependency aws-amplify to v4 ([5a1ba00](https://github.com/purple-technology/purple-stack/commit/5a1ba007e4012fe4de58c4cd84d2125d78155a11))
+* **deps:** update dependency i18next to v21 ([6d85f6d](https://github.com/purple-technology/purple-stack/commit/6d85f6d909d7db5075b6fd7840e3fbd3e3cbfb0f))
+* **deps:** update dependency webpack-node-externals to v3 ([2332f24](https://github.com/purple-technology/purple-stack/commit/2332f240e85b19a3844bbd26dcb3f22241bda92e))
+* **deps:** update react monorepo to v17 ([64e4e70](https://github.com/purple-technology/purple-stack/commit/64e4e70255606fa9d4ac322de5d68ce936f356e1))
+
 ### [2.5.1](https://github.com/purple-technology/purple-stack/compare/v2.5.0...v2.5.1) (2022-01-14)
 
 ## [2.5.0](https://github.com/purple-technology/purple-stack/compare/v2.4.0...v2.5.0) (2022-01-14)
