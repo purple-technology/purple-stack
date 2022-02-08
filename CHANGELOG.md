@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/purple-technology/purple-stack/compare/v2.6.0...v2.7.0) (2022-02-08)
+
+
+### Features
+
+* upgrade to next12 ([63ac43d](https://github.com/purple-technology/purple-stack/commit/63ac43d69bfb8769a93fb08fcd7013133fdc8283))
+
 ## [2.6.0](https://github.com/purple-technology/purple-stack/compare/v2.5.1...v2.6.0) (2022-02-04)
 
 
