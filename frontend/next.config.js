@@ -19,13 +19,9 @@ module.exports = {
 			exclude: /node_modules/,
 			loader: 'graphql-tag/loader'
 		})
-		config.module.rules[0].include.push(path.join(__dirname, '../packages'))
-		config.node = {
-			...(config.node || {}),
-			net: 'empty',
-			tls: 'empty',
-			dns: 'empty'
-		}
+		config.module.rules[2].oneOf[2].include.push(
+			path.join(__dirname, '../packages')
+		)
 		return config
 	}
 }
