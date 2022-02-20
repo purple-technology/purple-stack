@@ -31,9 +31,9 @@
 	"devDependencies": {
 		"@commitlint/cli": "^16.0.0",
 		"@commitlint/config-conventional": "^16.0.0",
-		"@graphql-codegen/cli": "2.6.1",
-		"@graphql-codegen/typescript": "2.4.3",
-		"@graphql-codegen/typescript-operations": "2.3.0",
+		"@graphql-codegen/cli": "2.6.2",
+		"@graphql-codegen/typescript": "2.4.5",
+		"@graphql-codegen/typescript-operations": "2.3.2",
 		"@microsoft/eslint-plugin-sdl": "^0.1.8",
 		"@purple/lerna-smart-run": "^0.5.1",
 		"@types/jest": "^27.0.0",
