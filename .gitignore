@@ -24,3 +24,6 @@ lerna-debug.log
 
 # VS code
 .vscode/launch.json
+
+# Next.js generates this automatically
+next-env.d.ts
