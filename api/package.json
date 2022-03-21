@@ -31,7 +31,7 @@
 		"@types/aws-lambda": "8.10.93",
 		"@types/jest": "^27.0.0",
 		"@types/node": "14.18.12",
-		"aws-sdk": "2.1092.0",
+		"aws-sdk": "2.1096.0",
 		"env-cmd": "^10.1.0",
 		"jest": "^27.0.0",
 		"serverless": "2.72.3",
