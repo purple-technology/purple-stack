@@ -25,14 +25,14 @@
 		"ci:test": "NODE_ENV=test echo \"tests here yet\""
 	},
 	"dependencies": {
-		"aws-amplify": "4.3.19",
+		"aws-amplify": "4.3.20",
 		"clsx": "^1.1.1",
 		"graphql": "15.8.0",
 		"graphql-tag": "2.12.6",
-		"i18next": "21.6.15",
+		"i18next": "21.6.16",
 		"next": "^12.1.0",
 		"react": "17.0.2",
-		"react-i18next": "11.16.5",
+		"react-i18next": "11.16.6",
 		"styled-components": "5.3.5"
 	},
 	"devDependencies": {
