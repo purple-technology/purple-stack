@@ -1,4 +1,6 @@
-![Purple Stack Title Image](https://user-images.githubusercontent.com/6282843/99382243-8a14f200-28cc-11eb-99b1-114f4842874b.png)
+<p align="center">
+  <img width="727" alt="9 Landscape Gradient@2x" src="https://user-images.githubusercontent.com/6282843/165325934-63b58d78-a395-4e0a-a27e-ab41aafecb41.png">
+</p>
 
 [![CircleCI](https://circleci.com/gh/purple-technology/purple-stack/tree/master.svg?style=svg)](https://circleci.com/gh/purple-technology/purple-stack/tree/master)
 [![Serverless Enabled](https://camo.githubusercontent.com/547c6da94c16fedb1aa60c9efda858282e22834f/687474703a2f2f7075626c69632e7365727665726c6573732e636f6d2f6261646765732f76332e737667)](https://www.serverless.com/framework/)
@@ -7,6 +9,8 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/purple-technology/purple-stack)
 ![GitHub last commit](https://img.shields.io/github/last-commit/purple-technology/purple-stack)
 ![GitHub](https://img.shields.io/github/license/purple-technology/purple-stack)
+
+
 
 # What is Purple Stack
 
