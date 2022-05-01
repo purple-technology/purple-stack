@@ -30,7 +30,7 @@
 		"@purple/serverless-git-branch-stage-plugin": "^1.2.0",
 		"@types/aws-lambda": "8.10.95",
 		"@types/jest": "^27.0.0",
-		"@types/node": "14.18.14",
+		"@types/node": "14.18.16",
 		"aws-sdk": "2.1120.0",
 		"env-cmd": "^10.1.0",
 		"jest": "^27.0.0",
@@ -43,7 +43,7 @@
 		"split-camelcase": "^1.0.1",
 		"ts-jest": "^27.0.0",
 		"ts-loader": "^8.0.11",
-		"typescript": "4.6.3",
+		"typescript": "4.6.4",
 		"webpack": "^4.44.2"
 	},
 	"dependencies": {
