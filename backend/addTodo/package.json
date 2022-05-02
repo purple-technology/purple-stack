@@ -36,8 +36,8 @@
 		"@types/hapi__joi": "17.1.8",
 		"@types/jest": "27.4.1",
 		"@types/node": "14.18.16",
-		"aws-sdk": "2.1120.0",
-		"aws-sdk-mock": "5.6.2",
+		"aws-sdk": "2.1125.0",
+		"aws-sdk-mock": "5.7.0",
 		"env-cmd": "^10.1.0",
 		"jest": "^27.0.0",
 		"lodash": "^4.17.20",
@@ -46,7 +46,7 @@
 		"serverless-step-functions": "3.7.0",
 		"serverless-webpack": "5.7.0",
 		"ts-jest": "27.1.4",
-		"ts-loader": "8.3.0",
+		"ts-loader": "8.4.0",
 		"typescript": "4.6.4",
 		"webpack": "4.46.0"
 	}
