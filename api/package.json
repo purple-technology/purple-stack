@@ -28,7 +28,7 @@
 		"@package/tsconfig": "^1.0.0",
 		"@package/webpack": "^1.0.0",
 		"@purple/serverless-git-branch-stage-plugin": "^1.2.0",
-		"@types/aws-lambda": "8.10.95",
+		"@types/aws-lambda": "8.10.96",
 		"@types/jest": "^27.0.0",
 		"@types/node": "14.18.16",
 		"aws-sdk": "2.1125.0",
