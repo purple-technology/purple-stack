@@ -6,7 +6,7 @@
 		"node": ">= 12.16.1"
 	},
 	"scripts": {
-		"env": "env-cmd -f ../../.env",
+		"env": "env-cmd -f ../../.env bash -c \"ssocreds -p \\$AWS_PROFILE\" && env-cmd -f ../../.env",
 		"test": "npm run env -- npm run ci:test",
 		"tdd": "npm test -- -- --watchAll",
 		"package": "npm run env -- npm run ci:package",
@@ -27,6 +27,7 @@
 		"@package/webpack": "^1.0.0",
 		"@purple/serverless-git-branch-stage-plugin": "1.3.2",
 		"@types/jest": "27.5.0",
+		"aws-sso-creds-helper": "^1.8.9",
 		"env-cmd": "^10.1.0",
 		"jest": "^27.0.0",
 		"serverless": "2.72.3",
