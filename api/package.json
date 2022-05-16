@@ -6,7 +6,7 @@
 	},
 	"description": "API of the purple-stack application",
 	"scripts": {
-		"env": "env-cmd -f ../.env",
+		"env": "env-cmd -f ../.env bash -c \"ssocreds -p \\$AWS_PROFILE\" && env-cmd -f ../.env",
 		"deploy": "npm run env -- npm run ci:deploy",
 		"package": "npm run env -- npm run ci:package",
 		"remove": "npm run env -- npm run ci:remove",
@@ -32,6 +32,7 @@
 		"@types/jest": "^27.0.0",
 		"@types/node": "14.18.16",
 		"aws-sdk": "2.1130.0",
+		"aws-sso-creds-helper": "^1.8.9",
 		"env-cmd": "^10.1.0",
 		"jest": "^27.0.0",
 		"serverless": "2.72.3",

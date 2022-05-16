@@ -6,7 +6,7 @@
 		"node": "14.x"
 	},
 	"scripts": {
-		"env": "env-cmd -f ./.env",
+		"env": "env-cmd -f ./.env bash -c \"ssocreds -p \\$AWS_PROFILE\" && env-cmd -f ./.env",
 		"prepare": "husky install",
 		"bootstrap": "lerna bootstrap",
 		"postinstall": "npm run bootstrap",
@@ -39,6 +39,7 @@
 		"@types/jest": "^27.0.0",
 		"@typescript-eslint/eslint-plugin": "5.22.0",
 		"@typescript-eslint/parser": "5.22.0",
+		"aws-sso-creds-helper": "^1.8.9",
 		"env-cmd": "^10.1.0",
 		"eslint": "7.32.0",
 		"eslint-config-prettier": "^8.3.0",

@@ -6,7 +6,7 @@
 		"node": "14.x"
 	},
 	"scripts": {
-		"env": "env-cmd -f ../../.env",
+		"env": "env-cmd -f ../../.env bash -c \"ssocreds -p \\$AWS_PROFILE\" && env-cmd -f ../../.env",
 		"test": "npm run env -- npm run ci:test",
 		"tdd": "npm test -- -- --watchAll",
 		"package": "npm run env -- npm run ci:package",
@@ -38,6 +38,7 @@
 		"@types/node": "14.18.16",
 		"aws-sdk": "2.1130.0",
 		"aws-sdk-mock": "5.7.0",
+		"aws-sso-creds-helper": "^1.8.9",
 		"env-cmd": "^10.1.0",
 		"jest": "^27.0.0",
 		"lodash": "^4.17.20",
