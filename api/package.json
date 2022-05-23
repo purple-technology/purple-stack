@@ -31,7 +31,7 @@
 		"@types/aws-lambda": "8.10.97",
 		"@types/jest": "^27.0.0",
 		"@types/node": "14.18.18",
-		"aws-sdk": "2.1130.0",
+		"aws-sdk": "2.1140.0",
 		"aws-sso-creds-helper": "^1.8.9",
 		"env-cmd": "^10.1.0",
 		"jest": "^27.0.0",
