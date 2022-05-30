@@ -37,8 +37,8 @@
 		"@microsoft/eslint-plugin-sdl": "^0.2.0",
 		"@purple/lerna-smart-run": "^0.5.1",
 		"@types/jest": "^27.0.0",
-		"@typescript-eslint/eslint-plugin": "5.25.0",
-		"@typescript-eslint/parser": "5.25.0",
+		"@typescript-eslint/eslint-plugin": "5.26.0",
+		"@typescript-eslint/parser": "5.26.0",
 		"aws-sso-creds-helper": "^1.8.9",
 		"env-cmd": "^10.1.0",
 		"eslint": "7.32.0",
@@ -56,6 +56,6 @@
 		"nyc": "^15.1.0",
 		"prettier": "2.6.2",
 		"standard-version": "9.5.0",
-		"typescript": "4.6.4"
+		"typescript": "4.7.2"
 	}
 }
