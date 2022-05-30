@@ -51,6 +51,6 @@
 		"serverless": "2.72.3",
 		"serverless-finch": "2.8.0",
 		"serverless-plugin-aws-alerts": "1.7.4",
-		"typescript": "4.6.4"
+		"typescript": "4.7.2"
 	}
 }
