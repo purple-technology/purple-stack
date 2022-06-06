@@ -32,7 +32,7 @@
 		"i18next": "21.8.8",
 		"next": "^12.1.0",
 		"react": "17.0.2",
-		"react-i18next": "11.16.11",
+		"react-i18next": "11.17.0",
 		"styled-components": "5.3.5"
 	},
 	"devDependencies": {
