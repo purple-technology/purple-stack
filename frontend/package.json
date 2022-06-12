@@ -29,10 +29,10 @@
 		"clsx": "^1.1.1",
 		"graphql": "15.8.0",
 		"graphql-tag": "2.12.6",
-		"i18next": "21.8.8",
+		"i18next": "21.8.9",
 		"next": "^12.1.0",
 		"react": "17.0.2",
-		"react-i18next": "11.17.0",
+		"react-i18next": "11.17.1",
 		"styled-components": "5.3.5"
 	},
 	"devDependencies": {
