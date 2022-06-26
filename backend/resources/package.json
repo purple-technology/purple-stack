@@ -32,7 +32,7 @@
 		"jest": "^27.0.0",
 		"serverless": "2.72.3",
 		"serverless-offline": "8.8.0",
-		"serverless-plugin-aws-alerts": "1.7.4",
+		"serverless-plugin-aws-alerts": "1.7.5",
 		"serverless-webpack": "5.7.1",
 		"ts-jest": "27.1.5",
 		"ts-loader": "8.4.0",
