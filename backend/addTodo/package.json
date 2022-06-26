@@ -36,7 +36,7 @@
 		"@types/hapi__joi": "17.1.8",
 		"@types/jest": "27.5.2",
 		"@types/node": "14.18.21",
-		"aws-sdk": "2.1157.0",
+		"aws-sdk": "2.1162.0",
 		"aws-sdk-mock": "5.7.0",
 		"aws-sso-creds-helper": "^1.8.9",
 		"env-cmd": "^10.1.0",
