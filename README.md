@@ -84,9 +84,9 @@ serverless.settings.yml
 - ❗️ Create an S3 bucket for the serverless deployments and then fill the bucket's name in `common.deploymentBucket`
 - ❗️ Replace `purple-stack.com` in `frontend.domain` with desired domain where you would like your application to be avalible. This domain needs to have a hosted zone in the same AWS account's Route53.
 - ❗️ Create a wilcard certificate in `N. Virginia` region for the `frontend.domain` and fill the certificate ARN to `frontend.certificate`
+- ❗️ Modify the `vpc` in case you need to have your functions inside a VPC (if you need reach to an RDS databases, for example) or replace value with `~` if not
 - 🌀 Modify the `common.projectName` to better identify your application
 - 🌀 Modify the `common.dnsRandomString` to better secure your feature deployments 
-- 🌀 Modify the `vpc` in case you need to have your functions inside a VPC (if you need reach to an RDS databases, for example)
 - 🌀 If you would like to enable monitoring, put a list of stages you would like to monitor in `monitoring.stages` and if you do so, ❗️ fill the `monitoring.topic` with the desired topic ARN
 
 

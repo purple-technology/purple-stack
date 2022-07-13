@@ -24,3 +24,4 @@ skip-check:
 - CKV_AWS_54 # Ensure S3 bucket has block public policy enabled
 - CKV_AWS_53 # Ensure S3 bucket has block public ACLS enabled
 - CKV_AWS_28 # Ensure Dynamodb point in time recovery (backup) is enabled
+- CKV_AWS_115 # Ensure AWS Lambda function is configured for function-level concurrent execution limit

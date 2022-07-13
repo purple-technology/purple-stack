@@ -116,7 +116,7 @@ jobs:
           command: sudo apt update && sudo apt install python3-pip
       - run:
           name: Install Checkov
-          command: pip3 install -U checkov
+          command: pip3 install -U checkov==2.1.16
       - aws-cli/install
       - run: *commands_assume_aws_role
       - run:
