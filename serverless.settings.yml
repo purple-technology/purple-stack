@@ -12,11 +12,11 @@ ci:
   prodAwsRole: arn:aws:iam::000000000000:role/ReplaceCiRole
   stagingAwsRole: arn:aws:iam::000000000000:role/ReplaceCiRole
 
-vpc: ~
-  # securityGroupIds:
-  #   - SC_ID
-  # subnetIds:
-  #   - SUBNET_ID
+vpc:
+  securityGroupIds:
+    - SC_ID
+  subnetIds:
+    - SUBNET_ID
 
 monitoring:
   stages:
