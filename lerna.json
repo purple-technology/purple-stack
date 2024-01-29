@@ -1,4 +1,0 @@
-{
-	"packages": ["packages/*", "frontend", "backend/*", "api"],
-	"version": "1.0.0"
-}
