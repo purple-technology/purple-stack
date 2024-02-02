@@ -41,7 +41,8 @@ export function TrpcApiStack({ stack, app }: StackContext): TrpcApiStackOutput {
 		// },
 		routes: {
 			'ANY /trpc/{proxy+}': {
-				authorizer: 'AppCognitoAuth',
+				/* In case you want to use Cognito */
+				// authorizer: 'App CognitoAuth',
 				function: {
 					handler: './services/trpc-api/src/handler.handler',
 					environment: {

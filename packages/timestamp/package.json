@@ -3,6 +3,9 @@
 	"version": "0.0.0",
 	"type": "module",
 	"main": "src/index.ts",
+	"scripts": {
+		"typecheck": "tsc -noEmit"
+	},
 	"devDependencies": {
 		"vitest": "^1.2.1"
 	},

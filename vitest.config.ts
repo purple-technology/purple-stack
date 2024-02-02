@@ -17,12 +17,13 @@ export default defineConfig(() => {
 				exclude: [
 					'services/frontend',
 					'stacks',
+					'constructs',
 					'**/*.d.ts',
 					'sst.config.ts',
 					'.sst'
 				],
-				extension: ['.ts'],
-				100: true
+				extension: ['.ts']
+				// 100: true
 			}
 		}
 	}

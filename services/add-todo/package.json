@@ -4,7 +4,8 @@
 	"type": "module",
 	"scripts": {
 		"test": "vitest run",
-		"test:watch": "vitest"
+		"test:watch": "vitest",
+		"typecheck": "tsc -noEmit"
 	},
 	"devDependencies": {
 		"vitest": "^1.2.1",

@@ -1,0 +1,51 @@
+name: Test
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - f/*
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Commit Lint
+        run: pnpm commitlint --from CHANGE_ME --to HEAD
+
+      - name: Code Lint
+        run: pnpm run lint
+
+      - name: Configure AWS credentials 
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: ${{ github.ref == 'refs/heads/master' && 'CHANGE_ME' || 'CHANGE_ME' }} 
+          aws-region: eu-central-1 # Is not relate to deployment region
+          role-session-name: CHANGE_ME
+
+      - name: Type check
+        run: pnpm run ci:typecheck:all
+
+      - name: Test
+        run: pnpm run test

@@ -2,8 +2,8 @@ import { DynamoDBClient, PutItemCommand } from '@aws-sdk/client-dynamodb'
 import { getTimestamp } from '@packages/timestamp'
 import { Table } from 'sst/node/table'
 
-import type { Output } from './types'
-import { schema } from './types'
+import type { Output } from '../types'
+import { schema } from '../types'
 
 const client = new DynamoDBClient({})
 

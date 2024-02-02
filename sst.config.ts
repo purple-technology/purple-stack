@@ -1,7 +1,10 @@
 import { getStage } from '@purple/serverless-git-branch-stage-plugin'
 import type { SSTConfig } from 'sst'
 
+import { AddTodoStack } from './stacks/add-todo/stack'
+import { FrontendStack } from './stacks/frontend'
 import { ResourcesStack } from './stacks/resources/stack'
+import { TrpcApiStack } from './stacks/trpc-api/stack'
 import { isProd, isStaging } from './stacks/utils'
 
 const config: SSTConfig = {
@@ -36,7 +39,11 @@ const config: SSTConfig = {
 			}
 		})
 
-		app.stack(ResourcesStack)
+		app
+			.stack(ResourcesStack)
+			.stack(AddTodoStack)
+			.stack(TrpcApiStack)
+			.stack(FrontendStack)
 	}
 }
 
