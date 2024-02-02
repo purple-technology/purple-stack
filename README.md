@@ -8,9 +8,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/purple-technology/purple-stack)
 ![GitHub](https://img.shields.io/github/license/purple-technology/purple-stack)
 
-
-Make sure to replace all `CHANGE_ME` values in the repo.
-
 ## What is Purple Stack
 
 Purple stack is a development stack designed by [Purple LAB](https://www.purple-technology.com/) for developing full-stack serverless apps.
