@@ -1,29 +1,28 @@
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+*.tsbuildinfo
 node_modules
-.next
-out/
 
 # Coverage directory used by jest
 coverage
 coverage-report
 .nyc_output
 
-# Serverless
-.serverless
-
 # environment configuration file
 .env
 
-# Webpack directories
-.webpack
+# sst
+.sst
+.build
 
-#Lerna debug info
-lerna-debug.log
+# opennext
+.next
+out
+.open-next
 
-# appsync offline
-.dynamodb
-
-# VS code
-.vscode/launch.json
-
-# Next.js generates this automatically
-next-env.d.ts
+# misc
+.DS_Store

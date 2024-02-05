@@ -1,228 +1,132 @@
+# Purple Stack
+
 <p align="center">
   <img width="727" alt="9 Landscape Gradient@2x" src="https://user-images.githubusercontent.com/6282843/165325934-63b58d78-a395-4e0a-a27e-ab41aafecb41.png">
 </p>
 
-[![CircleCI](https://circleci.com/gh/purple-technology/purple-stack/tree/master.svg?style=svg)](https://circleci.com/gh/purple-technology/purple-stack/tree/master)
-[![Serverless Enabled](https://camo.githubusercontent.com/547c6da94c16fedb1aa60c9efda858282e22834f/687474703a2f2f7075626c69632e7365727665726c6573732e636f6d2f6261646765732f76332e737667)](https://www.serverless.com/framework/)
-[![codecov](https://codecov.io/gh/purple-technology/purple-stack/branch/master/graph/badge.svg?token=T6CGMAD4OE)](https://codecov.io/gh/purple-technology/purple-stack)
-[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 ![GitHub top language](https://img.shields.io/github/languages/top/purple-technology/purple-stack)
 ![GitHub last commit](https://img.shields.io/github/last-commit/purple-technology/purple-stack)
 ![GitHub](https://img.shields.io/github/license/purple-technology/purple-stack)
 
+## What is Purple Stack
 
+Purple stack is a development stack designed by [Purple LAB](https://www.purple-technology.com/) for developing full-stack serverless apps.
 
-# What is Purple Stack
-
-It is a devstack for developing big complex serverless applications on AWS.
-
-It reflects our 5+ years of Serverless apps development experience.
+It's based on our 6+ years of experience with building big Serverless apps on AWS.
 
 You can read more about how Purple Stack was born on our [blog](https://blog.purple-technology.com/cs/pribeh-o-tom-ako-vznikol-purplestack/).
 
-## Features
+## Tech being used
 
-- [TypeScript](https://www.typescriptlang.org/)
-- [Serverless Framework](https://www.serverless.com/framework/)
-- [Next.js](https://nextjs.org/)
-- [React.js](https://reactjs.org/)
-- [Webpack](https://webpack.js.org/)
-- Monorepo - [Lerna](https://github.com/lerna/lerna)
-- Code Linting - [ESlint](https://eslint.org/) + [Prettier](https://prettier.io/)
-- GraphQL API - [AWS AppSync](https://aws.amazon.com/appsync/)
-- REST API - [Amazon API Gateway](https://aws.amazon.com/api-gateway/)
-- Complex background processes - [AWS Step Functions](https://aws.amazon.com/step-functions/)
-- IaC - [CloudFormation](https://aws.amazon.com/cloudformation/)
-- CI/CD - [CircleCI](https://circleci.com/) 
-- Dependencies patching - [Renovate](https://renovatebot.com/) 
-- IaC Security Scanning - [Checkov](https://www.checkov.io/)
-- Static Application Security Testing (SAST) - [ESlint Security Plugins](https://github.com/microsoft/eslint-plugin-sdl)
-- Unit Tests - [Jest](https://jestjs.io/)
-- Conventional Commits - [Commitlint](https://commitlint.js.org/)
-- GrahpQL TypeScript Types - [GraphQL Code Generator](https://www.graphql-code-generator.com/)
+- Main language: [TypeScript](https://www.typescriptlang.org/)
+- Deployment framework: [SST.dev](https://sst.dev/)
+- Frontend: [React.js](https://react.dev) & [Next.js](https://nextjs.org/)
+- Code bundling: [ESbuild](https://esbuild.github.io/)
+- Package manager: [PNPM](https://pnpm.io/)
+- Linting: [ESlint](https://eslint.org/) & [Prettier](https://prettier.io/)
+- API protocol: [tRPC](https://trpc.io/)
+- Business workflows engine: [AWS Step Functions](https://aws.amazon.com/step-functions/)
+- CI/CD: [GitHub Actions](https://github.com/features/actions)
+- Static Application Security Testing (SAST) - [`eslint-plugin-security`](https://www.npmjs.com/package/eslint-plugin-security) & [@microsoft/eslint-plugin-sdl](https://www.npmjs.com/package/@microsoft/eslint-plugin-sdl)
+- Unit Tests - [Vitest](https://vitest.dev/)
+- Structured Logging: [AWS Lambda Powertools Logger](https://docs.powertools.aws.dev/lambda/typescript/latest/core/logger/)
+- Conventional Commits - [Commitlint](https://commitlint.js.org)
 - ... and more
 
+## File structure
 
-# Introduction
+```
+.
+├── constructs
+│   └── # Here go sharable CDK constructs that
+│       # you can abstract for multiple services.
+│       #
+│       # Only individual TS files. No packages.
+├── packages
+│   └── # Here goes any application code that
+│       # you need to share between services.
+│       #
+│       # Make sure the packages are created
+│       # as "npm" packages so that they have
+│       # package.json and tsconfig.ts files.
+├── services
+│   └── # Here goes source code for indivudual
+│       # aws services. Inside these folders 
+│       # are Lambda handlers and other relevant
+│       # source code.
+│       #
+│       # Make sure the services are created
+│       # as "npm" packages so that they have
+│       # package.json and tsconfig.ts files.
+└── stacks
+    └── # Here goes AWS stacks definitions.
+        # One folder for each service.
+        # Make sure there is always file stack.ts
+        # inside each folder.
+        #
+        # Only individual TS files. No packages.
+```
 
-Purple Apps consist of three main parts:
+## ENV file
 
-- [Frontend](frontend#readme)
-  - Next.js
-- [API](api#readme)
-  - GraphQL - AWS AppSync
-  - RestAPI - Amazon API Gateway
-- [Backend](backend#readme)
-  - Resources - serverless service containing CloudFormation resources like DynamoDB tables, S3 buckets, SQS queues etc.
-  - ...and arbirarry number of serverless services handling background processes
-
-# Env file
-Because there are so many NPM scripts across Purple Stack, we are using `.env` file to store all the common envionrment variables in a single place.
-
-So in order to run all the parts of the Purple Stack locally, you need to create a .env file in the root folder of your project.
+Env file is quite simple in this case. Only `AWS_PROFILE` is necessary value.
 
 ### Example
+
 ```ini
-AWS_SDK_LOAD_CONFIG=true
 AWS_PROFILE=purple-technology
-AWS_REGION=eu-central-1
 ```
 
-# Setup
+## Setup
 
-There are some settings which need to be changed in order to make this boilerplate project work:
+There are some settings which need to be changed in order to make this boilerplate project work.
 
-- 🌀 = Optional
-- ❗️ = Required
+### GitHub Actions
 
-## 1. Serverless settings
-```
-serverless.settings.yml
-```
+`.github/workflows/*`
 
-- ❗️ Replace `REGION` in `common.region` with desired AWS region where you want your application to be deployed 
-- ❗️ Create an S3 bucket for the serverless deployments and then fill the bucket's name in `common.deploymentBucket`
-- ❗️ Replace `purple-stack.com` in `frontend.domain` with desired domain where you would like your application to be avalible. This domain needs to have a hosted zone in the same AWS account's Route53.
-- ❗️ Create a wilcard certificate in `N. Virginia` region for the `frontend.domain` and fill the certificate ARN to `frontend.certificate`
-- ❗️ Modify the `vpc` in case you need to have your functions inside a VPC (if you need reach to an RDS databases, for example) or replace value with `~` if not
-- 🌀 Modify the `common.projectName` to better identify your application
-- 🌀 Modify the `common.dnsRandomString` to better secure your feature deployments 
-- 🌀 If you would like to enable monitoring, put a list of stages you would like to monitor in `monitoring.stages` and if you do so, ❗️ fill the `monitoring.topic` with the desired topic ARN
+- replace all `CHANGE_ME` values
+- `role-session-name` - identifier of the application
+- `role-to-assume` - usually apps are deployed to "Production" and "Staging" AWS accounts. `master` branch gets deployed to "Production" and the rest goes to the "Staging" AWS account. Make sure to put there correct deployment roles. 
+- [How to setup GitHub OpenID Connect on AWS](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)
 
+### SST config
 
-## 2. CI
-```
-.circleci/config.yml
-```
+`sst.config.ts`
 
-- 🌀 Maybe you don't need to use CircleCI `context`, so in that case you can remove all it's occurences.
-- 🌀 Maybe you don't need to have NPM authentication to install private packages, so in that case you can remove all occurances of `npm_auth` or `commands_npm_auth` and parts related to it.
-- 🌀 Maybe you need different branch filtering, so in that case feel free to modify it according to your needs. 
-- 🌀 Maybe you can deploy the application with the same AWS account whose AWS credentials you've provided to the CI envronment, so in that case feel free to remove all occurances of `assume_aws_role` or `commands_assume_aws_role`  and any parts related to it.
+- Change app name. Current value: `name: 'purple-stack'`
+- Change regions. Current value: `region: stage === 'master' ? 'eu-central-1' : 'eu-central-1'`
+- Eventually enable tracing if you need.  Current value: `tracing: 'disabled'`
 
-If you need to deploy the application with a different AWS account than the AWS account whose credentials you have provided to the CI environment:
-```
-.circleci/aws_assume_role.sh
-```
+## Best practices
 
-- ❗️ Replace `ROLE_ARN_HERE` with the correct ARN of the role which will be assumed by the CI to create the deployment
-- 🌀 Modify the role session name with a name which better identifies your application 
+### 1. Separate stateful resources to a separate stack
 
-<hr />
+You can use pre-defined `ResourceStack` for this.
 
-# Custom libraries and tooling
+> #### Separate your application into multiple stacks as dictated by deployment requirements
+> There is no hard and fast rule to how many stacks your application needs. You'll usually end up basing the decision on your deployment patterns. Keep in mind the following guidelines:
+> 
+> - It's typically more straightforward to keep as many resources in the same stack as possible, so keep them together unless you know you want them separated.
+> 
+> - **Consider keeping stateful resources (like databases) in a separate stack from stateless resources. You can then turn on termination protection on the stateful stack. This way, you can freely destroy or create multiple copies of the stateless stack without risk of data loss.**
+>
+> - Stateful resources are more sensitive to construct renaming—renaming leads to resource replacement. Therefore, don't nest stateful resources inside constructs that are likely to be moved around or renamed (unless the state can be rebuilt if lost, like a cache). This is another good reason to put stateful resources in their own stack.
 
-## Application Configuration
-```
-@package/config
-```
+Read more [here](https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html#best-practices-apps).
 
-This package serves for storing and providing settings to your whole application - Frontend, API and Backend.
-That means that only non-secret values can be stored there.
+### 2. Don't turn off ESlint and TSconfig rules
 
-For example:
+The rules are there for a reason. Always make sure to try all possible solutions to comply with the rules before disabling the rule.
 
-- Minimum length of password ✅
-- Database credentials ❌
+Every time you use `any` in the code a bunny dies.
 
-## Secrets Configuration
-```
-@package/secrets
-```
+<p align="center">
+    <img width="250"  src="https://github.com/purple-technology/purple-stack/assets/6282843/0f86dd12-436a-4ceb-9bf3-8d2b9d72d93f" />
+</p>
 
-This package serves for providing secret values to your backend part of the applications - API and Backend.
+### 3. Take advantage of all the features of SST
 
-Read more [here](packages/secrets#readme).
+SST has a lot of great quirks and features like `use`, `bind` etc.
 
-## Application Logging
-```
-@package/logger
-```
-
-This package serves for simplifying structured logging within Lambda functions.
-
-Structured logging logs JSON with metadata instead of logging just a string.
-
-This helps developers search in the logs for a specific log and gives them the proper context of what happened.
-
-Read more [here](packages/logger#readme).
-
-## GraphQL Types
-```
-@package/graphql-types
-```
-
-This package contains TypeScript types which were generated from the GraphQL schema from API.
-
-It's powered by [`@graphql-codegen`](https://graphql-code-generator.com/)
-
-You can re-generate the types by running 
-```
-$ npm run graphql-codegen
-```
-
-Don't forget to re-generate the types when you make a change to the GraphQL schema.
-
-In case you forget, `test` CI workflow will fail on step `Graphql CodeGen check`. 
-
-## Serverless Macros
-```
-@package/sls-macros
-```
-
-"Serverless Macros" is a term born in Purple Technology.
-
-Serverless Macros are JavaScript functions which are executed inside the `serverless.yml` file and their purpose is to conditionally generate the template. Simply said it serves as sort of programmatic extension to YAML templates.
-
-For example: apply Point-In-Time recovery only for production DynamoDB tables or apply coorect DeletionPolicy for all production resources.
-
-```yaml
-DeletionPolicy: ${file(macros.js):getStorageResourcePolicy}
-```
-
-<hr />
-
-# Deployment
-
-Becuse of the fact that all Purple App serverless services are interconnected via [Fn::ImportValue](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html) we need to keep correct deployment order in order to fulfill the dependencies.
-
-- First we need to deploy `resources` which are lerna packages `@be-prioritized/*`.
-- then we can deploy rest of the backend which are lerna packages `@be/*`
-- then API which is lerna package `api`
-- and then frontend which is lerna package `frontend`
-
-<hr />
-
-# Purple Architecture 🚀
-
-This boilerplate repository complies with three main architectural pillars of Purple Apps:
-
-- Serverless
-- Infrastructure as Code
-- CI/CD
-
-## Serverless
-
-Serverless architecture has been playing a big role at Purple Technology since 2017 because we love the ease of developing and provisioning serverless applications that allow us to focus purely on the business logic.
-
-All of our newly built apps are Powered by Serverless ⚡️
-
-We chose to go with a combination of two market leaders - AWS and Serverless Framework.
-
-We know that term "Serverless" is not just about Lambda functions, it is also about complementary services like DynamoDB, SNS, SQS, Cognito, S3 etc. which can be defined also in this stack in the form of infrastructure-as-code.
-
-## Infrastructure as Code
-
-It has been proven by many examples in the past that managing the infrastructure purely by humans is a bad idea - human errors, miscommunication, manual changes taking too long, etc.
-
-That's why we decided to adopt a native IaC tool for both AWS and Serverless Framework called "AWS CloudFormation."
-
-The whole monorepo is perfectly interconnected via CloudFormation's [references](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html) and [imports](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html).
-
-## CI/CD
-
-With serverles monorepo full of dependencies came into play an issue of complex deployments.
-
-Also it used to happen that two developers deploying same code endedup deploying "different" applications.
-
-That is why we decided to adopt CI/CD - CircleCI - and to have deterministic deployments and to have test and compilation checks as GitHub PR checks. 
+Read their [docs](https://docs.sst.dev/).

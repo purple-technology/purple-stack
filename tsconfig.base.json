@@ -1,0 +1,23 @@
+{
+	"extends": "@tsconfig/node20/tsconfig.json",
+	"compilerOptions": {
+		"module": "esnext",
+		"moduleResolution": "node",
+		"allowUnreachableCode": false,
+		"alwaysStrict": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"useUnknownInCatchVariables": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"noErrorTruncation": true,
+		"paths": {
+			"@packages/*": ["./packages/*"]
+		}
+	}
+}
