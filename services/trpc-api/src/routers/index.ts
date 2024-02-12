@@ -1,8 +1,10 @@
 import { t } from '../trpc'
+import { createTodos } from './todos/create'
 import { listTodos } from './todos/list'
 
 export const appRouter = t.router({
 	todos: t.router({
+		create: createTodos,
 		list: listTodos
 	})
 })

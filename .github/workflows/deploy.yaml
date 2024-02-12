@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Branch
 on:
   workflow_dispatch:
   push:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -31,10 +31,10 @@ jobs:
         run: pnpm install
 
       - name: Configure AWS credentials 
-        uses: aws-actions/configure-aws-credentials@v3
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ github.ref == 'refs/heads/master' && 'CHANGE_ME' || 'CHANGE_ME' }} 
-          aws-region: eu-central-1 # Is not relate to deployment region
+          aws-region: eu-central-1 # Is not related to deployment region
           role-session-name: CHANGE_ME
 
       - name: Deploy

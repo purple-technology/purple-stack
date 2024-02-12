@@ -1,19 +1,17 @@
-name: Create Release
-
+name: Release Prod
 on:
-  workflow_run:
-    workflows: [Deploy]
-    branches: [master]
-    types: [completed]
-
+  push:
+    branches:
+      - master
+permissions:
+  contents: write
 jobs:
   create_release_notes:
+    if: github.ref_type == 'branch' && github.ref_name == 'master'
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -37,6 +35,10 @@ jobs:
           awk '{split($0, array, "version is "); print array[2]}' > version.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check if there is anything worth a releasing
+        run: |
+          [ -s version.txt ] || exit 1
 
       - name: Create Release
         run: |

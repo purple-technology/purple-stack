@@ -1,9 +1,11 @@
-name: Test
+name: Test Branch
 on:
   workflow_dispatch:
   push:
     branches:
       - f/*
+      - master
+      - staging
 
 permissions:
   id-token: write   # This is required for requesting the JWT
@@ -11,10 +13,11 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # In order for commitlint to check historic commits
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -38,11 +41,22 @@ jobs:
         run: pnpm run lint
 
       - name: Configure AWS credentials 
-        uses: aws-actions/configure-aws-credentials@v3
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ github.ref == 'refs/heads/master' && 'CHANGE_ME' || 'CHANGE_ME' }} 
-          aws-region: eu-central-1 # Is not relate to deployment region
+          aws-region: eu-central-1 # Is not related to deployment region
           role-session-name: CHANGE_ME
+
+      # https://nextjs.org/docs/pages/building-your-application/deploying/ci-build-caching#github-actions
+      - name: Next.js cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/services/frontend/.next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('services/frontend/**/*.js', 'services/frontend/**/*.jsx', 'services/frontend/**/*.ts', 'services/frontend/**/*.tsx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
 
       - name: Type check
         run: pnpm run ci:typecheck:all
