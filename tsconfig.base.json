@@ -3,7 +3,6 @@
 	"compilerOptions": {
 		"module": "esnext",
 		"moduleResolution": "node",
-		"allowUnreachableCode": false,
 		"alwaysStrict": true,
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitReturns": true,

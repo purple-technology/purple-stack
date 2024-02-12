@@ -11,6 +11,12 @@ export function ResourcesStack({
 	stack,
 	app
 }: StackContext): ResourcesStackOutput {
+	/*
+	 *
+	 * Once you add some new resource to this stack, remove the contents below
+	 *
+	 */
+
 	const todosTable = new Table(stack, 'TodosTable', {
 		fields: {
 			createdTimestamp: 'string'

@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { userInfo } from '../../middlewares/user-info'
 import { publicProcedure } from '../../trpc'
 
-const logger = new Logger({ serviceName: 'trpc-api-middleware-isOrgMember' })
+const logger = new Logger({ serviceName: 'trpc-api-todos-list' })
 
 export const listTodos = publicProcedure
 	.use(userInfo)
@@ -14,7 +14,7 @@ export const listTodos = publicProcedure
 		})
 	)
 	.query(async ({ ctx, input }) => {
-		logger.info('hello', { there: true, ctx, input })
+		logger.info('list', { ctx, input })
 
 		return [
 			{

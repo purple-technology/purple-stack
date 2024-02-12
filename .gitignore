@@ -26,3 +26,6 @@ out
 
 # misc
 .DS_Store
+
+# CDK
+cdk.context.json
