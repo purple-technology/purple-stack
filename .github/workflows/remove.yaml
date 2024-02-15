@@ -35,5 +35,5 @@ jobs:
           aws-region: eu-central-1 # Is not related to deployment region
           role-session-name: CHANGE_ME
 
-      - name: Deploy
+      - name: Remove
         run: pnpm sst remove
