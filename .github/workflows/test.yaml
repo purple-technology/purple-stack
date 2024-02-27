@@ -2,10 +2,6 @@ name: Test Branch
 on:
   workflow_dispatch:
   push:
-    branches:
-      - f/*
-      - master
-      - staging
 
 permissions:
   id-token: write   # This is required for requesting the JWT
