@@ -14,9 +14,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -50,6 +50,6 @@ jobs:
             -f tag_name="v$(cat version.txt)" \
             -f target_commitish=${{github.ref}} \
             -f name="Production v$(cat version.txt)" \
-            -F generate_release_notes=true 
+            -F generate_release_notes=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

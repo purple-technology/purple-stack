@@ -16,9 +16,9 @@ jobs:
           fetch-depth: 0 # In order for commitlint to check historic commits
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -36,10 +36,10 @@ jobs:
       - name: Code Lint
         run: pnpm run lint
 
-      - name: Configure AWS credentials 
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ github.ref == 'refs/heads/master' && 'CHANGE_ME' || 'CHANGE_ME' }} 
+          role-to-assume: ${{ github.ref == 'refs/heads/master' && 'CHANGE_ME' || 'CHANGE_ME' }}
           aws-region: eu-central-1 # Is not related to deployment region
           role-session-name: CHANGE_ME
 
