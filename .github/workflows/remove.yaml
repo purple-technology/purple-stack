@@ -7,16 +7,16 @@ permissions:
 jobs:
   deploy:
     # We don't want to remove protected deployment
-    if: github.ref_protected == false 
+    if: github.ref_protected == false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -28,7 +28,7 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Configure AWS credentials 
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ github.ref == 'refs/heads/master' && 'CHANGE_ME' || 'CHANGE_ME' }}
