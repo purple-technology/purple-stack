@@ -35,15 +35,9 @@ module.exports = {
 			files: ['*.ts', '*.tsx'],
 			parser: '@typescript-eslint/parser',
 			extends: ['plugin:@microsoft/eslint-plugin-sdl/typescript'],
-			parserOptions: {
-				project: [
-					'./tsconfig.json',
-					'./services/**/tsconfig.json',
-					'./packages/**/tsconfig.json'
-				]
-			},
 			plugins: ['@typescript-eslint'],
 			rules: {
+				'@typescript-eslint/no-implied-eval': 'off',
 				'@typescript-eslint/ban-ts-comment': [
 					'error',
 					{
