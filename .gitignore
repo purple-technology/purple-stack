@@ -6,6 +6,7 @@ yarn-error.log*
 
 *.tsbuildinfo
 node_modules
+pnpm-exec-summary.json
 
 # Coverage directory used by jest
 coverage

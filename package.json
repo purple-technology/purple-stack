@@ -23,8 +23,7 @@
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"typecheck": "tsc --noEmit",
-		"typecheck:all": "pnpm run env -- pnpm run ci:typecheck:all",
-		"ci:typecheck:all": "sst build && pnpm run typecheck && pnpm run -r typecheck"
+		"typecheck:all": "time pnpm run typecheck && time pnpm run -r --report-summary typecheck && cat pnpm-exec-summary.json"
 	},
 	"lint-staged": {
 		"*.{ts,tsx,js,jsx}": "eslint --fix",

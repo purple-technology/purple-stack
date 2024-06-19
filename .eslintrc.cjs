@@ -55,6 +55,19 @@ module.exports = {
 				'@typescript-eslint/no-non-null-assertion': ['warn'],
 				'@typescript-eslint/consistent-type-imports': 'error'
 			}
+		},
+		{
+			files: ['*.tsx'],
+			parser: '@typescript-eslint/parser',
+			extends: ['plugin:@microsoft/eslint-plugin-sdl/typescript'],
+			plugins: ['@typescript-eslint', 'react-hooks'],
+			rules: {
+				'@typescript-eslint/no-implied-eval': 'off',
+				'react-hooks/exhaustive-deps': 'warn',
+				'react-hooks/rules-of-hooks': 'error',
+				'react/prop-types': ['off'],
+				'react/react-in-jsx-scope': 'off'
+			}
 		}
 	]
 }

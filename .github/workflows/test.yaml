@@ -15,6 +15,14 @@ jobs:
         with:
           fetch-depth: 0 # In order for commitlint to check historic commits
 
+      # Cache cdk context to optimize OpenNext builds
+      # https://docs.sst.dev/constructs/NextjsSite#nextjs-app-built-twice
+      - name: CDK Context cache
+        uses: actions/cache@v4
+        with:
+          path: cdk.context.json
+          key: ${{ runner.os }}-${{ github.ref_name == 'master' && 'master' || 'staging' }}-${{ hashFiles('./stacks/**') }}-${{ hashFiles('./constructs/**') }}-${{ hashFiles('sst.config.ts') }}-${{ hashFiles('pnpm-lock.yaml') }}
+
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
@@ -54,8 +62,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
 
+      - name: Build SST
+        run: pnpm sst build
+      
       - name: Type check
-        run: pnpm run ci:typecheck:all
+        run: pnpm run typecheck:all
 
       - name: Test
         run: pnpm run test

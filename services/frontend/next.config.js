@@ -16,7 +16,10 @@ report-to default;`.replace(/\n/g, '')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	reactStrictMode: true
+	reactStrictMode: true,
+	eslint: {
+		ignoreDuringBuilds: true
+	}
 }
 
 // CSP via Next should be on localhost only
