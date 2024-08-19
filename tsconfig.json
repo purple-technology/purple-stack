@@ -1,7 +1,4 @@
 {
 	"extends": "./tsconfig.base.json",
-	"exclude": ["services", "packages"],
-	"compilerOptions": {
-		"baseUrl": "."
-	}
+	"exclude": ["services", "packages"]
 }

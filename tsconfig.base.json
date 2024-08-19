@@ -14,9 +14,6 @@
 		"useUnknownInCatchVariables": true,
 		"strict": true,
 		"noImplicitAny": true,
-		"noErrorTruncation": true,
-		"paths": {
-			"@packages/*": ["./packages/*"]
-		}
+		"noErrorTruncation": true
 	}
 }

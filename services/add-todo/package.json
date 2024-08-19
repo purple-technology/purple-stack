@@ -1,5 +1,5 @@
 {
-	"name": "@purple-stack-services/some-service",
+	"name": "@services/add-todo",
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
@@ -11,7 +11,8 @@
 		"vitest": "^1.2.1",
 		"@aws-sdk/client-dynamodb": "^3.499.0",
 		"@types/aws-lambda": "^8.10.131",
-		"aws-sdk-client-mock": "^3.0.1"
+		"aws-sdk-client-mock": "^3.0.1",
+		"typescript": "catalog:"
 	},
 	"dependencies": {
 		"zod": "^3.22.4"

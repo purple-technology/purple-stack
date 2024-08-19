@@ -1,7 +1,6 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"baseUrl": ".",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
@@ -15,8 +14,9 @@
 		"jsx": "preserve",
 		"incremental": true,
 		"paths": {
-			"@trpc-api/*": ["../trpc-api/src"],
-			"@/*": ["./src/*"]
+			"@/*": ["./src/*"],
+			"@services/trpc-api/*": ["../trpc-api/src"],
+			"@package/*": ["../../packages/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

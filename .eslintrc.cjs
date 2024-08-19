@@ -15,20 +15,11 @@ module.exports = {
 			version: '18.2'
 		}
 	},
-	plugins: [
-		'prettier',
-		'simple-import-sort',
-		'react-hooks',
-		'@microsoft/eslint-plugin-sdl'
-	],
+	plugins: ['prettier', 'simple-import-sort', '@microsoft/eslint-plugin-sdl'],
 	rules: {
 		'prettier/prettier': 'error',
-		'react-hooks/exhaustive-deps': 'warn',
-		'react-hooks/rules-of-hooks': 'error',
-		'react/prop-types': ['off'],
 		'simple-import-sort/exports': 'error',
-		'simple-import-sort/imports': 'error',
-		'react/react-in-jsx-scope': 'off'
+		'simple-import-sort/imports': 'error'
 	},
 	overrides: [
 		{
