@@ -1,7 +1,10 @@
 {
   "name": "purple-stack",
   "version": "4.0.0",
-  "scripts": {},
+  "scripts": {
+    "sst:deploy": "sst deploy",
+    "sst:remove": "sst remove"
+  },
   "devDependencies": {
     "@tsconfig/node22": "22.0.2",
     "typescript": "5.9.2"
