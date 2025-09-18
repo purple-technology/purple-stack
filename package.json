@@ -1,6 +1,6 @@
 {
-  "name": "monorepo-template",
-  "version": "0.0.0",
+  "name": "purple-stack",
+  "version": "4.0.0",
   "workspaces": [
     "packages/*"
   ],
