@@ -1,15 +1,12 @@
 {
   "name": "purple-stack",
   "version": "4.0.0",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {},
   "devDependencies": {
-    "@tsconfig/node22": "^22",
-    "typescript": "^5"
+    "@tsconfig/node22": "22.0.2",
+    "typescript": "5.9.2"
   },
   "dependencies": {
-    "sst": "^3"
+    "sst": "3.17.13"
   }
 }

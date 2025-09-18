@@ -19,14 +19,19 @@ A template to create a monorepo SST v3 project. [Learn more](https://sst.dev/doc
    npx replace-in-file '/purple-stack/g' 'MY_APP' '**/*.*' --verbose
    ```
 
-4. Deploy!
+4. Asdf install 
+
+    ```bash
+    asdf install
+    ```
+5. Deploy!
 
    ```bash
    npm install
    npx sst deploy
    ```
 
-5. Optionally, enable [_git push to deploy_](https://sst.dev/docs/console/#autodeploy).
+6. Optionally, enable [_git push to deploy_](https://sst.dev/docs/console/#autodeploy).
 
 ## Usage
 
