@@ -1,0 +1,12 @@
+{
+  "name": "@monorepo-template/functions",
+  "version": "0.0.0",
+  "type": "module",
+  "dependencies": {
+    "@monorepo-template/core": "*",
+    "sst": "*"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8"
+  }
+}
