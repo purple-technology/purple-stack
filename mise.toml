@@ -1,0 +1,5 @@
+[tools]
+nodejs = '22.19.0'
+pnpm = '10.17.0'
+[env]
+AWS_REGION = 'eu-central-1'

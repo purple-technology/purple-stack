@@ -19,20 +19,19 @@ A template to create a monorepo SST v3 project. [Learn more](https://sst.dev/doc
    npx replace-in-file '/purple-stack/g' 'MY_APP' '**/*.*' --verbose
    ```
 
-4. Asdf install 
+4. Copy mise.local.tom.example to mise.local.toml and update the values.
+
+5. Mise install TODO: add mise installation readme
 
     ```bash
-    asdf install
+    mise install
     ```
-5. Deploy!
+6. Deploy!
 
    ```bash
-   npm install
-   npx sst deploy
+   pnpm install
+   pnpm run sst:deploy
    ```
-
-6. Optionally, enable [_git push to deploy_](https://sst.dev/docs/console/#autodeploy).
-
 ## Usage
 
 This template uses [npm Workspaces](https://docs.npmjs.com/cli/v8/using-npm/workspaces). It has 3 packages to start with and you can add more it.
