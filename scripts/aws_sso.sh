@@ -1,10 +1,29 @@
 #!/bin/bash
 
+clean_credentials_file() {
+    local profile="${1:-$AWS_PROFILE}"
+    local creds_file="$HOME/.aws/credentials"
+
+    if [ -f "$creds_file" ] && grep -q "^\[$profile\]" "$creds_file"; then
+        echo "AWS SSO checker: 🧹 Cleaning expired credentials for profile $profile"
+        # Create backup
+        cp "$creds_file" "$creds_file.bak.$(date +%s)"
+        # Remove the profile section
+        awk -v profile="$profile" '
+            /^\[/ { in_target = (substr($0, 2, length($0) - 2) == profile) }
+            !in_target { print }
+            in_target && /^\[/ && (substr($0, 2, length($0) - 2) != profile) { in_target = 0; print }
+        ' "$creds_file" > "$creds_file.tmp" && mv "$creds_file.tmp" "$creds_file"
+    fi
+}
+
 perform_sso_login() {
     local profile="${1:-$AWS_PROFILE}"
     echo "AWS SSO checker: 🔐 Performing AWS SSO login..."
     if aws sso login --profile "$profile"; then
-        echo "AWS SSO checker: ✅ AWS SSO login successful"
+        echo "AWS SSO checker: ✅  AWS SSO login successful"
+        # Clean up any conflicting credentials after successful login
+        clean_credentials_file "$profile"
         return 0
     else
         echo "AWS SSO checker: ❌ AWS SSO login failed"
@@ -15,7 +34,11 @@ perform_sso_login() {
 check_sso_expiry() {
     local profile="${1:-$AWS_PROFILE}"
 
-    echo "AWS SSO checker: 🔍 Starting AWS SSO token validation..."
+    # Skip SSO check in CI environment
+    if [ -n "$CI" ] || [ -n "$GITHUB_ACTIONS" ]; then
+        echo "AWS SSO checker: 🤖 CI environment detected, skipping SSO check"
+        return 0
+    fi
 
     # Check if AWS_PROFILE is set
     if [ -z "$profile" ]; then
@@ -23,6 +46,8 @@ check_sso_expiry() {
         echo "AWS SSO checker: 💡 Suggestion: Copy mise.local.toml.example to mise.local.toml and configure your AWS profile"
         return 1
     fi
+
+    echo "AWS SSO checker: 🔍 Starting AWS SSO token validation for profile: $profile"
 
     # Get SSO start URL from config file directly (faster than aws configure)
     local config_file="$HOME/.aws/config"
@@ -70,7 +95,9 @@ check_sso_expiry() {
 
     if [ "$current_epoch" -lt "$expiry_epoch" ]; then
         local remaining=$(( ($expiry_epoch - $current_epoch) / 60 ))
-        echo "AWS SSO checker: ✅ Token valid for ${remaining} more minutes"
+        echo "AWS SSO checker: ✅  Token valid for ${remaining} more minutes"
+        # Clean up any conflicting credentials in ~/.aws/credentials
+        clean_credentials_file "$profile"
         return 0
     else
         echo "AWS SSO checker: ❌ Token expired"
