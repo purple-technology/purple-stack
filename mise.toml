@@ -3,6 +3,7 @@ nodejs = '22.19.0'
 pnpm = '10.17.0'
 [env]
 AWS_REGION = 'eu-central-1'
+_.source = 'scripts/set_sst_stage.sh'
 
 [tasks.aws-sso-check]
 description = 'Check AWS SSO login status'
@@ -10,7 +11,7 @@ run = 'bash scripts/aws_sso.sh'
 
 [tasks."sst deploy"]
 alias = 'sstd'
-description = 'Deploy using SST (with AWS SSO check)'
+description = 'Deploy using SST (with AWS SSO check and branch-based stage)'
 run = [
   'pnpm sst deploy'
 ]
@@ -18,7 +19,7 @@ depends = ['aws-sso-check']
 
 [tasks."sst remove"]
 alias = 'sstr'
-description = 'Remove SST stack (with AWS SSO check)'
+description = 'Remove SST stack (with AWS SSO check and branch-based stage)'
 run = [
   'pnpm sst remove'
 ]
