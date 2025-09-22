@@ -1,4 +1,4 @@
-import { Resource } from "sst";
-import { Example } from "@purple-stack/core/example";
+import { Example } from '@purple-stack/core/example'
+import { Resource } from 'sst'
 
-console.log(`${Example.hello()} Linked to ${Resource.MyBucket.name}.`);
+console.log(`${Example.hello()} Linked to ${Resource.MyBucket.name}.`)

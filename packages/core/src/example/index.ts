@@ -1,5 +1,5 @@
 export module Example {
-  export function hello() {
-    return "Hello, world!";
-  }
+	export function hello() {
+		return 'Hello, world!'
+	}
 }

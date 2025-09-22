@@ -1,16 +1,16 @@
 {
-  "name": "purple-stack",
-  "version": "4.0.0",
-  "scripts": {
-    "sst:deploy": "sst deploy",
-    "sst:remove": "sst remove"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.2.4",
-    "@tsconfig/node22": "22.0.2",
-    "typescript": "5.9.2"
-  },
-  "dependencies": {
-    "sst": "3.17.13"
-  }
+	"name": "purple-stack",
+	"version": "4.0.0",
+	"scripts": {
+		"sst:deploy": "sst deploy",
+		"sst:remove": "sst remove"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.2.4",
+		"@tsconfig/node22": "22.0.2",
+		"typescript": "5.9.2"
+	},
+	"dependencies": {
+		"sst": "3.17.13"
+	}
 }

@@ -1,12 +1,12 @@
 {
-  "name": "@purple-stack/functions",
-  "version": "0.0.0",
-  "type": "module",
-  "dependencies": {
-    "@purple-stack/core": "workspace:*",
-    "sst": "*"
-  },
-  "devDependencies": {
-    "@types/aws-lambda": "^8"
-  }
+	"name": "@purple-stack/functions",
+	"version": "0.0.0",
+	"type": "module",
+	"dependencies": {
+		"@purple-stack/core": "workspace:*",
+		"sst": "*"
+	},
+	"devDependencies": {
+		"@types/aws-lambda": "^8"
+	}
 }
