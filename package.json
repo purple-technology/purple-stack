@@ -6,6 +6,7 @@
     "sst:remove": "sst remove"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.2.4",
     "@tsconfig/node22": "22.0.2",
     "typescript": "5.9.2"
   },
