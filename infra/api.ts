@@ -1,7 +1,8 @@
 import { bucket } from './storage'
 
+//todo: rename and move this
 export const myApi = new sst.aws.Function('MyApi', {
 	url: true,
 	link: [bucket],
-	handler: 'packages/functions/src/api.handler'
+	handler: 'packages/trpc-api/src/trpcServerHandler.handler'
 })

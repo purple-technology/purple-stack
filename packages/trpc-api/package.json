@@ -1,0 +1,14 @@
+{
+	"name": "@purple-stack/trpc-api",
+	"version": "0.0.0",
+	"type": "module",
+	"dependencies": {
+		"@purple-stack/core": "workspace:*",
+		"@trpc/server": "11.5.1",
+		"sst": "*",
+		"zod": "4.1.11"
+	},
+	"devDependencies": {
+		"@types/aws-lambda": "^8"
+	}
+}
