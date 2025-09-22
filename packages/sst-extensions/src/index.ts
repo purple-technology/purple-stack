@@ -1,10 +1,10 @@
 /**
  * Converts a stage name to a URL-friendly part using camelCase.
  * The first word is lowercase, subsequent words are capitalized.
- * 
+ *
  * @param stage - The stage name to convert
  * @returns The URL-friendly camelCase string
- * 
+ *
  * @example
  * ```typescript
  * stageToUrlPart('production') // 'production'
