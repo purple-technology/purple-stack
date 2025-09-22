@@ -24,3 +24,17 @@ run = [
   'pnpm sst remove'
 ]
 depends = ['aws-sso-check']
+
+[tasks."lint"]
+alias = 'lt'
+description = 'Runs Biome lint + formatter check'
+run = [
+    'pnpm run lint'
+]
+
+[tasks."lint:fix"]
+alias = 'ltf'
+description = 'Runs Biome lint + formatter fix'
+run = [
+    'pnpm run lint:fix'
+]
