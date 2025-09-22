@@ -2,8 +2,8 @@
 	"name": "purple-stack",
 	"version": "4.0.0",
 	"scripts": {
-		"sst:deploy": "sst deploy",
-		"sst:remove": "sst remove"
+		"sst:deploy": "sst deploy --print-logs",
+		"sst:remove": "sst remove --print-logs"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.4",

@@ -1,15 +1,7 @@
 /// <reference path="./.sst/platform/config.d.ts" />
 
-//todo: move me to sst helpers/package
-function stageToUrlPart(stage: string): string {
-	return stage
-		.toLowerCase()
-		.split(/[-_\s]+/)
-		.map((word, index) =>
-			index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
-		)
-		.join('')
-}
+//this is prepared for cases where the git stage should be part of the url
+//const { stageToUrlPart } = await import('./packages/sst-extensions/src/index')
 
 export default $config({
 	app(input) {
