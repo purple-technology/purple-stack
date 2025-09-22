@@ -4,6 +4,15 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@trpc/server':
+      specifier: 11.5.1
+      version: 11.5.1
+    zod:
+      specifier: 4.1.11
+      version: 4.1.11
+
 importers:
 
   .:
@@ -21,6 +30,28 @@ importers:
       typescript:
         specifier: 5.9.2
         version: 5.9.2
+
+  domains/trading:
+    dependencies:
+      '@purple-stack/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@purple-stack/trpc-api':
+        specifier: workspace:*
+        version: link:../../packages/trpc-api
+      '@trpc/server':
+        specifier: 'catalog:'
+        version: 11.5.1(typescript@5.9.2)
+      sst:
+        specifier: '*'
+        version: 3.17.13
+      zod:
+        specifier: 'catalog:'
+        version: 4.1.11
+    devDependencies:
+      '@types/aws-lambda':
+        specifier: ^8
+        version: 8.10.152
 
   packages/core:
     dependencies:
@@ -72,14 +103,17 @@ importers:
       '@purple-stack/core':
         specifier: workspace:*
         version: link:../core
+      '@purple-stack/trading':
+        specifier: workspace:*
+        version: link:../../domains/trading
       '@trpc/server':
-        specifier: 11.5.1
+        specifier: 'catalog:'
         version: 11.5.1(typescript@5.9.2)
       sst:
         specifier: '*'
         version: 3.17.13
       zod:
-        specifier: 4.1.11
+        specifier: 'catalog:'
         version: 4.1.11
     devDependencies:
       '@types/aws-lambda':

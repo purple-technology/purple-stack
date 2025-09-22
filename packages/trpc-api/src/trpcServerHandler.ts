@@ -1,29 +1,24 @@
+import { productsRouter } from '@purple-stack/trading/api/tradingRouter'
 import { initTRPC } from '@trpc/server'
 import {
 	awsLambdaRequestHandler,
 	CreateAWSLambdaContextOptions
 } from '@trpc/server/adapters/aws-lambda'
 import { APIGatewayProxyEvent, APIGatewayProxyEventV2 } from 'aws-lambda'
-import { z } from 'zod'
 
-const t = initTRPC
+export const t = initTRPC
 	.context<
 		CreateAWSLambdaContextOptions<APIGatewayProxyEvent | APIGatewayProxyEventV2>
 	>()
 	.create()
 
-//todo: move to proper location
-const router = t.router({
-	greet: t.procedure
-		.input(z.object({ name: z.string() }))
-		.query(({ input }) => {
-			return `Hello ${input.name}!`
-		})
-})
+export const router = t.router
+//todo: introduce private procedure
+export const publicProcedure = t.procedure
 
 export type Router = typeof router
 
 export const handler = awsLambdaRequestHandler({
-	router: router,
+	router: productsRouter,
 	createContext: (opts) => opts
 })

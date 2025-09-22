@@ -1,10 +1,10 @@
 {
-	"name": "@purple-stack/trpc-api",
+	"name": "@purple-stack/trading",
 	"version": "0.0.0",
 	"type": "module",
 	"dependencies": {
 		"@purple-stack/core": "workspace:*",
-		"@purple-stack/trading": "workspace:*",
+		"@purple-stack/trpc-api": "workspace:*",
 		"@trpc/server": "catalog:",
 		"sst": "*",
 		"zod": "catalog:"
