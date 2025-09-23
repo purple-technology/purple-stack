@@ -1,7 +1,7 @@
-import { productsRouter } from '@purple-stack/trading/api/tradingRouter'
+import { tradingRouter } from '@purple-stack/trading/api/tradingRouter'
 import { awsLambdaRequestHandler } from '@trpc/server/adapters/aws-lambda'
 
 export const handler = awsLambdaRequestHandler({
-	router: productsRouter,
+	router: tradingRouter,
 	createContext: (opts) => opts
 })
