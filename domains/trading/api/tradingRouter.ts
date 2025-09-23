@@ -1,10 +1,8 @@
-import { publicProcedure, router } from '@purple-stack/trpc-api/src/trpc'
-import { z } from 'zod'
+import { router } from '@purple-stack/trpc-api/src/trpc'
+import { depositProcedures } from '../features/deposit/api/depositProcedures'
+import { withdrawalProcedures } from '../features/withdrawal/api/withdrawalProcedures'
 
 export const tradingRouter = router({
-	greet: publicProcedure
-		.input(z.object({ name: z.string() }))
-		.query(({ input }) => {
-			return `Hello ${input.name}!`
-		})
+	deposit: depositProcedures,
+	withdrawal: withdrawalProcedures
 })
