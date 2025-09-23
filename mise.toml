@@ -38,3 +38,11 @@ description = 'Runs Biome lint + formatter fix'
 run = [
     'pnpm run lint:fix'
 ]
+
+[tasks."trpc:panel"]
+alias = 'trpn'
+description = 'Starts tRPC local UI/Panel'
+dir = 'packages/trpc-api'
+run = [
+    'pnpm tsx src/trpcUi.ts'
+]
