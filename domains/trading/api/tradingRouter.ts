@@ -1,7 +1,4 @@
-import {
-	publicProcedure,
-	router
-} from '@purple-stack/trpc-api/src/trpcServerHandler'
+import { publicProcedure, router } from '@purple-stack/trpc-api/src/trpc'
 import { z } from 'zod'
 
 export const productsRouter = router({
