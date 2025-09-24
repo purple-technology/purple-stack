@@ -18,6 +18,11 @@ export default $config({
 		}
 	},
 	async run() {
+
+        $transform(sst.aws.Function, (args) => {
+          args.runtime = "nodejs22.x";
+        });
+
 		const storage = await import('./infra/storage')
 		await import('./infra/api')
 		await import('./infra/stepFunction')
