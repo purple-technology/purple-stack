@@ -18,14 +18,21 @@ export default $config({
 		}
 	},
 	async run() {
-
-        $transform(sst.aws.Function, (args) => {
-          args.runtime = "nodejs22.x";
-        });
+		$transform(sst.aws.Function, (args) => {
+			args.runtime = 'nodejs22.x'
+		})
 
 		const storage = await import('./infra/storage')
-		await import('./infra/api')
+		const api = await import('./infra/api')
 		await import('./infra/stepFunction')
+
+		new sst.x.DevCommand('tRPC', {
+			link: [api.tRPCAPI],
+			dev: {
+				autostart: true,
+				command: 'pnpm --filter @purple-stack/trpc-api start:panel'
+			}
+		})
 
 		return {
 			MyBucket: storage.bucket.name

@@ -5,11 +5,6 @@
 
 declare module "sst" {
   export interface Resource {
-    "MyApi": {
-      "name": string
-      "type": "sst.aws.Function"
-      "url": string
-    }
     "MyBucket": {
       "name": string
       "type": "sst.aws.Bucket"
@@ -17,6 +12,11 @@ declare module "sst" {
     "MyStateMachine": {
       "arn": string
       "type": "sst.aws.StepFunctions"
+    }
+    "tRPCAPI": {
+      "name": string
+      "type": "sst.aws.Function"
+      "url": string
     }
   }
 }

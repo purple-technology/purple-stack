@@ -10,15 +10,23 @@ description = 'Check AWS SSO login status'
 run = 'bash scripts/aws_sso.sh'
 
 [tasks."sst deploy"]
-alias = 'sstd'
+alias = 'sstdep'
 description = 'Deploy using SST (with AWS SSO check and branch-based stage)'
 run = [
   'pnpm sst deploy'
 ]
 depends = ['aws-sso-check']
 
+[tasks."sst dev"]
+alias = 'sstdev'
+description = 'Run SST in dev mode - locally'
+run = [
+  'pnpm sst dev'
+]
+depends = ['aws-sso-check']
+
 [tasks."sst remove"]
-alias = 'sstr'
+alias = 'sstrem'
 description = 'Remove SST stack (with AWS SSO check and branch-based stage)'
 run = [
   'pnpm sst remove'

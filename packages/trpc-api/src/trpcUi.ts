@@ -11,13 +11,23 @@ import express from 'express'
 	)
 
 	app.use('/panel', (_, res) => {
+		const trpcApiResource = process.env.SST_RESOURCE_tRPCAPI
+		if (!trpcApiResource) {
+			throw new Error('SST_RESOURCE_tRPCAPI environment variable is missing')
+		}
+
+		const parsedResource = JSON.parse(trpcApiResource)
+		const url = parsedResource.url
+		if (!url) {
+			throw new Error('URL not found in SST_RESOURCE_tRPCAPI resource')
+		}
+
 		return res.send(
 			renderTrpcPanel(tradingRouter, {
-				//todo: dynamically get the url
-				url: 'https://3aggmrrp5reidtx3sgtdthvtc40zfzmd.lambda-url.eu-central-1.on.aws',
+				url,
 				meta: {
 					title: 'purple-stack tRPC API',
-					description: 'Add description here, markdown supported'
+					description: 'API URL: ' + url
 				}
 			})
 		)
