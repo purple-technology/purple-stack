@@ -21,3 +21,4 @@ node_modules
 
 # mise
 mise.local.toml
+/web/dist/
