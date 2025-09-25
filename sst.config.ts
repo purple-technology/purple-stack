@@ -34,8 +34,16 @@ export default $config({
 			}
 		})
 
+		const web = new sst.aws.StaticSite('Web', {
+			build: {
+				command: 'pnpm run --filter @purple-stack/web build',
+				output: 'web/dist'
+			}
+		})
+
 		return {
-			MyBucket: storage.bucket.name
+			MyBucket: storage.bucket.name,
+			Web: web.url
 		}
 	}
 })

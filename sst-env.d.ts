@@ -13,6 +13,10 @@ declare module "sst" {
       "arn": string
       "type": "sst.aws.StepFunctions"
     }
+    "Web": {
+      "type": "sst.aws.StaticSite"
+      "url": string
+    }
     "tRPCAPI": {
       "name": string
       "type": "sst.aws.Function"

@@ -7,7 +7,7 @@ import express from 'express'
 
 	// todo: change to parent router
 	const { transactionRouter } = await import(
-		'@purple-stack/transaction/api/tradingRouter'
+		'@purple-stack/transaction/api/transactionRouter'
 	)
 
 	app.use('/panel', (_, res) => {
