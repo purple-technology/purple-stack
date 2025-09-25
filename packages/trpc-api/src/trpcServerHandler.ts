@@ -1,4 +1,4 @@
-import { transactionRouter } from 'domains/transaction/api/transactionRouter'
+import { transactionRouter } from '@purple-stack/transaction/api/transactionRouter'
 import { awsLambdaRequestHandler } from '@trpc/server/adapters/aws-lambda'
 
 export const handler = awsLambdaRequestHandler({

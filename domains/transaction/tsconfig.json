@@ -1,0 +1,12 @@
+{
+	"extends": "@tsconfig/node22/tsconfig.json",
+	"compilerOptions": {
+		"composite": true,
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"jsx": "react-jsx",
+		"types": ["react", "react-dom"]
+	},
+	"include": ["**/*.ts", "**/*.tsx", "sst-env.d.ts"],
+	"exclude": ["node_modules", "dist", "build"]
+}

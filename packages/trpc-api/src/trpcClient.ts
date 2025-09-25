@@ -1,4 +1,4 @@
-import type { transactionRouter } from 'domains/transaction/api/transactionRouter'
+import type { transactionRouter } from '@purple-stack/transaction/api/transactionRouter'
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
 import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
 
