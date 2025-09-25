@@ -1,4 +1,4 @@
-import type { tradingRouter } from '@purple-stack/trading/api/tradingRouter'
+import type { transactionRouter } from 'domains/transaction/api/transactionRouter'
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
 import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
 
@@ -8,10 +8,10 @@ import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
 const API_URL =
 	'https://jmtlrmexi24oumt7vn6q5zjnru0meezt.lambda-url.eu-central-1.on.aws'
 
-export type TradingRouter = typeof tradingRouter
-export type TradingRouterInputs = inferRouterInputs<TradingRouter>
-export type TradingRouterOutputs = inferRouterOutputs<TradingRouter>
+export type TransactionRouter = typeof transactionRouter
+export type TransactionRouterInputs = inferRouterInputs<TransactionRouter>
+export type TransactionRouterOutputs = inferRouterOutputs<TransactionRouter>
 
-export const tradingClient = createTRPCProxyClient<TradingRouter>({
+export const transactionClient = createTRPCProxyClient<TransactionRouter>({
 	links: [httpBatchLink({ url: API_URL })]
 })

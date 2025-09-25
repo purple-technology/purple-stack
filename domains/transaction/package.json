@@ -1,5 +1,5 @@
 {
-	"name": "@purple-stack/trading",
+	"name": "@purple-stack/transaction",
 	"version": "0.0.0",
 	"type": "module",
 	"dependencies": {

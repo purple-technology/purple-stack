@@ -6,8 +6,8 @@ import express from 'express'
 	const { renderTrpcPanel } = await import('trpc-ui')
 
 	// todo: change to parent router
-	const { tradingRouter } = await import(
-		'@purple-stack/trading/api/tradingRouter'
+	const { transactionRouter } = await import(
+		'@purple-stack/transaction/api/tradingRouter'
 	)
 
 	app.use('/panel', (_, res) => {
@@ -23,7 +23,7 @@ import express from 'express'
 		}
 
 		return res.send(
-			renderTrpcPanel(tradingRouter, {
+			renderTrpcPanel(transactionRouter, {
 				url,
 				meta: {
 					title: 'purple-stack tRPC API',

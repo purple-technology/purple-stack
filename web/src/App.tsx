@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { DepositPage } from '@purple-stack/trading/web/pages'
+import { DepositPage } from '@purple-stack/transaction/web/pages'
 import viteLogo from '/vite.svg'
 import reactLogo from './assets/react.svg'
 

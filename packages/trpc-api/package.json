@@ -8,7 +8,7 @@
 	"dependencies": {
 		"@trpc/client": "catalog:",
 		"@purple-stack/core": "workspace:*",
-		"@purple-stack/trading": "workspace:*",
+		"@purple-stack/transaction": "workspace:*",
 		"@trpc/server": "catalog:",
 		"sst": "*",
 		"zod": "catalog:"

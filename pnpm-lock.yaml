@@ -40,7 +40,7 @@ importers:
         specifier: 5.9.2
         version: 5.9.2
 
-  domains/trading:
+  domains/transaction:
     dependencies:
       '@purple-stack/core':
         specifier: workspace:*
@@ -118,9 +118,9 @@ importers:
       '@purple-stack/core':
         specifier: workspace:*
         version: link:../core
-      '@purple-stack/trading':
+      '@purple-stack/transaction':
         specifier: workspace:*
-        version: link:../../domains/trading
+        version: link:../../domains/transaction
       '@trpc/client':
         specifier: 'catalog:'
         version: 11.5.1(@trpc/server@11.5.1(typescript@5.9.2))(typescript@5.9.2)
@@ -149,9 +149,9 @@ importers:
 
   web:
     dependencies:
-      '@purple-stack/trading':
+      '@purple-stack/transaction':
         specifier: workspace:*
-        version: link:../domains/trading
+        version: link:../domains/transaction
       react:
         specifier: ^18.2.0
         version: 18.3.1
