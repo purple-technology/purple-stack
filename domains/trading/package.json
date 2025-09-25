@@ -6,6 +6,8 @@
 		"@purple-stack/core": "workspace:*",
 		"@purple-stack/trpc-api": "workspace:*",
 		"@trpc/server": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:",
 		"sst": "*",
 		"zod": "catalog:"
 	},

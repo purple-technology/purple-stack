@@ -1,42 +1,251 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.app-shell {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app-nav {
+	display: flex;
+	gap: 0.75rem;
+	padding: 1.5rem clamp(1rem, 4vw, 2.5rem);
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, rgba(20, 20, 36, 0.95), rgba(40, 40, 68, 0.95));
+	backdrop-filter: blur(12px);
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+	position: sticky;
+	top: 0;
+	z-index: 10;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.app-nav__link {
+	border: none;
+	border-radius: 999px;
+	padding: 0.65rem 1.5rem;
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: rgba(255, 255, 255, 0.85);
+	background: rgba(255, 255, 255, 0.08);
+	cursor: pointer;
+	transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.app-nav__link:hover {
+	background: rgba(255, 255, 255, 0.14);
+	transform: translateY(-1px);
+}
+
+.app-nav__link--active {
+	background: linear-gradient(135deg, #646cff, #3f47ff);
+	box-shadow: 0 8px 20px rgba(100, 108, 255, 0.35);
+	color: white;
+}
+
+.app-content {
+	flex: 1;
+	display: flex;
+	padding: clamp(2rem, 6vw, 4rem);
+}
+
+.app-content > * {
+	flex: 1;
+}
+
+.landing {
+	margin: 0 auto;
+	max-width: 960px;
+	padding: clamp(2rem, 6vw, 4rem);
+	text-align: center;
+	background: rgba(255, 255, 255, 0.03);
+	border-radius: 18px;
+	box-shadow: 0 25px 60px rgba(10, 10, 30, 0.45);
+	backdrop-filter: blur(12px);
+	display: grid;
+	gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+.landing__logos {
+	display: flex;
+	justify-content: center;
+	gap: clamp(1rem, 6vw, 4rem);
 }
 
 .card {
-  padding: 2em;
+	padding: clamp(1.25rem, 4vw, 2rem);
+	background: rgba(255, 255, 255, 0.04);
+	border-radius: 12px;
+	display: grid;
+	gap: 0.75rem;
+}
+
+.card button {
+	border-radius: 999px;
+	border: none;
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	background: linear-gradient(135deg, #646cff, #3f47ff);
+	color: white;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card button:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 8px 20px rgba(100, 108, 255, 0.35);
 }
 
 .read-the-docs {
-  color: #888;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.logo {
+	height: clamp(4rem, 8vw, 6rem);
+	padding: 0.5rem;
+	will-change: filter;
+	transition: filter 300ms;
+}
+
+.logo:hover {
+	filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+	filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	a:nth-of-type(2) .logo {
+		animation: logo-spin infinite 20s linear;
+	}
+}
+
+.landing h1 {
+	margin: 0;
+	font-size: clamp(2rem, 6vw, 3.2rem);
+}
+
+.landing p {
+	margin: 0;
+}
+
+.deposit-page {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	padding: 3rem clamp(1rem, 5vw, 4rem);
+	max-width: 960px;
+	margin: 0 auto;
+	background: rgba(255, 255, 255, 0.04);
+	border-radius: 16px;
+	box-shadow: 0 20px 60px rgba(15, 15, 20, 0.4);
+}
+
+.deposit-page__header h1 {
+	margin: 0;
+	font-size: clamp(2rem, 5vw, 3rem);
+	letter-spacing: -0.03em;
+}
+
+.deposit-page__header p {
+	margin: 0.25rem 0 0;
+	color: rgba(255, 255, 255, 0.72);
+}
+
+.deposit-page__content {
+	display: grid;
+	gap: 2.5rem;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.deposit-form {
+	display: grid;
+	gap: 1rem;
+	padding: 1.5rem;
+	background: rgba(21, 21, 32, 0.9);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 12px;
+}
+
+.deposit-form__label {
+	font-weight: 600;
+}
+
+.deposit-form__input {
+	border-radius: 8px;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	padding: 0.75rem 1rem;
+	background: rgba(255, 255, 255, 0.04);
+	color: inherit;
+	font-size: 1rem;
+}
+
+.deposit-form__input:focus {
+	outline: 2px solid #646cff;
+	outline-offset: 2px;
+}
+
+.deposit-form__error {
+	margin: 0;
+	color: #ff6b6b;
+	font-size: 0.9rem;
+}
+
+.deposit-form__submit {
+	border-radius: 999px;
+	border: none;
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	background: linear-gradient(135deg, #646cff, #3f47ff);
+	color: white;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.deposit-form__submit:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 8px 20px rgba(100, 108, 255, 0.35);
+}
+
+.deposit-summary {
+	display: grid;
+	gap: 1rem;
+	padding: 1.75rem;
+	background: rgba(15, 15, 28, 0.9);
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	min-height: 200px;
+}
+
+.deposit-summary__heading {
+	margin: 0;
+	font-size: 1.5rem;
+}
+
+.deposit-summary__status {
+	margin: 0;
+	color: rgba(255, 255, 255, 0.72);
+}
+
+.deposit-summary__amount {
+	margin: 0;
+	font-weight: 600;
+	font-size: 1.125rem;
+}
+
+@media (max-width: 600px) {
+	.deposit-page {
+		padding: 2rem 1.25rem;
+	}
 }
