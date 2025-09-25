@@ -1,15 +1,18 @@
 import { type FormEvent, useState } from 'react'
 
 export type DepositFormProps = {
-	onSubmit: (amount: number) => void
+	onSubmit: (amount: number) => void | Promise<void>
 	initialAmount?: number
 }
 
-export function DepositForm({ onSubmit, initialAmount = 100 }: DepositFormProps) {
+export function DepositForm({
+	onSubmit,
+	initialAmount = 100
+}: DepositFormProps) {
 	const [amount, setAmount] = useState(initialAmount)
 	const [error, setError] = useState<string | null>(null)
 
-	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
 
 		if (Number.isNaN(amount) || amount <= 0) {
@@ -18,7 +21,7 @@ export function DepositForm({ onSubmit, initialAmount = 100 }: DepositFormProps)
 		}
 
 		setError(null)
-		onSubmit(amount)
+		await onSubmit(amount)
 	}
 
 	return (

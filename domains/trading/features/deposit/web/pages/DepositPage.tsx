@@ -1,3 +1,4 @@
+import { tradingClient } from '@purple-stack/trpc-api/src/trpcClient'
 import { useState } from 'react'
 import { DepositForm } from '../components/DepositForm'
 import { DepositSummary } from '../components/DepositSummary'
@@ -8,9 +9,17 @@ export function DepositPage() {
 
 	const handleSubmit = async (amount: number) => {
 		setStatus('pending')
-		await new Promise((resolve) => setTimeout(resolve, 600))
-		setLastAmount(amount)
-		setStatus('success')
+		try {
+			const result = await tradingClient.deposit.deposit.mutate({ amount })
+			if (result.success) {
+				setLastAmount(amount)
+				setStatus('success')
+				return
+			}
+		} catch (error) {
+			console.error('Deposit failed', error)
+		}
+		setStatus('idle')
 	}
 
 	return (

@@ -6,6 +6,7 @@
 		"start:panel": "tsx src/trpcUi.ts"
 	},
 	"dependencies": {
+		"@trpc/client": "catalog:",
 		"@purple-stack/core": "workspace:*",
 		"@purple-stack/trading": "workspace:*",
 		"@trpc/server": "catalog:",

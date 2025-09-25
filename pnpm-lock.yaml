@@ -6,6 +6,9 @@ settings:
 
 catalogs:
   default:
+    '@trpc/client':
+      specifier: 11.5.1
+      version: 11.5.1
     '@trpc/server':
       specifier: 11.5.1
       version: 11.5.1
@@ -118,6 +121,9 @@ importers:
       '@purple-stack/trading':
         specifier: workspace:*
         version: link:../../domains/trading
+      '@trpc/client':
+        specifier: 'catalog:'
+        version: 11.5.1(@trpc/server@11.5.1(typescript@5.9.2))(typescript@5.9.2)
       '@trpc/server':
         specifier: 'catalog:'
         version: 11.5.1(typescript@5.9.2)
@@ -894,6 +900,12 @@ packages:
       '@mui/material': ^5
       react: ^17 || ^18
       react-dom: ^17 || ^18
+
+  '@trpc/client@11.5.1':
+    resolution: {integrity: sha512-7I6JJ1I1lxv3S87ht3FAIZi0XxQa7hnQ9K+Oo5BH7cGO8ZtWe9Ftq6ItdkuDfpsnsRPcR2h158AMWbNs/iptqg==}
+    peerDependencies:
+      '@trpc/server': 11.5.1
+      typescript: '>=5.7.2'
 
   '@trpc/server@11.5.1':
     resolution: {integrity: sha512-KIDzHRS5m8U1ncPwjgtOtPWK9lNO0kYL7b+lnvKXRqowSAQIEC/z6y7g/dkt4Aqv3DKI/STLydt2/afrP1QrxQ==}
@@ -2798,6 +2810,11 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
       - immer
+
+  '@trpc/client@11.5.1(@trpc/server@11.5.1(typescript@5.9.2))(typescript@5.9.2)':
+    dependencies:
+      '@trpc/server': 11.5.1(typescript@5.9.2)
+      typescript: 5.9.2
 
   '@trpc/server@11.5.1(typescript@5.9.2)':
     dependencies:
