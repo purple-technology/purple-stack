@@ -54,3 +54,10 @@ dir = 'packages/trpc-api'
 run = [
     'pnpm tsx src/trpcUi.ts'
 ]
+
+[tasks."typecheck"]
+alias = 'tc'
+description = 'Run TypeScript type checking for the entire monorepo'
+run = [
+    'pnpm run typecheck'
+]

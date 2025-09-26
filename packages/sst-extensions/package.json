@@ -5,10 +5,14 @@
 	"exports": {
 		"./*": ["./src/*/index.ts", "./src/*.ts"]
 	},
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
 	"dependencies": {
 		"sst": "*"
 	}
 }
+
 
 
 

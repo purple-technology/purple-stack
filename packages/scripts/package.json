@@ -7,7 +7,8 @@
 		"sst": "*"
 	},
 	"scripts": {
-		"shell": "sst shell tsx"
+		"shell": "sst shell tsx",
+		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"@types/node": "^22",

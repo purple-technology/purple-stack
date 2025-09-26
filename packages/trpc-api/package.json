@@ -3,7 +3,8 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"start:panel": "tsx src/trpcUi.ts"
+		"start:panel": "tsx src/trpcUi.ts",
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@trpc/client": "catalog:",

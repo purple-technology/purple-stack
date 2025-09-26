@@ -6,6 +6,9 @@
 		"@purple-stack/core": "workspace:*",
 		"sst": "*"
 	},
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
 	"devDependencies": {
 		"@types/aws-lambda": "^8"
 	}
