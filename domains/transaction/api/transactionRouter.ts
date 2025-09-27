@@ -5,4 +5,4 @@ import { withdrawalProcedures } from '../features/withdrawal/api/withdrawalProce
 export const transactionRouter = router({
 	deposit: depositProcedures,
 	withdrawal: withdrawalProcedures
-})
+}) satisfies ReturnType<typeof router>

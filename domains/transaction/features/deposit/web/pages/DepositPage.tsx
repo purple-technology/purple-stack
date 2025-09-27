@@ -1,4 +1,4 @@
-import { transactionClient } from '@purple-stack/trpc-api/src/trpcClient'
+import { appClient } from '@purple-stack/trpc-api/src/trpcClient'
 import { useState } from 'react'
 import { DepositForm } from '../components/DepositForm'
 import { DepositSummary } from '../components/DepositSummary'
@@ -10,7 +10,9 @@ export function DepositPage() {
 	const handleSubmit = async (amount: number) => {
 		setStatus('pending')
 		try {
-			const result = await transactionClient.deposit.deposit.mutate({ amount })
+			const result = await appClient.transaction.deposit.mutate(( {
+				amount
+			})
 			if (result.success) {
 				setLastAmount(amount)
 				setStatus('success')
