@@ -10,7 +10,7 @@ export function DepositPage() {
 	const handleSubmit = async (amount: number) => {
 		setStatus('pending')
 		try {
-			const result = await appClient.transaction.deposit.mutate(( {
+			const result = await appClient.transaction.deposit.deposit.mutate({
 				amount
 			})
 			if (result.success) {

@@ -21,8 +21,8 @@ A template to create a monorepo SST v3 project. [Learn more](https://sst.dev/doc
 
 4. Copy mise.local.tom.example to mise.local.toml and update the values.
 
-5. Mise install TODO: add mise installation readme
-
+5. [Install](https://mise.jdx.dev/getting-started.html) mise for managing global tools, tasks and environment variables.
+6. Install the global tools using Mise (Node, PNPM, ...)
     ```bash
     mise install
     ```
