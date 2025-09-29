@@ -2,6 +2,9 @@
 	"name": "@purple-stack/transaction",
 	"version": "0.0.0",
 	"type": "module",
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
 	"dependencies": {
 		"@purple-stack/core": "workspace:*",
 		"@purple-stack/trpc-api": "workspace:*",
