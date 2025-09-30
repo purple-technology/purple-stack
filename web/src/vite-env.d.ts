@@ -1,5 +1,14 @@
 /// <reference types="vite/client" />
 
+interface ImportMetaEnv {
+	readonly VITE_tRPCAPI_url: string
+}
+
+// Augment ImportMeta to include our custom env variables
+interface ImportMeta {
+	readonly env: ImportMetaEnv
+}
+
 // SVG imports
 declare module '*.svg' {
 	const content: string

@@ -2,15 +2,28 @@ import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
 import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
 import type { AppRouter } from './appRouter'
 
-/**
- * TODO: Replace the hardcoded URL with an environment-aware configuration once SST exposes the value.
- */
-const API_URL =
-	'https://jmtlrmexi24oumt7vn6q5zjnru0meezt.lambda-url.eu-central-1.on.aws'
-
 export type AppRouterInputs = inferRouterInputs<AppRouter>
 export type AppRouterOutputs = inferRouterOutputs<AppRouter>
 
+/**
+ * Get the API URL from environment variables.
+ * This function handles the Vite-specific import.meta.env access,
+ * keeping the environment variable concerns isolated to this module.
+ */
+function getApiUrl(): string {
+	// Use optional chaining for compatibility with non-Vite environments
+	// @ts-ignore - import.meta.env is injected by Vite at build time
+	const url = import.meta?.env?.VITE_tRPCAPI_url as string | undefined
+
+	if (!url) {
+		throw new Error(
+			'VITE_tRPCAPI_url is not defined'
+		)
+	}
+
+	return url
+}
+
 export const appClient = createTRPCProxyClient<AppRouter>({
-	links: [httpBatchLink({ url: API_URL })]
+	links: [httpBatchLink({ url: getApiUrl() })]
 })
