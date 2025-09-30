@@ -10,7 +10,11 @@
 	padding: 1.5rem clamp(1rem, 4vw, 2.5rem);
 	align-items: center;
 	justify-content: center;
-	background: linear-gradient(135deg, rgba(20, 20, 36, 0.95), rgba(40, 40, 68, 0.95));
+	background: linear-gradient(
+		135deg,
+		rgba(20, 20, 36, 0.95),
+		rgba(40, 40, 68, 0.95)
+	);
 	backdrop-filter: blur(12px);
 	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
 	position: sticky;
@@ -27,7 +31,10 @@
 	color: rgba(255, 255, 255, 0.85);
 	background: rgba(255, 255, 255, 0.08);
 	cursor: pointer;
-	transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+	transition:
+		background 0.2s ease,
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
 }
 
 .app-nav__link:hover {
@@ -87,7 +94,9 @@
 	background: linear-gradient(135deg, #646cff, #3f47ff);
 	color: white;
 	cursor: pointer;
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
 }
 
 .card button:hover {
