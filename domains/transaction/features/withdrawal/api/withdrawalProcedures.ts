@@ -1,15 +1,14 @@
 import { publicProcedure } from '@purple-stack/trpc-api/src/trpc'
-import { z } from 'zod'
 
-export const withdraw = publicProcedure
-	.input(
-		z.object({
-			amount: z.number().positive()
-		})
-	)
-	.mutation(({ input }) => {
-		return {
-			success: true,
-			message: `Withdrawal of ${input.amount} initiated`
-		}
-	})
+export const withdrawalLimits = publicProcedure.query(() => {
+	const dailyLimit = Math.floor(Math.random() * 5000) + 1000
+	const availableBalance = Math.floor(Math.random() * 10000) + 500
+	const maxWithdrawal = Math.min(dailyLimit, availableBalance)
+
+	return {
+		dailyLimit,
+		availableBalance,
+		maxWithdrawal,
+		currency: 'USD'
+	}
+})

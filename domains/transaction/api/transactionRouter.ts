@@ -1,8 +1,8 @@
 import { router } from '@purple-stack/trpc-api/src/trpc'
 import { deposit } from '../features/deposit/api/depositProcedures'
-import { withdraw } from '../features/withdrawal/api/withdrawalProcedures'
+import { withdrawalLimits } from '../features/withdrawal/api/withdrawalProcedures'
 
 export const transactionRouter = router({
 	deposit,
-	withdraw
+	withdrawalLimits
 })

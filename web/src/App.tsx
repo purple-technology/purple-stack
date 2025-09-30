@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import './App.css'
-import { DepositPage } from '@purple-stack/transaction/web/pages'
+import {
+	DepositPage,
+	WithdrawalPage
+} from '@purple-stack/transaction/web/pages'
 import viteLogo from '/vite.svg'
 import reactLogo from './assets/react.svg'
 
-type AppView = 'home' | 'deposit'
+type AppView = 'home' | 'deposit' | 'withdrawal'
 
 function HomePage() {
 	const [count, setCount] = useState(0)
@@ -55,9 +58,22 @@ function App() {
 				>
 					Deposit demo
 				</button>
+				<button
+					type="button"
+					className={`app-nav__link${view === 'withdrawal' ? ' app-nav__link--active' : ''}`}
+					onClick={() => setView('withdrawal')}
+				>
+					Withdrawal demo
+				</button>
 			</nav>
 			<div className="app-content">
-				{view === 'home' ? <HomePage /> : <DepositPage />}
+				{view === 'home' ? (
+					<HomePage />
+				) : view === 'deposit' ? (
+					<DepositPage />
+				) : (
+					<WithdrawalPage />
+				)}
 			</div>
 		</div>
 	)
