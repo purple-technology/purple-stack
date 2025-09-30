@@ -1,4 +1,7 @@
 import { type FormEvent, useState } from 'react'
+import { Button } from '../../../../web/components'
+import '../../../../web/styles/shared.css'
+import './DepositForm.css'
 
 export type DepositFormProps = {
 	onSubmit: (amount: number) => void | Promise<void>
@@ -25,22 +28,20 @@ export function DepositForm({
 	}
 
 	return (
-		<form className="deposit-form" onSubmit={handleSubmit}>
+		<form className="deposit-form transaction-card" onSubmit={handleSubmit}>
 			<label className="deposit-form__label" htmlFor="deposit-amount">
 				Amount
 			</label>
 			<input
 				id="deposit-amount"
-				className="deposit-form__input"
+				className="transaction-input"
 				type="number"
 				min={1}
 				value={amount}
 				onChange={(event) => setAmount(event.target.valueAsNumber)}
 			/>
 			{error ? <p className="deposit-form__error">{error}</p> : null}
-			<button className="deposit-form__submit" type="submit">
-				Start deposit
-			</button>
+			<Button type="submit">Start deposit</Button>
 		</form>
 	)
 }

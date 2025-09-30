@@ -1,3 +1,6 @@
+import '../../../../web/styles/shared.css'
+import './DepositSummary.css'
+
 export type DepositSummaryProps = {
 	lastAmount?: number
 	status?: 'idle' | 'pending' | 'success'
@@ -9,9 +12,15 @@ const statusCopy: Record<Required<DepositSummaryProps>['status'], string> = {
 	success: 'Deposit placed successfully!'
 }
 
-export function DepositSummary({ lastAmount, status = 'idle' }: DepositSummaryProps) {
+export function DepositSummary({
+	lastAmount,
+	status = 'idle'
+}: DepositSummaryProps) {
 	return (
-		<section className="deposit-summary" aria-live="polite">
+		<section
+			className="deposit-summary transaction-card transaction-card--dark"
+			aria-live="polite"
+		>
 			<h2 className="deposit-summary__heading">Deposit summary</h2>
 			<p className="deposit-summary__status">{statusCopy[status]}</p>
 			{typeof lastAmount === 'number' ? (

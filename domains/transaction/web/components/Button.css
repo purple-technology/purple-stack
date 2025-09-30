@@ -1,0 +1,39 @@
+/* Shared button component for transaction domain */
+.transaction-button {
+	border-radius: 999px;
+	border: none;
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.transaction-button--primary {
+	background: linear-gradient(135deg, #646cff, #3f47ff);
+	color: white;
+}
+
+.transaction-button--primary:hover:not(:disabled) {
+	transform: translateY(-1px);
+	box-shadow: 0 8px 20px rgba(100, 108, 255, 0.35);
+}
+
+.transaction-button--secondary {
+	background: rgba(255, 255, 255, 0.08);
+	color: rgba(255, 255, 255, 0.85);
+}
+
+.transaction-button--secondary:hover:not(:disabled) {
+	background: rgba(255, 255, 255, 0.14);
+	transform: translateY(-1px);
+}
+
+.transaction-button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.transaction-button--full-width {
+	width: 100%;
+}

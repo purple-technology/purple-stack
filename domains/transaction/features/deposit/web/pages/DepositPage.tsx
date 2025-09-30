@@ -2,6 +2,8 @@ import { appClient } from '@purple-stack/trpc-api/src/trpcClient'
 import { useState } from 'react'
 import { DepositForm } from '../components/DepositForm'
 import { DepositSummary } from '../components/DepositSummary'
+import '../../../../web/styles/shared.css'
+import './DepositPage.css'
 
 export function DepositPage() {
 	const [lastAmount, setLastAmount] = useState<number | undefined>()
@@ -13,7 +15,7 @@ export function DepositPage() {
 			const result = await appClient.transaction.deposit.mutate({
 				amount
 			})
-			
+
 			if (result.success) {
 				setLastAmount(amount)
 				setStatus('success')
@@ -26,7 +28,7 @@ export function DepositPage() {
 	}
 
 	return (
-		<main className="deposit-page">
+		<main className="deposit-page transaction-page">
 			<header className="deposit-page__header">
 				<h1>Deposit funds</h1>
 				<p>Prototype vertical slice for transaction › deposit</p>

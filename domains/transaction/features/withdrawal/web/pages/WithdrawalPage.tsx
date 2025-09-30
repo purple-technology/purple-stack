@@ -1,6 +1,9 @@
 import { appClient } from '@purple-stack/trpc-api/src/trpcClient'
 import { useEffect, useState } from 'react'
+import { Button } from '../../../../web/components'
 import { WithdrawalLimits } from '../components/WithdrawalLimits'
+import '../../../../web/styles/shared.css'
+import './WithdrawalPage.css'
 
 export function WithdrawalPage() {
 	const [limits, setLimits] = useState<
@@ -34,20 +37,16 @@ export function WithdrawalPage() {
 	}, [])
 
 	return (
-		<main className="withdrawal-page">
+		<main className="withdrawal-page transaction-page">
 			<header className="withdrawal-page__header">
 				<h1>Withdrawal</h1>
 				<p>Prototype vertical slice for transaction › withdrawal</p>
 			</header>
 			<section className="withdrawal-page__content">
-				<div className="withdrawal-actions">
-					<button
-						className="withdrawal-actions__button"
-						onClick={fetchLimits}
-						disabled={status === 'loading'}
-					>
+				<div className="withdrawal-actions transaction-card">
+					<Button onClick={fetchLimits} disabled={status === 'loading'}>
 						{status === 'loading' ? 'Refreshing...' : 'Refresh Limits'}
-					</button>
+					</Button>
 				</div>
 				<WithdrawalLimits
 					dailyLimit={limits?.dailyLimit}

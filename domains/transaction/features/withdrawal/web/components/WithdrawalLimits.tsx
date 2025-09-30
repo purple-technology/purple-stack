@@ -1,3 +1,6 @@
+import '../../../../web/styles/shared.css'
+import './WithdrawalLimits.css'
+
 export type WithdrawalLimitsProps = {
 	dailyLimit?: number
 	availableBalance?: number
@@ -21,7 +24,10 @@ export function WithdrawalLimits({
 	status = 'idle'
 }: WithdrawalLimitsProps) {
 	return (
-		<section className="withdrawal-limits" aria-live="polite">
+		<section
+			className="withdrawal-limits transaction-card transaction-card--dark"
+			aria-live="polite"
+		>
 			<h2 className="withdrawal-limits__heading">Withdrawal Limits</h2>
 			<p className="withdrawal-limits__status">{statusCopy[status]}</p>
 			{status === 'success' && typeof maxWithdrawal === 'number' ? (
@@ -42,4 +48,3 @@ export function WithdrawalLimits({
 		</section>
 	)
 }
-
