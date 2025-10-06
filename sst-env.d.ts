@@ -5,6 +5,10 @@
 
 declare module "sst" {
   export interface Resource {
+    "DepositStateMachine": {
+      "arn": string
+      "type": "sst.aws.StepFunctions"
+    }
     "MyBucket": {
       "name": string
       "type": "sst.aws.Bucket"

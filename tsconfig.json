@@ -1,1 +1,12 @@
-{}
+{
+	"files": [],
+	"references": [
+		{ "path": "./domains/transaction" },
+		{ "path": "./packages/core" },
+		{ "path": "./packages/functions" },
+		{ "path": "./packages/scripts" },
+		{ "path": "./packages/sst-extensions" },
+		{ "path": "./packages/trpc-api" },
+		{ "path": "./web" }
+	]
+}

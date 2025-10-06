@@ -23,6 +23,7 @@ export default $config({
 		})
 
 		const storage = await import('./infra/storage')
+		await import('./domains/transaction/features/deposit/stack')
 		const api = await import('./infra/api')
 		await import('./infra/stepFunction')
 

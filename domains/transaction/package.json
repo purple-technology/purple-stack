@@ -17,6 +17,7 @@
 		"zod": "catalog:"
 	},
 	"devDependencies": {
-		"@types/aws-lambda": "^8"
+		"@types/aws-lambda": "^8",
+		"@aws-sdk/client-sfn": "^3.0.0"
 	}
 }
