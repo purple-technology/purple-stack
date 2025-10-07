@@ -1,6 +1,9 @@
 {
+	"extends": "@purple-stack/tsconfig/base.json",
 	"compilerOptions": {
-		"composite": true
+		"composite": true,
+		"types": ["node"]
 	},
-	"include": ["sst-env.d.ts"]
+	"include": ["sst-env.d.ts", "infra/**/*", "sst.config.ts"],
+	"exclude": ["node_modules", ".sst"]
 }

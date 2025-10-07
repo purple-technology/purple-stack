@@ -5,7 +5,7 @@ import express from 'express'
 
 	const { renderTrpcPanel } = await import('trpc-ui')
 
-	const { appRouter } = await import('./appRouter')
+	const { appRouter } = await import('../../../infra/apiHandler')
 
 	app.use('/panel', (_, res) => {
 		const trpcApiResource = process.env.SST_RESOURCE_tRPCAPI

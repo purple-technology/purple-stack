@@ -1,4 +1,0 @@
-{
-	"extends": "@purple-stack/tsconfig/base.json",
-	"include": ["src", "sst-env.d.ts"]
-}

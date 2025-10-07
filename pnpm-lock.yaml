@@ -35,6 +35,9 @@ importers:
 
   .:
     dependencies:
+      '@trpc/server':
+        specifier: 'catalog:'
+        version: 11.5.1(typescript@5.9.2)
       sst:
         specifier: 3.17.13
         version: 3.17.13
@@ -42,9 +45,18 @@ importers:
       '@biomejs/biome':
         specifier: 2.2.4
         version: 2.2.4
+      '@purple-stack/transaction':
+        specifier: workspace:*
+        version: link:domains/transaction
+      '@purple-stack/trpc-api':
+        specifier: workspace:*
+        version: link:packages/trpc-api
       '@tsconfig/node22':
         specifier: 22.0.2
         version: 22.0.2
+      '@types/aws-lambda':
+        specifier: ^8
+        version: 8.10.152
       '@types/node':
         specifier: ^22
         version: 22.18.6
@@ -111,41 +123,6 @@ importers:
         specifier: ^2
         version: 2.1.9(@types/node@22.18.6)
 
-  packages/functions:
-    dependencies:
-      '@purple-stack/core':
-        specifier: workspace:*
-        version: link:../core
-      sst:
-        specifier: '*'
-        version: 3.17.13
-    devDependencies:
-      '@purple-stack/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@types/aws-lambda':
-        specifier: ^8
-        version: 8.10.152
-
-  packages/scripts:
-    dependencies:
-      '@purple-stack/core':
-        specifier: '*'
-        version: link:../core
-      sst:
-        specifier: '*'
-        version: 3.17.13
-    devDependencies:
-      '@purple-stack/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@types/node':
-        specifier: ^22
-        version: 22.18.6
-      tsx:
-        specifier: ^4
-        version: 4.20.5
-
   packages/sst-extensions:
     dependencies:
       sst:
@@ -161,9 +138,6 @@ importers:
       '@purple-stack/core':
         specifier: workspace:*
         version: link:../core
-      '@purple-stack/transaction':
-        specifier: workspace:*
-        version: link:../../domains/transaction
       '@trpc/client':
         specifier: 'catalog:'
         version: 11.5.1(@trpc/server@11.5.1(typescript@5.9.2))(typescript@5.9.2)

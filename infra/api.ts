@@ -5,5 +5,5 @@ import { bucket } from './storage'
 export const tRPCAPI = new sst.aws.Function('tRPCAPI', {
 	url: true,
 	link: [bucket, depositStateMachine],
-	handler: 'packages/trpc-api/src/trpcServerHandler.handler'
+	handler: 'infra/apiHandler.handler'
 })

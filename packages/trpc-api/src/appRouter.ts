@@ -1,8 +1,21 @@
-import { transactionRouter } from '@purple-stack/transaction/api/transactionRouter'
 import { router } from './trpc'
 
-export const appRouter = router({
-	transaction: transactionRouter
-})
+/**
+ * Creates the app router by composing domain routers.
+ * This function should be called at the application level with all domain routers.
+ *
+ * Example:
+ * ```ts
+ * import { transactionRouter } from '@purple-stack/transaction/api/transactionRouter'
+ * const appRouter = createAppRouter({
+ *   transaction: transactionRouter
+ * })
+ * ```
+ */
+export function createAppRouter<TRouters extends Record<string, any>>(
+	routers: TRouters
+) {
+	return router(routers)
+}
 
-export type AppRouter = typeof appRouter
+export type CreateAppRouter = typeof createAppRouter

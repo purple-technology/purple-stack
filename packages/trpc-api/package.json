@@ -8,7 +8,6 @@
 	},
 	"dependencies": {
 		"@purple-stack/core": "workspace:*",
-		"@purple-stack/transaction": "workspace:*",
 		"@trpc/client": "catalog:",
 		"@trpc/server": "catalog:",
 		"sst": "*",

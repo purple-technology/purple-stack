@@ -10,11 +10,15 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.4",
+		"@purple-stack/trpc-api": "workspace:*",
+		"@purple-stack/transaction": "workspace:*",
 		"@tsconfig/node22": "22.0.2",
+		"@types/aws-lambda": "^8",
 		"typescript": "catalog:",
 		"@types/node": "^22"
 	},
 	"dependencies": {
+		"@trpc/server": "catalog:",
 		"sst": "3.17.13"
 	}
 }
