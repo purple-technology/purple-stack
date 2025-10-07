@@ -16,5 +16,3 @@
 	],
 	"exclude": ["node_modules", "dist", "build"]
 }
-
-

@@ -1,5 +1,5 @@
 {
-	"extends": "@purple-stack/tsconfig/base.json",
+	"extends": "./packages/tsconfig/base.json",
 	"compilerOptions": {
 		"composite": true,
 		"types": ["node"]
