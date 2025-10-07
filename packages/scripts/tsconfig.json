@@ -1,7 +1,3 @@
 {
-	"extends": "@tsconfig/node22/tsconfig.json",
-	"compilerOptions": {
-		"module": "ESNext",
-		"moduleResolution": "Bundler"
-	}
+	"extends": "@purple-stack/tsconfig/base.json"
 }

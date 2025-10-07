@@ -1,12 +1,6 @@
 {
-	"extends": "@tsconfig/node22/tsconfig.json",
+	"extends": "@purple-stack/tsconfig/base.json",
 	"compilerOptions": {
-		"module": "ESNext",
-		"moduleResolution": "Bundler",
-		"jsx": "react-jsx",
-		"lib": ["DOM", "ES2022"],
-		"types": ["react", "react-dom"]
-	},
-	"include": ["**/*.ts", "**/*.tsx", "sst-env.d.ts"],
-	"exclude": ["node_modules", "dist", "build"]
+		"types": ["node"]
+	}
 }

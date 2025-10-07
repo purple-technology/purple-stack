@@ -1,0 +1,20 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": "@tsconfig/node22/tsconfig.json",
+	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"types": ["node"],
+		"skipLibCheck": true,
+		"strict": true
+	},
+	"include": [
+		"**/*.ts",
+		"**/*.tsx",
+		"sst-env.d.ts",
+		"../../.sst/platform/src/global.d.ts"
+	],
+	"exclude": ["node_modules", "dist", "build"]
+}
+
+

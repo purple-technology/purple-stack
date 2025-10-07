@@ -19,6 +19,7 @@
 		"@types/express": "5.0.3",
 		"express": "5.1.0",
 		"trpc-ui": "npm:trpc-ui-zod4@^1.0.0",
-		"tsx": "^4.20.5"
+		"tsx": "^4.20.5",
+		"@purple-stack/tsconfig": "workspace:*"
 	}
 }

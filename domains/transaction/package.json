@@ -18,6 +18,7 @@
 	},
 	"devDependencies": {
 		"@types/aws-lambda": "^8",
-		"@aws-sdk/client-sfn": "^3.0.0"
+		"@aws-sdk/client-sfn": "^3.0.0",
+		"@purple-stack/tsconfig": "workspace:*"
 	}
 }

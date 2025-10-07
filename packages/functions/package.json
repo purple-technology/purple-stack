@@ -10,6 +10,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"@types/aws-lambda": "^8"
+		"@types/aws-lambda": "^8",
+		"@purple-stack/tsconfig": "workspace:*"
 	}
 }

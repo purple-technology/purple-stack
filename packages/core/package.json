@@ -13,6 +13,7 @@
 		"sst": "*"
 	},
 	"devDependencies": {
-		"vitest": "^2"
+		"vitest": "^2",
+		"@purple-stack/tsconfig": "workspace:*"
 	}
 }
