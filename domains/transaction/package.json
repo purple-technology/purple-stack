@@ -19,6 +19,8 @@
 	"devDependencies": {
 		"@types/aws-lambda": "^8",
 		"@aws-sdk/client-sfn": "^3.0.0",
-		"@purple-stack/tsconfig": "workspace:*"
+		"@purple-stack/tsconfig": "workspace:^",
+		"typescript": "catalog:",
+		"vite": "^5.2.11"
 	}
 }

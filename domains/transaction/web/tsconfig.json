@@ -1,0 +1,11 @@
+{
+	"extends": "@purple-stack/tsconfig/base.json",
+	"compilerOptions": {
+		"types": ["vite/client"],
+		"jsx": "react-jsx",
+		"lib": ["ES2020", "DOM", "DOM.Iterable"],
+		"noEmit": true,
+		"allowImportingTsExtensions": true
+	},
+	"include": ["."]
+}

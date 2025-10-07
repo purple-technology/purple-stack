@@ -24,6 +24,9 @@ catalogs:
     react-dom:
       specifier: 18.3.1
       version: 18.3.1
+    typescript:
+      specifier: 5.9.2
+      version: 5.9.2
     zod:
       specifier: 4.1.11
       version: 4.1.11
@@ -46,7 +49,7 @@ importers:
         specifier: ^22
         version: 22.18.6
       typescript:
-        specifier: 5.9.2
+        specifier: 'catalog:'
         version: 5.9.2
 
   domains/transaction:
@@ -83,11 +86,17 @@ importers:
         specifier: ^3.0.0
         version: 3.901.0
       '@purple-stack/tsconfig':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../../packages/tsconfig
       '@types/aws-lambda':
         specifier: ^8
         version: 8.10.152
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.2
+      vite:
+        specifier: ^5.2.11
+        version: 5.4.20(@types/node@22.18.6)
 
   packages/core:
     dependencies:
@@ -169,7 +178,7 @@ importers:
         version: 4.1.11
     devDependencies:
       '@purple-stack/tsconfig':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../tsconfig
       '@types/aws-lambda':
         specifier: ^8
@@ -186,6 +195,12 @@ importers:
       tsx:
         specifier: ^4.20.5
         version: 4.20.5
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.2
+      vite:
+        specifier: ^5.2.11
+        version: 5.4.20(@types/node@22.18.6)
 
   packages/tsconfig:
     dependencies:
@@ -221,7 +236,7 @@ importers:
         specifier: ^4.2.1
         version: 4.7.0(vite@5.4.20(@types/node@22.18.6))
       typescript:
-        specifier: 5.9.2
+        specifier: 'catalog:'
         version: 5.9.2
       vite:
         specifier: ^5.1.4

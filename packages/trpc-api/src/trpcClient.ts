@@ -11,14 +11,10 @@ export type AppRouterOutputs = inferRouterOutputs<AppRouter>
  * keeping the environment variable concerns isolated to this module.
  */
 function getApiUrl(): string {
-	// Use optional chaining for compatibility with non-Vite environments
-	// @ts-ignore - import.meta.env is injected by Vite at build time
-	const url = import.meta?.env?.VITE_tRPCAPI_url as string | undefined
+	const url = import.meta.env.VITE_tRPCAPI_url as string | undefined
 
 	if (!url) {
-		throw new Error(
-			'VITE_tRPCAPI_url is not defined'
-		)
+		throw new Error('VITE_tRPCAPI_url is not defined')
 	}
 
 	return url

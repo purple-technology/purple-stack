@@ -1,3 +1,4 @@
 {
-	"extends": "@purple-stack/tsconfig/base.json"
+	"extends": "@purple-stack/tsconfig/base.json",
+	"include": ["src"]
 }

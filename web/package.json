@@ -9,7 +9,7 @@
 	"version": "4.0.0",
 	"devDependencies": {
 		"@tsconfig/node22": "22.0.2",
-		"typescript": "5.9.2",
+		"typescript": "catalog:",
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
 		"@vitejs/plugin-react": "^4.2.1",

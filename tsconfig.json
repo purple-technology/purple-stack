@@ -1,2 +1,6 @@
 {
+	"compilerOptions": {
+		"composite": true
+	},
+	"include": ["sst-env.d.ts"]
 }
