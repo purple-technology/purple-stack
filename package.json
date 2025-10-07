@@ -4,7 +4,8 @@
 	"scripts": {
 		"lint": "biome check",
 		"lint:fix": "biome check --fix",
-		"typecheck": "pnpm run -r typecheck",
+		"typecheck": "tsc --build",
+		"typecheck:all": "pnpm run -r typecheck",
 		"sst:deploy": "sst deploy --print-logs",
 		"sst:remove": "sst remove --print-logs"
 	},

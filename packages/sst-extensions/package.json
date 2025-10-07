@@ -3,10 +3,10 @@
 	"type": "module",
 	"version": "0.0.0",
 	"exports": {
-		"./*": ["./src/*/index.ts", "./src/*.ts"]
+		"./*": "./src/*.ts"
 	},
 	"scripts": {
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --build"
 	},
 	"dependencies": {
 		"sst": "*"

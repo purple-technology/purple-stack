@@ -1,5 +1,5 @@
 import { transactionRouter } from '@purple-stack/transaction/api/transactionRouter'
-import { createAppRouter } from '@purple-stack/trpc-api/src/appRouter'
+import { createAppRouter } from '@purple-stack/trpc-api/appRouter'
 import { awsLambdaRequestHandler } from '@trpc/server/adapters/aws-lambda'
 
 /**

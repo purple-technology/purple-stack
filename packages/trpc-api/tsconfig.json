@@ -1,7 +1,11 @@
 {
 	"extends": "@purple-stack/tsconfig/base.json",
 	"compilerOptions": {
+		"composite": true,
+		"outDir": "dist",
 		"types": ["node", "vite/client"]
 	},
-	"include": ["src", "sst-env.d.ts"]
+	"include": ["src/trpc.ts", "src/appRouter.ts", "sst-env.d.ts"],
+	"exclude": ["src/trpcClient.ts", "src/trpcUi.ts", "node_modules", "dist"],
+	"references": [{ "path": "../core" }]
 }

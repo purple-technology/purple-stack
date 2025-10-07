@@ -4,7 +4,7 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --build"
 	},
 	"version": "4.0.0",
 	"devDependencies": {

@@ -2,9 +2,15 @@
 	"name": "@purple-stack/trpc-api",
 	"version": "0.0.0",
 	"type": "module",
+	"exports": {
+		"./trpc": "./src/trpc.ts",
+		"./appRouter": "./src/appRouter.ts",
+		"./trpcClient": "./src/trpcClient.ts",
+		"./trpcUi": "./src/trpcUi.ts"
+	},
 	"scripts": {
 		"start:panel": "tsx src/trpcUi.ts",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --build"
 	},
 	"dependencies": {
 		"@purple-stack/core": "workspace:*",

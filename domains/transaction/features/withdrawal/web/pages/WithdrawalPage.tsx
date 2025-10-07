@@ -1,4 +1,4 @@
-import { appClient } from '@purple-stack/trpc-api/src/trpcClient'
+import { appClient } from '@purple-stack/trpc-api/trpcClient'
 import { useEffect, useState } from 'react'
 import { Button } from '../../../../web/components'
 import { WithdrawalLimits } from '../components/WithdrawalLimits'

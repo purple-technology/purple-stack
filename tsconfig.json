@@ -1,9 +1,10 @@
 {
-	"extends": "./packages/tsconfig/base.json",
-	"compilerOptions": {
-		"composite": true,
-		"types": ["node"]
-	},
-	"include": ["sst-env.d.ts", "infra/**/*", "sst.config.ts"],
-	"exclude": ["node_modules", ".sst"]
+	"files": [],
+	"references": [
+		{ "path": "./packages/core" },
+		{ "path": "./packages/sst-extensions" },
+		{ "path": "./packages/trpc-api" },
+		{ "path": "./domains/transaction" },
+		{ "path": "./web" }
+	]
 }

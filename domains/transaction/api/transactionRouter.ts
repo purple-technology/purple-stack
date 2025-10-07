@@ -1,4 +1,4 @@
-import { router } from '@purple-stack/trpc-api/src/trpc'
+import { router } from '@purple-stack/trpc-api/trpc'
 import { deposit } from '../features/deposit/api/depositProcedures'
 import { withdrawalLimits } from '../features/withdrawal/api/withdrawalProcedures'
 

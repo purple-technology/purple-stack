@@ -2,8 +2,13 @@
 	"name": "@purple-stack/transaction",
 	"version": "0.0.0",
 	"type": "module",
+	"exports": {
+		"./api/transactionRouter": "./api/transactionRouter.ts",
+		"./web/pages": "./web/pages/index.ts",
+		"./web/components": "./web/components/index.ts"
+	},
 	"scripts": {
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --build"
 	},
 	"dependencies": {
 		"@purple-stack/core": "workspace:*",

@@ -4,10 +4,10 @@
 	"version": "0.0.0",
 	"scripts": {
 		"test": "sst shell vitest",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --build"
 	},
 	"exports": {
-		"./*": ["./src/*/index.ts", "./src/*.ts"]
+		"./example": "./src/example/index.ts"
 	},
 	"dependencies": {
 		"sst": "*"

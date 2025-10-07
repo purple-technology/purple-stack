@@ -1,4 +1,4 @@
-import { publicProcedure } from '@purple-stack/trpc-api/src/trpc'
+import { publicProcedure } from '@purple-stack/trpc-api/trpc'
 
 export const withdrawalLimits = publicProcedure.query(() => {
 	const dailyLimit = Math.floor(Math.random() * 5000) + 1000

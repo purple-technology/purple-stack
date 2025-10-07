@@ -1,4 +1,4 @@
-import { appClient } from '@purple-stack/trpc-api/src/trpcClient'
+import { appClient } from '@purple-stack/trpc-api/trpcClient'
 import { useState } from 'react'
 import { DepositForm } from '../components/DepositForm'
 import { DepositSummary } from '../components/DepositSummary'

@@ -1,5 +1,5 @@
 import { SFNClient, StartExecutionCommand } from '@aws-sdk/client-sfn'
-import { publicProcedure } from '@purple-stack/trpc-api/src/trpc'
+import { publicProcedure } from '@purple-stack/trpc-api/trpc'
 import { Resource } from 'sst'
 import { z } from 'zod'
 
