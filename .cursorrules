@@ -1,0 +1,23 @@
+# Purple Stack Cursor Rules
+
+## Code Quality Requirements
+
+After making ANY code changes, you MUST:
+
+1. **Run Biome linter and formatter:**
+   ```bash
+   pnpm biome check --write
+   ```
+   Or use the npm script:
+   ```bash
+   pnpm run lint:fix
+   ```
+
+2. **Run TypeScript type checking:**
+   ```bash
+   pnpm run typecheck
+   ```
+
+
+
+

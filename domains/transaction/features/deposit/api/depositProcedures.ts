@@ -8,8 +8,7 @@ const sfnClient = new SFNClient({})
 export const deposit = publicProcedure
 	.input(
 		z.object({
-			amount: z.number().positive(),
-			accountId: z.string().optional()
+			amount: z.number().positive()
 		})
 	)
 	.mutation(async ({ input }) => {
@@ -20,7 +19,6 @@ export const deposit = publicProcedure
 			name: executionName,
 			input: JSON.stringify({
 				amount: input.amount,
-				accountId: input.accountId || 'default-account',
 				timestamp: new Date().toISOString()
 			})
 		})

@@ -9,6 +9,10 @@ declare module "sst" {
       "arn": string
       "type": "sst.aws.StepFunctions"
     }
+    "DepositValidateAmountLambda": {
+      "name": string
+      "type": "sst.aws.Function"
+    }
     "MyBucket": {
       "name": string
       "type": "sst.aws.Bucket"

@@ -1,21 +1,46 @@
-// Define the deposit processing state machine
-const validateDeposit = sst.aws.StepFunctions.pass({
-	name: 'ValidateDeposit',
-	comment: 'Validate deposit amount and account'
+// Define the validation Lambda function
+const validateAmountLambda = new sst.aws.Function(
+	'DepositValidateAmountLambda',
+	{
+		handler:
+			'domains/transaction/features/deposit/backend/validateAmount.handler'
+	}
+)
+
+const validateAmount = sst.aws.StepFunctions.lambdaInvoke({
+	name: 'ValidateAmount',
+	function: validateAmountLambda,
+	payload: {
+		input: '{% $states.input %}'
+	}
 })
 
 const processDeposit = sst.aws.StepFunctions.pass({
-	name: 'ProcessDeposit',
-	comment: 'Process the deposit transaction'
+	name: 'ProcessDeposit'
 })
 
 const notifySuccess = sst.aws.StepFunctions.succeed({
-	name: 'NotifySuccess',
-	comment: 'Deposit completed successfully'
+	name: 'NotifySuccess'
 })
 
+const validationFailed = sst.aws.StepFunctions.fail({
+	name: 'ValidationFailed',
+	error: 'ValidationError',
+	cause: '$.Payload.error'
+})
+
+const checkValidation = sst.aws.StepFunctions.choice({
+	name: 'CheckValidation'
+})
+
+checkValidation.when(
+	'{% $states.input.Payload.valid %}',
+	processDeposit.next(notifySuccess)
+)
+checkValidation.otherwise(validationFailed)
+
 // Define the state machine workflow
-const definition = validateDeposit.next(processDeposit).next(notifySuccess)
+const definition = validateAmount.next(checkValidation)
 
 export const depositStateMachine = new sst.aws.StepFunctions(
 	'DepositStateMachine',
