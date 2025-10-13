@@ -26,6 +26,6 @@
 		"@aws-sdk/client-sfn": "^3.0.0",
 		"@purple-stack/tsconfig": "workspace:^",
 		"typescript": "catalog:",
-		"vite": "^5.2.11"
+		"vite": "catalog:"
 	}
 }

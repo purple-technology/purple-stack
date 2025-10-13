@@ -14,7 +14,7 @@
 		"features/*/backend",
 		"features/*/web",
 		"web",
-		"sst-env.d.ts",
+		"sst-env.d.ts"
 	],
 	"exclude": ["node_modules", "dist"],
 	"references": [

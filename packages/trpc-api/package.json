@@ -27,6 +27,6 @@
 		"tsx": "^4.20.5",
 		"@purple-stack/tsconfig": "workspace:^",
 		"typescript": "catalog:",
-		"vite": "^5.2.11"
+		"vite": "catalog:"
 	}
 }

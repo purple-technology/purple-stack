@@ -26,7 +26,6 @@ export default $config({
 		await import('./domains/transaction/features/deposit/stack')
 		const api = await import('./infra/api')
 
-
 		// dev commands visible when running sst dev
 		new sst.x.DevCommand('tRPC', {
 			link: [api.tRPCAPI],
