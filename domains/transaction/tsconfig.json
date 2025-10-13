@@ -7,14 +7,16 @@
 		"lib": ["ES2020", "DOM", "DOM.Iterable"],
 		"types": ["node", "vite/client"]
 	},
-	"include": ["api", "features", "web", "sst-env.d.ts"],
-	"exclude": [
-		"node_modules",
-		"dist",
-		"features/**/infra",
-		"features/**/backend",
-		"features/**/stack"
+	"include": [
+		"api",
+		"features/*/api",
+		"backend",
+		"features/*/backend",
+		"features/*/web",
+		"web",
+		"sst-env.d.ts",
 	],
+	"exclude": ["node_modules", "dist"],
 	"references": [
 		{ "path": "../../packages/core" },
 		{ "path": "../../packages/trpc-api" }

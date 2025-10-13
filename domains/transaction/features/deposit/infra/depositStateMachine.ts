@@ -33,14 +33,14 @@ const checkValidation = sst.aws.StepFunctions.choice({
 	name: 'CheckValidation'
 })
 
-checkValidation.when(
-	'{% $states.input.Payload.valid %}',
-	processDeposit.next(notifySuccess)
+const definition = validateAmount.next(
+	checkValidation
+		.when(
+			'{% $states.input.Payload.valid %}',
+			processDeposit.next(notifySuccess)
+		)
+		.otherwise(validationFailed)
 )
-checkValidation.otherwise(validationFailed)
-
-// Define the state machine workflow
-const definition = validateAmount.next(checkValidation)
 
 export const depositStateMachine = new sst.aws.StepFunctions(
 	'DepositStateMachine',
