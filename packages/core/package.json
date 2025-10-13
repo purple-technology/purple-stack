@@ -3,11 +3,11 @@
 	"type": "module",
 	"version": "0.0.0",
 	"scripts": {
-		"test": "sst shell vitest",
+		"test": "sst shell vitest -- --run",
 		"typecheck": "tsc --build"
 	},
 	"exports": {
-		"./example": "./src/example/index.ts"
+		"./deposit": "./src/deposit/index.ts"
 	},
 	"dependencies": {
 		"sst": "catalog:"

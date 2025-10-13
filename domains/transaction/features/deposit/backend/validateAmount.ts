@@ -1,3 +1,4 @@
+import { Deposit } from '@purple-stack/core/deposit'
 import type { Handler } from 'aws-lambda'
 
 type ValidationInput = {
@@ -10,6 +11,7 @@ type ValidationOutput = {
 	amount: number
 	timestamp: string
 	error?: string
+	formattedAmount?: string
 }
 
 type LambdaEvent = {
@@ -31,27 +33,25 @@ export const handler: Handler<LambdaEvent, ValidationOutput> = async (
 
 	const { amount, timestamp } = event.input
 
-	if (typeof amount !== 'number' || Number.isNaN(amount)) {
+	// Use the core package validation logic via namespace
+	const validationResult = Deposit.validateAmount(amount)
+
+	if (!validationResult.valid) {
 		return {
 			valid: false,
 			amount,
 			timestamp,
-			error: 'Amount must be a valid number'
+			error: validationResult.error
 		}
 	}
 
-	if (amount <= 0) {
-		return {
-			valid: false,
-			amount,
-			timestamp,
-			error: 'Amount must be a positive number'
-		}
-	}
+	// Additional example: use other namespace functions
+	const formattedAmount = Deposit.formatAmount(amount)
 
 	return {
 		valid: true,
 		amount,
-		timestamp
+		timestamp,
+		formattedAmount
 	}
 }
