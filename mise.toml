@@ -71,9 +71,5 @@ run = [
 
 [tasks."check"]
 alias = 'chk'
-description = 'Run lint fix, typecheck, and tests - full quality check'
-run = [
-    'pnpm run lint:fix',
-    'pnpm run typecheck',
-    'pnpm run test'
-]
+description = 'Run lint fix, typecheck, and tests in parallel - full quality check'
+depends = ['lint:fix', 'typecheck', 'test']
