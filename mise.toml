@@ -59,5 +59,21 @@ run = [
 alias = 'tc'
 description = 'Run TypeScript type checking for the entire monorepo'
 run = [
-    'pnpm run typecheck'
+    'pnpm run -r typecheck'
+]
+
+[tasks."test"]
+alias = 'tst'
+description = 'Run tests for the entire monorepo'
+run = [
+    'pnpm run test'
+]
+
+[tasks."check"]
+alias = 'chk'
+description = 'Run lint fix, typecheck, and tests - full quality check'
+run = [
+    'pnpm run lint:fix',
+    'pnpm run typecheck',
+    'pnpm run test'
 ]

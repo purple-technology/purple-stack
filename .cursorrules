@@ -2,13 +2,9 @@
 
 ## Code Quality Requirements
 
-After making ANY code changes, you MUST:
+After making ANY code changes besides configuration, tooling or github action definition changes, you MUST:
 
 1. **Run Biome linter and formatter:**
-   ```bash
-   pnpm biome check --write
-   ```
-   Or use the npm script:
    ```bash
    pnpm run lint:fix
    ```
@@ -18,6 +14,9 @@ After making ANY code changes, you MUST:
    pnpm run typecheck
    ```
 
-
+3. ** Run Tests**
+   ```bash
+   pnpm run test
+   ```
 
 
