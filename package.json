@@ -10,7 +10,7 @@
 		"sst:remove": "sst remove --print-logs"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.2.4",
+		"@biomejs/biome": "2.2.6",
 		"@purple-stack/trpc-api": "workspace:*",
 		"@purple-stack/transaction": "workspace:*",
 		"@tsconfig/node22": "catalog:",

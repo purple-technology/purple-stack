@@ -13,7 +13,7 @@
 		"sst": "catalog:"
 	},
 	"devDependencies": {
-		"vitest": "2.1.9",
+		"vitest": "3.2.4",
 		"@purple-stack/tsconfig": "workspace:*"
 	}
 }
