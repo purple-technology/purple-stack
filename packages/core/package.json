@@ -7,7 +7,7 @@
 		"typecheck": "tsc --build"
 	},
 	"exports": {
-		"./deposit": "./src/deposit/index.ts"
+		"./deposit": "./src/deposit/deposit.ts"
 	},
 	"dependencies": {
 		"sst": "catalog:"

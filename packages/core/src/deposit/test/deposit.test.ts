@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { Deposit } from '../index'
+import { Deposit } from '../deposit'
 
 describe('Deposit.validateAmount', () => {
 	test('should return valid for correct amount', () => {
