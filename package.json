@@ -13,13 +13,13 @@
 		"@biomejs/biome": "2.2.4",
 		"@purple-stack/trpc-api": "workspace:*",
 		"@purple-stack/transaction": "workspace:*",
-		"@tsconfig/node22": "22.0.2",
-		"@types/aws-lambda": "^8",
+		"@tsconfig/node22": "catalog:",
+		"@types/aws-lambda": "catalog:",
 		"typescript": "catalog:",
-		"@types/node": "^22"
+		"@types/node": "22.18.6"
 	},
 	"dependencies": {
 		"@trpc/server": "catalog:",
-		"sst": "3.17.13"
+		"sst": "catalog:"
 	}
 }

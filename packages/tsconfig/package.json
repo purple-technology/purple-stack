@@ -5,6 +5,6 @@
 	"files": ["base.json"],
 	"license": "MIT",
 	"dependencies": {
-		"@tsconfig/node22": "22.0.2"
+		"@tsconfig/node22": "catalog:"
 	}
 }

@@ -18,12 +18,12 @@
 		"@types/react-dom": "catalog:",
 		"react": "catalog:",
 		"react-dom": "catalog:",
-		"sst": "*",
+		"sst": "catalog:",
 		"zod": "catalog:"
 	},
 	"devDependencies": {
-		"@types/aws-lambda": "^8",
-		"@aws-sdk/client-sfn": "^3.0.0",
+		"@types/aws-lambda": "catalog:",
+		"@aws-sdk/client-sfn": "3.901.0",
 		"@purple-stack/tsconfig": "workspace:^",
 		"typescript": "catalog:",
 		"vite": "catalog:"

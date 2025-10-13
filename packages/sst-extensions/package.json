@@ -9,7 +9,7 @@
 		"typecheck": "tsc --build"
 	},
 	"dependencies": {
-		"sst": "*"
+		"sst": "catalog:"
 	},
 	"devDependencies": {
 		"@purple-stack/tsconfig": "workspace:*"
