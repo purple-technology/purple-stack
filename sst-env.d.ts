@@ -13,14 +13,6 @@ declare module "sst" {
       "name": string
       "type": "sst.aws.Function"
     }
-    "MyBucket": {
-      "name": string
-      "type": "sst.aws.Bucket"
-    }
-    "MyStateMachine": {
-      "arn": string
-      "type": "sst.aws.StepFunctions"
-    }
     "Web": {
       "type": "sst.aws.StaticSite"
       "url": string

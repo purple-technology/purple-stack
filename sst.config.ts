@@ -22,11 +22,12 @@ export default $config({
 			args.runtime = 'nodejs22.x'
 		})
 
-		const storage = await import('./infra/storage')
+		// stacks
 		await import('./domains/transaction/features/deposit/stack')
 		const api = await import('./infra/api')
-		await import('./infra/stepFunction')
 
+
+		// dev commands visible when running sst dev
 		new sst.x.DevCommand('tRPC', {
 			link: [api.tRPCAPI],
 			dev: {
@@ -58,7 +59,6 @@ export default $config({
 		})
 
 		return {
-			MyBucket: storage.bucket.name,
 			Web: web.url
 		}
 	}
