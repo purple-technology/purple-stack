@@ -1,3 +1,5 @@
+/// <reference path="../../../../../.sst/platform/config.d.ts" />
+
 // Define the validation Lambda function
 const validateAmountLambda = new sst.aws.Function(
 	'DepositValidateAmountLambda',
