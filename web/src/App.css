@@ -71,10 +71,34 @@
 	gap: clamp(1rem, 3vw, 2.5rem);
 }
 
+.landing__logos-container {
+	display: flex;
+	flex-direction: column;
+	gap: clamp(1.5rem, 3vw, 2.5rem);
+	align-items: center;
+}
+
 .landing__logos {
 	display: flex;
 	justify-content: center;
-	gap: clamp(1rem, 6vw, 4rem);
+	align-items: center;
+	flex-wrap: wrap;
+	gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.logo-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.logo-label {
+	font-size: 0.75rem;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 0.6);
+	text-align: center;
+	white-space: nowrap;
 }
 
 .card {
@@ -109,7 +133,7 @@
 }
 
 .logo {
-	height: clamp(4rem, 8vw, 6rem);
+	height: clamp(3rem, 6vw, 4.5rem);
 	padding: 0.5rem;
 	will-change: filter;
 	transition: filter 300ms;
@@ -121,6 +145,34 @@
 
 .logo.react:hover {
 	filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.logo.tanstack:hover {
+	filter: drop-shadow(0 0 2em #00c7b7aa);
+}
+
+.logo.trpc:hover {
+	filter: drop-shadow(0 0 2em #398ccbaa);
+}
+
+.logo.sst:hover {
+	filter: drop-shadow(0 0 2em #e27152aa);
+}
+
+.logo.vitest:hover {
+	filter: drop-shadow(0 0 2em #729b1aaa);
+}
+
+.logo.mise:hover {
+	filter: drop-shadow(0 0 2em #ff6b6baa);
+}
+
+.logo.biome:hover {
+	filter: drop-shadow(0 0 2em #60a5faaa);
+}
+
+.logo.zod:hover {
+	filter: drop-shadow(0 0 2em #3b82f6aa);
 }
 
 @keyframes logo-spin {
