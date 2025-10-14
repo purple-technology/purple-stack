@@ -1,82 +1,29 @@
-import { useState } from 'react'
-import './App.css'
 import {
-	DepositPage,
-	WithdrawalPage
-} from '@purple-stack/transaction/web/pages'
-import viteLogo from '/vite.svg'
-import reactLogo from './assets/react.svg'
+	createDepositRoute,
+	createWithdrawalRoute
+} from '@purple-stack/transaction/web/routes'
+import { createRouter, RouterProvider } from '@tanstack/react-router'
+import './App.css'
+import { createHomeRoute } from './router/home.route'
+import { rootRoute } from './router/root.route'
 
-type AppView = 'home' | 'deposit' | 'withdrawal'
+// Build the route tree with vertical slice routes
+// Each feature provides a factory function that receives the root route
+const homeRoute = createHomeRoute(rootRoute)
+const depositRoute = createDepositRoute(rootRoute)
+const withdrawalRoute = createWithdrawalRoute(rootRoute)
 
-function HomePage() {
-	const [count, setCount] = useState(0)
+const routeTree = rootRoute.addChildren([
+	homeRoute,
+	depositRoute,
+	withdrawalRoute
+])
 
-	return (
-		<section className="landing">
-			<div className="landing__logos">
-				<a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank" rel="noreferrer">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-			</div>
-			<h1>Purple Stack v4 playground</h1>
-			<div className="card">
-				<button onClick={() => setCount((value) => value + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
-		</section>
-	)
-}
+// Create a new router instance
+const router = createRouter({ routeTree })
 
 function App() {
-	const [view, setView] = useState<AppView>('home')
-
-	return (
-		<div className="app-shell">
-			<nav className="app-nav" aria-label="Main navigation">
-				<button
-					type="button"
-					className={`app-nav__link${view === 'home' ? ' app-nav__link--active' : ''}`}
-					onClick={() => setView('home')}
-				>
-					Home
-				</button>
-				<button
-					type="button"
-					className={`app-nav__link${view === 'deposit' ? ' app-nav__link--active' : ''}`}
-					onClick={() => setView('deposit')}
-				>
-					Deposit demo
-				</button>
-				<button
-					type="button"
-					className={`app-nav__link${view === 'withdrawal' ? ' app-nav__link--active' : ''}`}
-					onClick={() => setView('withdrawal')}
-				>
-					Withdrawal demo
-				</button>
-			</nav>
-			<div className="app-content">
-				{view === 'home' ? (
-					<HomePage />
-				) : view === 'deposit' ? (
-					<DepositPage />
-				) : (
-					<WithdrawalPage />
-				)}
-			</div>
-		</div>
-	)
+	return <RouterProvider router={router} />
 }
 
 export default App

@@ -3,6 +3,7 @@ packages:
   - 'domains/*'
   - 'web'
 catalog:
+  "@tanstack/react-router": 1.132.47
   "@trpc/client": 11.6.0
   "@trpc/server": 11.6.0
   "@tsconfig/node22": 22.0.2

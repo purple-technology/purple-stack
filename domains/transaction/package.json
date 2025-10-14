@@ -5,7 +5,8 @@
 	"exports": {
 		"./api/transactionRouter": "./api/transactionRouter.ts",
 		"./web/pages": "./web/pages/index.ts",
-		"./web/components": "./web/components/index.ts"
+		"./web/components": "./web/components/index.ts",
+		"./web/routes": "./web/routes/index.ts"
 	},
 	"scripts": {
 		"typecheck": "tsc --build"
@@ -13,6 +14,7 @@
 	"dependencies": {
 		"@purple-stack/core": "workspace:*",
 		"@purple-stack/trpc-api": "workspace:*",
+		"@tanstack/react-router": "catalog:",
 		"@trpc/server": "catalog:",
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",

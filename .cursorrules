@@ -14,9 +14,35 @@ After making ANY code changes besides configuration, tooling or github action de
    pnpm run typecheck
    ```
 
-3. ** Run Tests**
+3. **Run Tests**
    ```bash
    pnpm run test
    ```
+
+## Dependency Management
+
+### pnpm Catalog Usage
+
+When adding or updating dependencies, you MUST follow these rules:
+
+1. **Use pnpm catalog for shared dependencies:**
+   - If a dependency is used in 2 or more `package.json` files across the repository, it MUST be added to the pnpm catalog in `pnpm-workspace.yaml`
+   - Reference the catalog version using `"catalog:"` in package.json files
+   - Example:
+     ```yaml
+     # pnpm-workspace.yaml
+     catalog:
+       "@tanstack/react-router": 1.132.47
+     ```
+     ```json
+     // package.json
+     "dependencies": {
+       "@tanstack/react-router": "catalog:"
+     }
+     ```
+
+2. **When NOT to use catalog:**
+   - Dependencies used in only one package.json file
+   - Workspace-specific dependencies (use `workspace:*` instead)
 
 
