@@ -1,0 +1,26 @@
+name: Test Branch
+on:
+  workflow_dispatch:
+  push:
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and pnpm
+        uses: "./.github/actions/setup_node_and_pnpm"
+
+      - name: Code Lint
+        run: pnpm run lint
+
+      - name: Code Lint
+        run: pnpm run typecheck
+
+      - name: Code Lint
+        run: pnpm run test

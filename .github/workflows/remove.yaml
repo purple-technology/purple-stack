@@ -2,13 +2,13 @@ name: Remove Deployment
 on:
   workflow_dispatch:
 permissions:
-  id-token: write   # This is required for requesting the JWT
-  contents: read    # This is required for actions/checkout
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
 jobs:
   deploy:
     # We don't want to remove protected deployment
     if: github.ref_protected == false
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4

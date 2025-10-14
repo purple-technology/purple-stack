@@ -1,6 +1,7 @@
 {
 	"name": "purple-stack",
 	"version": "4.0.0",
+	"packageManager": "pnpm@10.18.2",
 	"scripts": {
 		"lint": "biome check",
 		"lint:fix": "biome check --fix",

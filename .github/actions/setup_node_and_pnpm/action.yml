@@ -1,0 +1,21 @@
+name: 'Setup Node.js and pnpm'
+description: 'Installs Node.js, pnpm, and dependencies'
+runs:
+  using: "composite"
+  steps:
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        run_install: false
+
+    - name: Setup pnpm cache
+      uses: actions/cache@v4
+      with:
+        path: /home/runner/setup-pnpm/node_modules/.bin/store/v3
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: ${{ runner.os }}-pnpm-store-
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile --prefer-offline

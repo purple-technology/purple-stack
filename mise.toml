@@ -1,6 +1,6 @@
 [tools]
 nodejs = '22.19.0'
-pnpm = '10.17.0'
+pnpm = '10.18.2'
 [env]
 AWS_REGION = 'eu-central-1'
 _.source = 'scripts/set_sst_stage.sh'
