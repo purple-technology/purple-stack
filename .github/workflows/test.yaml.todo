@@ -1,4 +1,5 @@
-name: Test Branch
+#TODO: uncomment me
+name: Tests
 on:
   workflow_dispatch:
   push:
@@ -19,8 +20,8 @@ jobs:
       - name: Code Lint
         run: pnpm run lint
 
-      - name: Code Lint
+      - name: Type Check
         run: pnpm run typecheck
 
-      - name: Code Lint
+      - name: Unit Tests
         run: pnpm run test
