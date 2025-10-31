@@ -1,27 +1,12 @@
-# Purple Stack Cursor Rules
+---
+description: pnpm catalog usage rules for shared dependencies
+globs: "**/package.json"
+alwaysApply: true
+---
 
-## Code Quality Requirements
+# Dependency Management
 
-After making ANY code changes besides configuration, tooling or github action definition changes, you MUST:
-
-1. **Run Biome linter and formatter:**
-   ```bash
-   pnpm run lint:fix
-   ```
-
-2. **Run TypeScript type checking:**
-   ```bash
-   pnpm run typecheck
-   ```
-
-3. **Run Tests**
-   ```bash
-   pnpm run test
-   ```
-
-## Dependency Management
-
-### pnpm Catalog Usage
+## pnpm Catalog Usage
 
 When adding or updating dependencies, you MUST follow these rules:
 
@@ -44,5 +29,3 @@ When adding or updating dependencies, you MUST follow these rules:
 2. **When NOT to use catalog:**
    - Dependencies used in only one package.json file
    - Workspace-specific dependencies (use `workspace:*` instead)
-
-

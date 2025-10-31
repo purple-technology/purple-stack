@@ -1,0 +1,24 @@
+---
+description: Code quality requirements - run linter, typecheck, and tests after code changes
+globs: "**/*.{ts,tsx,js,jsx}"
+alwaysApply: true
+---
+
+# Code Quality Requirements
+
+After making ANY code changes besides configuration, tooling or github action definition changes, you MUST:
+
+1. **Run Biome linter and formatter:**
+   ```bash
+   pnpm run lint:fix
+   ```
+
+2. **Run TypeScript type checking:**
+   ```bash
+   pnpm run typecheck
+   ```
+
+3. **Run Tests**
+   ```bash
+   pnpm run test
+   ```
