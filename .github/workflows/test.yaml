@@ -40,10 +40,10 @@ jobs:
         run: pnpm install --frozen-lockfile --prefer-offline
 
       - name: Code Lint
-        run: mise task lint
+        run: mise lint
 
       - name: Type Check
-        run: mise task typecheck
+        run: mise typecheck
 
       - name: Unit Tests
-        run: mise task test
+        run: mise test
