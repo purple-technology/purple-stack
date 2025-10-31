@@ -13,20 +13,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
-
-      - name: Install Dependencies
-        run: pnpm install
+      - name: Setup Node.js and pnpm
+        uses: "./.github/actions/setup_node_and_pnpm"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -36,4 +24,4 @@ jobs:
           role-session-name: CHANGE_ME
 
       - name: Remove
-        run: pnpm sst remove
+        run: mise sst remove
