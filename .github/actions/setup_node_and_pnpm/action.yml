@@ -1,20 +1,31 @@
 name: 'Setup Node.js and pnpm'
-description: 'Installs Node.js, pnpm, and dependencies'
+description: 'Installs mise, Node.js, pnpm, and dependencies'
 runs:
   using: "composite"
   steps:
 
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
+    - name: Setup mise
+      uses: jdx/mise-action@v3
       with:
-        run_install: false
+        version: 2025.10.21
+        install: true
+        cache: true
+        #TODO: remove me after debugging
+        log_level: debug
+
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
 
     - name: Setup pnpm cache
       uses: actions/cache@v4
       with:
-        path: /home/runner/setup-pnpm/node_modules/.bin/store/v3
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
         key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: ${{ runner.os }}-pnpm-store-
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
 
     - name: Install dependencies
       shell: bash
