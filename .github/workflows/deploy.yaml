@@ -5,6 +5,8 @@ on:
     branches:
       - master
       - staging
+      #todo: remove me
+      - plt-387
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
@@ -18,12 +20,8 @@ jobs:
       - name: Setup Node.js and pnpm
         uses: "./.github/actions/setup_node_and_pnpm"
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ github.ref == 'refs/heads/master' && 'CHANGE_ME' || 'CHANGE_ME' }}
-          aws-region: eu-central-1 # Is not related to deployment region
-          role-session-name: CHANGE_ME
+      - name: Assume AWS role
+        uses: "./.github/actions/configure_aws_credentials"
 
       - name: Deploy
         run: mise sst deploy
