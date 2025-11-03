@@ -24,4 +24,4 @@ jobs:
         uses: "./.github/actions/configure_aws_credentials"
 
       - name: Deploy
-        run: mise sst deploy
+        run: mise sst:dev

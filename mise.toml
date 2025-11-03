@@ -17,7 +17,7 @@ run = [
 ]
 depends = ['aws-sso-check']
 
-[tasks."sst dev"]
+[tasks."sst:dev"]
 alias = 'sstdev'
 description = 'Run SST in dev mode - locally'
 run = [
@@ -25,7 +25,7 @@ run = [
 ]
 depends = ['aws-sso-check']
 
-[tasks."sst remove"]
+[tasks."sst:remove"]
 alias = 'sstrem'
 description = 'Remove SST stack (with AWS SSO check and branch-based stage)'
 run = [

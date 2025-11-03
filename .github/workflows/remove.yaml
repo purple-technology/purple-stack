@@ -20,4 +20,4 @@ jobs:
         uses: "./.github/actions/configure_aws_credentials"
 
       - name: Remove
-        run: mise sst remove
+        run: mise sst:remove
