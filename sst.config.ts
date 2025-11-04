@@ -35,22 +35,15 @@ export default $config({
 			}
 		})
 
-		new sst.x.DevCommand('WebDev', {
-			link: [api.tRPCAPI],
-			dev: {
-				autostart: true,
-				command: 'pnpm --filter @purple-stack/web dev',
-				directory: 'web'
-			},
-			environment: {
-				VITE_tRPCAPI_url: api.tRPCAPI.url
-			}
-		})
-
 		const web = new sst.aws.StaticSite('Web', {
 			build: {
 				command: 'pnpm run --filter @purple-stack/web build',
 				output: 'web/dist'
+			},
+			dev: {
+				autostart: true,
+				command: 'pnpm --filter @purple-stack/web dev',
+				directory: 'web'
 			},
 			environment: {
 				VITE_tRPCAPI_url: api.tRPCAPI.url
