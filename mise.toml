@@ -13,7 +13,7 @@ run = 'bash scripts/aws_sso.sh'
 alias = 'sstdep'
 description = 'Deploy using SST (with AWS SSO check and branch-based stage)'
 run = [
-  'pnpm sst deploy'
+  'pnpm sst deploy --print-logs'
 ]
 depends = ['aws-sso-check']
 
@@ -21,7 +21,7 @@ depends = ['aws-sso-check']
 alias = 'sstdev'
 description = 'Run SST in dev mode - locally'
 run = [
-  'pnpm sst dev'
+  'pnpm sst dev '
 ]
 depends = ['aws-sso-check']
 
@@ -29,7 +29,7 @@ depends = ['aws-sso-check']
 alias = 'sstrem'
 description = 'Remove SST stack (with AWS SSO check and branch-based stage)'
 run = [
-  'pnpm sst remove'
+  'pnpm sst remove --print-logs'
 ]
 depends = ['aws-sso-check']
 
