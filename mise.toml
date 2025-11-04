@@ -9,7 +9,7 @@ _.source = 'scripts/set_sst_stage.sh'
 description = 'Check AWS SSO login status'
 run = 'bash scripts/aws_sso.sh'
 
-[tasks."sst deploy"]
+[tasks."sst:deploy"]
 alias = 'sstdep'
 description = 'Deploy using SST (with AWS SSO check and branch-based stage)'
 run = [
