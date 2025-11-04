@@ -2,7 +2,7 @@
 	"name": "@purple-stack/web",
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc && vite build",
+		"build": "tsc --build && vite build",
 		"preview": "vite preview",
 		"typecheck": "tsc --build"
 	},
