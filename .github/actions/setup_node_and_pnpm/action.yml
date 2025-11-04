@@ -10,8 +10,6 @@ runs:
         version: 2025.10.21
         install: true
         cache: true
-        #TODO: remove me after debugging
-        log_level: debug
 
     - name: Get pnpm store directory
       id: pnpm-cache

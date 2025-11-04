@@ -1,6 +1,14 @@
 import { transactionRouter } from '@purple-stack/transaction/api/transactionRouter'
 import { createAppRouter } from '@purple-stack/trpc-api/appRouter'
-import { awsLambdaRequestHandler } from '@trpc/server/adapters/aws-lambda'
+import {
+	awsLambdaRequestHandler,
+	type CreateAWSLambdaContextOptions
+} from '@trpc/server/adapters/aws-lambda'
+import { APIGatewayProxyEvent, APIGatewayProxyEventV2 } from 'aws-lambda'
+
+type LambdaContextOptions = CreateAWSLambdaContextOptions<
+	APIGatewayProxyEvent | APIGatewayProxyEventV2
+>
 
 /**
  * Application-level router composition.
@@ -18,5 +26,5 @@ export type AppRouter = typeof appRouter
  */
 export const handler = awsLambdaRequestHandler({
 	router: appRouter,
-	createContext: (opts: any) => opts
+	createContext: (opts: LambdaContextOptions) => opts
 })

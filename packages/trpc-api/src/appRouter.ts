@@ -1,3 +1,4 @@
+import type { AnyRouter } from '@trpc/server'
 import { router } from './trpc'
 
 /**
@@ -12,7 +13,7 @@ import { router } from './trpc'
  * })
  * ```
  */
-export function createAppRouter<TRouters extends Record<string, any>>(
+export function createAppRouter<TRouters extends Record<string, AnyRouter>>(
 	routers: TRouters
 ) {
 	return router(routers)

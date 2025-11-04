@@ -7,7 +7,7 @@ export default $config({
 	app(input) {
 		return {
 			name: 'purple-stack',
-			removal: input?.stage === 'production' ? 'retain' : 'remove',
+			removal: input?.stage === 'master' ? 'retain' : 'remove',
 			protect: ['master', 'staging'].includes(input?.stage),
 			home: 'aws',
 			providers: {
@@ -26,28 +26,26 @@ export default $config({
 		await import('./domains/transaction/features/deposit/stack')
 		const api = await import('./infra/api')
 
-		if (!$dev) {
-			// dev commands visible when running sst dev
-			new sst.x.DevCommand('tRPC', {
-				link: [api.tRPCAPI],
-				dev: {
-					autostart: true,
-					command: 'pnpm --filter @purple-stack/trpc-api start:panel'
-				}
-			})
+		// dev commands visible when running sst dev
+		new sst.x.DevCommand('tRPC', {
+			link: [api.tRPCAPI],
+			dev: {
+				autostart: true,
+				command: 'pnpm --filter @purple-stack/trpc-api start:panel'
+			}
+		})
 
-			new sst.x.DevCommand('WebDev', {
-				link: [api.tRPCAPI],
-				dev: {
-					autostart: true,
-					command: 'pnpm --filter @purple-stack/web dev',
-					directory: 'web'
-				},
-				environment: {
-					VITE_tRPCAPI_url: api.tRPCAPI.url
-				}
-			})
-		}
+		new sst.x.DevCommand('WebDev', {
+			link: [api.tRPCAPI],
+			dev: {
+				autostart: true,
+				command: 'pnpm --filter @purple-stack/web dev',
+				directory: 'web'
+			},
+			environment: {
+				VITE_tRPCAPI_url: api.tRPCAPI.url
+			}
+		})
 
 		const web = new sst.aws.StaticSite('Web', {
 			build: {
