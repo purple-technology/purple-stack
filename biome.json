@@ -29,12 +29,15 @@
 			"recommended": false,
 			"complexity": {
 				"useArrowFunction": "off",
-				"useOptionalChain": "warn"
+				"useOptionalChain": "warn",
+				"noUselessFragments": "warn"
 			},
 			"style": { "useBlockStatements": "off" },
 			"correctness": {
 				"useHookAtTopLevel": "error",
-				"noUnusedVariables": "error"
+				"noUnusedVariables": "error",
+				"noUnreachable": "error",
+				"noNestedComponentDefinitions": "error"
 			},
 			"suspicious": {
 				"noEmptyInterface": "error",
