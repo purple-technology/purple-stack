@@ -5,7 +5,7 @@ permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
 jobs:
-  deploy:
+  remove:
     # We don't want to remove protected deployment
     if: github.ref_protected == false
     runs-on: ubuntu-24.04
