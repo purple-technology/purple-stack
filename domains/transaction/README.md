@@ -254,6 +254,56 @@ const routeTree = rootRoute.addChildren([/* ... */, newFeatureRoute])
 - Domain router is automatically included via `transactionRouter`
 - Registered in `infra/src/apiHandler.ts`
 
+**Infra/API Integration** (REQUIRED for domains exporting API):
+When adding a new domain that exports API routes (used by `infra/src/apiHandler.ts`), you MUST:
+
+1. **Add domain dependency to root `package.json`:**
+   ```json
+   {
+     "devDependencies": {
+       "@purple-stack/transaction": "workspace:*"
+     }
+   }
+   ```
+
+This is required because SST bundles Lambda functions from the root and needs workspace dependencies listed here.
+
+**Web Package Integration** (REQUIRED for domains exporting web routes/components):
+When adding a new domain that exports web routes/components, you MUST:
+
+1. **Add domain dependency to `web/package.json`:**
+   ```json
+   {
+     "dependencies": {
+       "@purple-stack/transaction": "workspace:*"
+     }
+   }
+   ```
+
+2. **Add TypeScript reference to `web/tsconfig.json`:**
+   ```json
+   {
+     "references": [
+       { "path": "../domains/transaction" }
+     ]
+   }
+   ```
+
+3. **Add TypeScript reference to root `tsconfig.json`:**
+   ```json
+   {
+     "references": [
+       { "path": "./domains/transaction" }
+     ]
+   }
+   ```
+
+4. **Run `pnpm install`** to install the new dependency
+
+Without these steps:
+- SST will fail to resolve imports when bundling Lambda functions
+- Vite will fail to resolve imports from the domain package
+
 ## Best Practices
 
 1. **Keep features self-contained**: All feature code should live within the feature folder

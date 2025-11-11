@@ -1,0 +1,87 @@
+---
+description: Domain integration rules for adding new domains with web routes/components and API routes
+globs: "**/package.json,**/tsconfig.json,infra/src/apiHandler.ts,web/src/App.tsx"
+alwaysApply: true
+---
+
+# Purple Stack - Domain Integration Rules
+
+## Adding a New Domain with Web Routes/Components
+
+When creating a new domain that exports web routes or components (anything imported by the `web` package), you MUST complete these integration steps:
+
+### 1. Add Domain Dependency to Web Package
+
+Add the domain package to `web/package.json` dependencies:
+
+```json
+{
+  "dependencies": {
+    "@purple-stack/{domain-name}": "workspace:*"
+  }
+}
+```
+
+### 2. Add TypeScript References
+
+Add the domain to TypeScript references in TWO places:
+
+**a) `web/tsconfig.json`:**
+```json
+{
+  "references": [
+    { "path": "../domains/{domain-name}" }
+  ]
+}
+```
+
+**b) Root `tsconfig.json`:**
+```json
+{
+  "references": [
+    { "path": "./domains/{domain-name}" }
+  ]
+}
+```
+
+### 3. Install Dependencies
+
+Run `pnpm install` from the project root to install the new dependency and create workspace symlinks.
+
+### Why This Is Required
+
+Without these steps, Vite will fail to resolve imports from the domain package with errors like:
+```
+Failed to resolve import "@purple-stack/{domain-name}/web/routes" from "src/App.tsx"
+```
+
+This happens because:
+- Vite needs the package to be listed in `package.json` dependencies to resolve workspace packages
+- TypeScript needs the reference for proper type checking and module resolution
+
+### 4. Add Domain Dependency to Root Package (for API/Infra)
+
+If the domain exports API routes (used by `infra/src/apiHandler.ts`), add it to the root `package.json`:
+
+```json
+{
+  "devDependencies": {
+    "@purple-stack/{domain-name}": "workspace:*"
+  }
+}
+```
+
+This is required because SST bundles Lambda functions from the root and needs workspace dependencies listed here.
+
+### Checklist
+
+When adding a new domain with web exports:
+- [ ] Domain package.json has correct exports configured
+- [ ] Domain added to `web/package.json` dependencies
+- [ ] Domain added to `web/tsconfig.json` references
+- [ ] Domain added to root `tsconfig.json` references
+- [ ] Domain added to root `package.json` devDependencies (if exporting API)
+- [ ] `pnpm install` run successfully
+- [ ] Domain router registered in `infra/src/apiHandler.ts` (if exporting API)
+- [ ] Routes registered in `web/src/App.tsx` (if exporting routes)
+- [ ] Navigation links added (if needed)
