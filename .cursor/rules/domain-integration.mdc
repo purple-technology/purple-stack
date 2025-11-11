@@ -73,6 +73,27 @@ If the domain exports API routes (used by `infra/src/apiHandler.ts`), add it to 
 
 This is required because SST bundles Lambda functions from the root and needs workspace dependencies listed here.
 
+### 5. CSS Import Paths
+
+When importing shared CSS from feature pages or components, use the correct relative path:
+
+**From feature pages** (`features/{feature}/web/pages/Component.tsx`):
+```typescript
+import '../../../../web/styles/shared.css'
+```
+
+**From feature components** (`features/{feature}/web/components/Component.tsx`):
+```typescript
+import '../../../../web/styles/shared.css'
+```
+
+**Path breakdown**:
+- `pages/` → `web/` (one level up: `../`)
+- `web/` → `{feature}/` (one level up: `../../`)
+- `{feature}/` → `features/` (one level up: `../../../`)
+- `features/` → domain root (one level up: `../../../../`)
+- Then `web/styles/shared.css`
+
 ### Checklist
 
 When adding a new domain with web exports:
@@ -82,6 +103,7 @@ When adding a new domain with web exports:
 - [ ] Domain added to root `tsconfig.json` references
 - [ ] Domain added to root `package.json` devDependencies (if exporting API)
 - [ ] `pnpm install` run successfully
+- [ ] CSS import paths use correct relative path (`../../../../web/styles/shared.css` from feature pages/components)
 - [ ] Domain router registered in `infra/src/apiHandler.ts` (if exporting API)
 - [ ] Routes registered in `web/src/App.tsx` (if exporting routes)
 - [ ] Navigation links added (if needed)
