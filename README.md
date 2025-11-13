@@ -32,3 +32,4 @@ A serverless stack application template built in SST v3. [Learn more](https://ss
    pnpm install
    pnpm run sst:deploy
    ```
+7. Change the role in Github Actions .github/actions/configure_aws_credentials to your desired deployment role.

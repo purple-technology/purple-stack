@@ -1,12 +1,6 @@
 name: Deploy Branch
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
-      - staging
-      #todo: remove me 1
-      - plt-387
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
