@@ -75,7 +75,14 @@ This is required because SST bundles Lambda functions from the root and needs wo
 
 ### 5. CSS Import Paths
 
-When importing shared CSS from feature pages or components, use the correct relative path:
+**IMPORTANT**: Only import shared CSS if the domain has a `web/styles/shared.css` file. Not all domains need shared styles - each domain can have its own shared.css or none at all.
+
+**When to use shared CSS:**
+- Only if the domain has `domains/{domain-name}/web/styles/shared.css`
+- Only if your feature components/pages actually use the shared CSS classes
+- If you don't need shared domain styles, skip this import entirely
+
+**If using shared CSS**, import from feature pages or components using the correct relative path:
 
 **From feature pages** (`features/{feature}/web/pages/Component.tsx`):
 ```typescript
@@ -94,6 +101,11 @@ import '../../../../web/styles/shared.css'
 - `features/` → domain root (one level up: `../../../../`)
 - Then `web/styles/shared.css`
 
+**Before importing, verify the file exists:**
+- Check if `domains/{domain-name}/web/styles/shared.css` exists
+- If it doesn't exist, don't add the import
+- Feature-specific styles should be co-located with components (e.g., `Component.css` next to `Component.tsx`)
+
 ### Checklist
 
 When adding a new domain with web exports:
@@ -103,7 +115,7 @@ When adding a new domain with web exports:
 - [ ] Domain added to root `tsconfig.json` references
 - [ ] Domain added to root `package.json` devDependencies (if exporting API)
 - [ ] `pnpm install` run successfully
-- [ ] CSS import paths use correct relative path (`../../../../web/styles/shared.css` from feature pages/components)
+- [ ] CSS import paths verified: Only import `../../../../web/styles/shared.css` if `domains/{domain-name}/web/styles/shared.css` exists (optional - not all domains need shared styles)
 - [ ] Domain router registered in `infra/src/apiHandler.ts` (if exporting API)
 - [ ] Routes registered in `web/src/App.tsx` (if exporting routes)
 - [ ] Navigation links added (if needed)
