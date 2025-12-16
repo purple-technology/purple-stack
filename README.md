@@ -19,7 +19,7 @@ A serverless stack application template built in SST v3. [Learn more](https://ss
    npx replace-in-file '/purple-stack/g' 'MY_APP' '**/*.*' --verbose
    ```
 
-4. Copy mise.local.tom.example to mise.local.toml and update the values. Mainly the name of local aws profile in AWS_PROFILE which should be used for the deployment of the app.
+4. Copy mise.local.toml.example to mise.local.toml and update the values. Mainly the name of local aws profile in AWS_PROFILE which should be used for the deployment of the app.
 
 5. [Install](https://mise.jdx.dev/getting-started.html) mise for managing global tools, tasks and environment variables.
 6. Install the global tools using Mise (Node, PNPM, ...) - run
