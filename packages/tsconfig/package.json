@@ -1,0 +1,10 @@
+{
+	"name": "@purple-stack/tsconfig",
+	"version": "1.0.0",
+	"private": true,
+	"files": ["base.json"],
+	"license": "MIT",
+	"dependencies": {
+		"@tsconfig/node22": "catalog:"
+	}
+}

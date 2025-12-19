@@ -1,0 +1,33 @@
+{
+	"name": "@purple-stack/transaction",
+	"version": "0.0.0",
+	"type": "module",
+	"exports": {
+		"./api/transactionRouter": "./api/transactionRouter.ts",
+		"./web/pages": "./web/pages/index.ts",
+		"./web/components": "./web/components/index.ts",
+		"./web/routes": "./web/routes/index.ts"
+	},
+	"scripts": {
+		"typecheck": "tsc --build"
+	},
+	"dependencies": {
+		"@purple-stack/core": "workspace:*",
+		"@purple-stack/trpc-api": "workspace:*",
+		"@tanstack/react-router": "catalog:",
+		"@trpc/server": "catalog:",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:",
+		"sst": "catalog:",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@types/aws-lambda": "catalog:",
+		"@aws-sdk/client-sfn": "3.908.0",
+		"@purple-stack/tsconfig": "workspace:^",
+		"typescript": "catalog:",
+		"vite": "catalog:"
+	}
+}

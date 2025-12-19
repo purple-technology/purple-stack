@@ -1,0 +1,444 @@
+---
+description: Transaction domain vertical slice architecture guidelines for adding new features
+globs: "domains/transaction/**/*"
+alwaysApply: true
+---
+
+# Transaction Domain - Vertical Slice Architecture
+
+The transaction domain uses a **vertical slice architecture** where each feature contains its complete stack:
+- **API**: tRPC procedures
+- **Backend**: Lambda functions (AWS Lambda handlers)
+- **Infra**: Step Functions state machines
+- **Stack**: Infrastructure exports
+- **Web**: React components, pages, and routes
+
+## Adding a New Feature
+
+When asked to add a new feature, follow these steps in order:
+
+### 1. Create Feature Folder Structure
+
+Create the following directory structure:
+```
+features/{feature-name}/
+├── api/
+├── backend/
+├── infra/
+├── stack/
+└── web/
+    ├── components/
+    └── pages/
+```
+
+**Use kebab-case for feature names** (e.g., `transfer-funds`, `transaction-history`)
+
+### 2. Create API Procedure
+
+File: `features/{feature-name}/api/{featureName}Procedures.ts`
+
+**Template:**
+```typescript
+import { publicProcedure } from '@purple-stack/trpc-api/trpc'
+import { z } from 'zod'
+
+// For queries:
+export const {featureName} = publicProcedure
+  .input(z.object({
+    // Define input schema
+  }))
+  .query(async ({ input }) => {
+    // Implementation
+    return { /* result */ }
+  })
+
+// For mutations:
+export const {featureName} = publicProcedure
+  .input(z.object({
+    // Define input schema
+  }))
+  .mutation(async ({ input }) => {
+    // Implementation
+    return { /* result */ }
+  })
+```
+
+**Naming conventions:**
+- File: `{featureName}Procedures.ts` (camelCase)
+- Export: `{featureName}` (camelCase, matches feature folder name in kebab-case converted)
+
+### 3. Register API Procedure in Domain Router
+
+File: `api/transactionRouter.ts`
+
+**Add import:**
+```typescript
+import { {featureName} } from '../features/{feature-name}/api/{featureName}Procedures'
+```
+
+**Add to router:**
+```typescript
+export const transactionRouter = router({
+  // ... existing procedures
+  {featureName}
+})
+```
+
+### 4. Create Web Components
+
+File: `features/{feature-name}/web/components/{ComponentName}.tsx`
+
+**Template:**
+```typescript
+import { Button } from '../../../../web/components'
+import '../../../../web/styles/shared.css'
+import './{ComponentName}.css'
+
+export interface {ComponentName}Props {
+  // Define props
+}
+
+export function {ComponentName}({ /* props */ }: {ComponentName}Props) {
+  return (
+    <div className="{component-name} transaction-card">
+      {/* Component content */}
+    </div>
+  )
+}
+```
+
+**Requirements:**
+- Always import shared styles: `'../../../../web/styles/shared.css'`
+- Import component-specific CSS: `'./{ComponentName}.css'`
+- Use shared components from `'../../../../web/components'`
+- Use shared CSS classes like `transaction-card`, `transaction-page`, `transaction-input`
+- Export TypeScript types for props
+
+**Create co-located CSS file:** `features/{feature-name}/web/components/{ComponentName}.css`
+
+### 5. Create Page Component
+
+File: `features/{feature-name}/web/pages/{FeatureName}Page.tsx`
+
+**Template:**
+```typescript
+import { appClient } from '@purple-stack/trpc-api/trpcClient'
+import '../../../../web/styles/shared.css'
+import './{FeatureName}Page.css'
+import { ComponentName } from '../components/{ComponentName}'
+
+export function {FeatureName}Page() {
+  // Use appClient.transaction.{featureName} to call API
+  return (
+    <main className="{feature-name}-page transaction-page">
+      <header className="{feature-name}-page__header">
+        <h1>{Feature Name}</h1>
+      </header>
+      <section className="{feature-name}-page__content">
+        <ComponentName />
+      </section>
+    </main>
+  )
+}
+```
+
+**Requirements:**
+- Always import shared styles first
+- Use `transaction-page` class for main layout
+- Use BEM naming for feature-specific classes: `{feature-name}-page__header`
+- Import and use feature components
+
+**Create co-located CSS file:** `features/{feature-name}/web/pages/{FeatureName}Page.css`
+
+### 6. Create Route Factory
+
+File: `features/{feature-name}/web/{feature-name}.route.tsx`
+
+**Template:**
+```typescript
+import type { AnyRootRoute } from '@tanstack/react-router'
+import { createRoute } from '@tanstack/react-router'
+import { {FeatureName}Page } from './pages/{FeatureName}Page'
+
+export const create{FeatureName}Route = <TRootRoute extends AnyRootRoute>(
+  rootRoute: TRootRoute
+) =>
+  createRoute({
+    getParentRoute: () => rootRoute,
+    path: '{feature-name}',
+    component: {FeatureName}Page
+  })
+```
+
+**Requirements:**
+- Function name: `create{FeatureName}Route` (PascalCase)
+- Path: `'{feature-name}'` (kebab-case, matches folder name)
+- Use factory pattern with generic `TRootRoute extends AnyRootRoute`
+
+### 7. Export Public API
+
+File: `features/{feature-name}/web/index.ts`
+
+**Template:**
+```typescript
+// Export component types
+export type { {ComponentName}Props } from './components/{ComponentName}'
+
+// Export components
+export { {ComponentName} } from './components/{ComponentName}'
+
+// Export page
+export { {FeatureName}Page } from './pages/{FeatureName}Page'
+
+// Export route factory
+export { create{FeatureName}Route } from './{feature-name}.route'
+```
+
+**Requirements:**
+- Export all public components and their types
+- Export the page component
+- Export the route factory function
+
+### 8. Register Route in Domain Routes
+
+File: `web/routes/index.ts`
+
+**Add export:**
+```typescript
+export { create{FeatureName}Route } from '../../features/{feature-name}/web/index'
+```
+
+### 9. Register Page in Domain Pages
+
+File: `web/pages/index.ts`
+
+**Add export:**
+```typescript
+export { {FeatureName}Page } from '../../features/{feature-name}/web'
+```
+
+### 10. Add Infrastructure (if needed)
+
+#### Lambda Function Handler
+
+File: `features/{feature-name}/backend/{functionName}.ts`
+
+**Template:**
+```typescript
+import type { Handler } from 'aws-lambda'
+
+type Input = {
+  // Define input type
+}
+
+type Output = {
+  // Define output type
+}
+
+type LambdaEvent = {
+  input: Input
+}
+
+export const handler: Handler<LambdaEvent, Output> = async (event) => {
+  if (!event.input) {
+    return {
+      // Error response
+    }
+  }
+
+  const { /* destructure input */ } = event.input
+
+  // Implementation
+
+  return {
+    // Success response
+  }
+}
+```
+
+#### Step Functions State Machine
+
+File: `features/{feature-name}/infra/{featureName}StateMachine.ts`
+
+**Template:**
+```typescript
+/// <reference path="../../../../../.sst/platform/config.d.ts" />
+
+// Define Lambda functions
+const {functionName}Lambda = new sst.aws.Function(
+  '{FeatureName}{FunctionName}Lambda',
+  {
+    handler: 'domains/transaction/features/{feature-name}/backend/{functionName}.handler'
+  }
+)
+
+// Define Step Functions tasks
+const {taskName} = sst.aws.StepFunctions.lambdaInvoke({
+  name: '{TaskName}',
+  function: {functionName}Lambda,
+  payload: {
+    input: '{% $states.input %}'
+  }
+})
+
+// Define state machine definition
+const definition = {taskName}.next(/* ... */)
+
+export const {featureName}StateMachine = new sst.aws.StepFunctions(
+  '{FeatureName}StateMachine',
+  {
+    definition
+  }
+)
+```
+
+#### Export Infrastructure
+
+File: `features/{feature-name}/stack/index.ts`
+
+**Template:**
+```typescript
+export { {featureName}StateMachine } from '../infra/{featureName}StateMachine'
+```
+
+### 11. Update API Procedure to Use Infrastructure (if applicable)
+
+If using Step Functions, update the API procedure:
+
+```typescript
+import { SFNClient, StartExecutionCommand } from '@aws-sdk/client-sfn'
+import { Resource } from 'sst'
+
+const sfnClient = new SFNClient({})
+
+export const {featureName} = publicProcedure
+  .input(z.object({ /* schema */ }))
+  .mutation(async ({ input }) => {
+    const executionName = `{feature-name}-${Date.now()}`
+    const command = new StartExecutionCommand({
+      stateMachineArn: Resource.{FeatureName}StateMachine.arn,
+      name: executionName,
+      input: JSON.stringify(input)
+    })
+
+    const response = await sfnClient.send(command)
+    return {
+      success: true,
+      executionArn: response.executionArn,
+      executionName
+    }
+  })
+```
+
+## File Path Patterns
+
+When creating imports, use these relative path patterns:
+
+**From feature web components to shared resources:**
+- Shared components: `'../../../../web/components'`
+- Shared styles: `'../../../../web/styles/shared.css'`
+
+**From feature web pages to shared resources:**
+- Shared components: `'../../../../web/components'`
+- Shared styles: `'../../../../web/styles/shared.css'`
+
+**From feature web to feature components:**
+- Components: `'../components/{ComponentName}'`
+
+**From domain router to feature API:**
+- Feature procedures: `'../features/{feature-name}/api/{featureName}Procedures'`
+
+**From domain routes to feature routes:**
+- Route factory: `'../../features/{feature-name}/web/index'`
+
+## Naming Conventions
+
+- **Folders**: kebab-case (`transfer-funds`, `transaction-history`)
+- **Files**: 
+  - TypeScript: camelCase for procedures/handlers (`transferFundsProcedures.ts`)
+  - React components: PascalCase (`TransferFundsPage.tsx`)
+  - Routes: kebab-case (`transfer-funds.route.tsx`)
+- **Components**: PascalCase (`TransferFundsForm`, `TransferFundsPage`)
+- **Functions**: camelCase (`createTransferFundsRoute`, `transferFunds`)
+- **CSS classes**: kebab-case with BEM (`transfer-funds-page__header`)
+- **Exports**: Match the feature name in camelCase
+
+## CSS Guidelines
+
+1. **Always import shared styles first:**
+   ```typescript
+   import '../../../../web/styles/shared.css'
+   import './Component.css'
+   ```
+
+2. **Use shared classes:**
+   - `.transaction-page` for main page layout
+   - `.transaction-card` for card/panel containers
+   - `.transaction-input` for input fields
+
+3. **Use BEM naming for feature-specific classes:**
+   - Block: `{feature-name}-page`
+   - Element: `{feature-name}-page__header`
+   - Modifier: `{feature-name}-page--active`
+
+4. **Co-locate CSS files** with their components
+
+## Testing Checklist
+
+After creating a feature, verify:
+
+- [ ] API procedure is registered in `transactionRouter.ts`
+- [ ] Route factory is exported in `web/routes/index.ts`
+- [ ] Page is exported in `web/pages/index.ts`
+- [ ] All imports use correct relative paths
+- [ ] Shared styles are imported
+- [ ] Component types are exported
+- [ ] Infrastructure is exported (if applicable)
+- [ ] Code follows naming conventions
+- [ ] No linter errors (`pnpm run lint:fix`)
+- [ ] TypeScript compiles (`pnpm run typecheck`)
+
+## Common Patterns
+
+### Query Procedure Pattern
+```typescript
+export const get{Resource} = publicProcedure
+  .input(z.object({ id: z.string() }))
+  .query(async ({ input }) => {
+    // Fetch and return data
+    return { /* data */ }
+  })
+```
+
+### Mutation Procedure Pattern
+```typescript
+export const create{Resource} = publicProcedure
+  .input(z.object({ /* fields */ }))
+  .mutation(async ({ input }) => {
+    // Create/update resource
+    return { success: true, /* result */ }
+  })
+```
+
+### Page with API Call Pattern
+```typescript
+export function {FeatureName}Page() {
+  const [data, setData] = useState(null)
+  
+  useEffect(() => {
+    appClient.transaction.{featureName}.query({ /* input */ })
+      .then(setData)
+  }, [])
+  
+  return (/* JSX */)
+}
+```
+
+## Important Notes
+
+1. **Never skip the factory pattern for routes** - always use `create{FeatureName}Route(rootRoute)`
+2. **Always export types** for component props
+3. **Always use relative paths** - don't use absolute imports unless they're workspace packages
+4. **Keep features self-contained** - all feature code lives in the feature folder
+5. **Use shared resources** - leverage `/web/components` and `/web/styles` for consistency
+6. **Follow the vertical slice pattern** - each feature is complete and independent

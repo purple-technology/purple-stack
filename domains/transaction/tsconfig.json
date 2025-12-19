@@ -1,0 +1,24 @@
+{
+	"extends": "@purple-stack/tsconfig/base.json",
+	"compilerOptions": {
+		"composite": true,
+		"outDir": "dist",
+		"jsx": "react-jsx",
+		"lib": ["ES2020", "DOM", "DOM.Iterable"],
+		"types": ["node", "vite/client"]
+	},
+	"include": [
+		"api",
+		"features/*/api",
+		"backend",
+		"features/*/backend",
+		"features/*/web",
+		"web",
+		"sst-env.d.ts"
+	],
+	"exclude": ["node_modules", "dist"],
+	"references": [
+		{ "path": "../../packages/core" },
+		{ "path": "../../packages/trpc-api" }
+	]
+}

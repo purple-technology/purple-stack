@@ -2,38 +2,22 @@ name: Remove Deployment
 on:
   workflow_dispatch:
 permissions:
-  id-token: write   # This is required for requesting the JWT
-  contents: read    # This is required for actions/checkout
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
 jobs:
-  deploy:
+  remove:
     # We don't want to remove protected deployment
     if: github.ref_protected == false
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
+      - name: Setup Node.js and pnpm
+        uses: "./.github/actions/setup_node_and_pnpm"
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
-
-      - name: Install Dependencies
-        run: pnpm install
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ github.ref == 'refs/heads/master' && 'CHANGE_ME' || 'CHANGE_ME' }}
-          aws-region: eu-central-1 # Is not related to deployment region
-          role-session-name: CHANGE_ME
+      - name: Assume AWS role
+        uses: "./.github/actions/configure_aws_credentials"
 
       - name: Remove
-        run: pnpm sst remove
+        run: mise sst:remove

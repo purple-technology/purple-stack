@@ -1,7 +1,18 @@
 packages:
-  - "services/**/*"
-  - "packages/**/*"
-
+  - 'packages/*'
+  - 'domains/*'
+  - 'web'
 catalog:
-  typescript: ^5.5.4
-  "@types/node": ^20.12.7
+  "@tanstack/react-router": 1.132.47
+  "@trpc/client": 11.6.0
+  "@trpc/server": 11.6.0
+  "@tsconfig/node22": 22.0.2
+  "@types/aws-lambda": 8.10.155
+  "@types/react": 19.2.2
+  "@types/react-dom": 19.2.1
+  "react": 19.2.0
+  "react-dom": 19.2.0
+  "sst": 3.17.19
+  "typescript": 5.9.3
+  "vite": 7.1.9
+  "zod": 4.1.12

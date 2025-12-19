@@ -1,50 +1,57 @@
-import { getStage } from '@purple/serverless-git-branch-stage-plugin'
-import type { SSTConfig } from 'sst'
+/// <reference path="./.sst/platform/config.d.ts" />
 
-import { AddTodoStack } from './stacks/add-todo/stack'
-import { FrontendStack } from './stacks/frontend'
-import { ResourcesStack } from './stacks/resources/stack'
-import { TrpcApiStack } from './stacks/trpc-api/stack'
-import { isProd, isStaging } from './stacks/utils'
+//this is prepared for cases where the git stage should be part of the url
+//const { stageToUrlPart } = await import('./packages/sst-extensions/src/index')
 
-const config: SSTConfig = {
-	config(globals) {
-		const stage = globals.stage ?? getStage()
-
+export default $config({
+	app(input) {
 		return {
 			name: 'purple-stack',
-			stage,
-			region: stage === 'master' ? 'eu-central-1' : 'eu-central-1'
+			removal: input?.stage === 'master' ? 'retain' : 'remove',
+			protect: ['master', 'staging'].includes(input?.stage),
+			home: 'aws',
+			providers: {
+				aws: {
+					region: 'eu-central-1'
+				}
+			}
 		}
 	},
-	stacks(app) {
-		if (app.stage === 'master' && app.mode === 'dev') {
-			throw new Error('Cannot deploy master stage in dev mode')
-		}
+	async run() {
+		$transform(sst.aws.Function, (args) => {
+			args.runtime = 'nodejs22.x'
+		})
 
-		app.setDefaultFunctionProps({
-			runtime: 'nodejs20.x',
-			architecture: 'arm_64',
-			logRetention: 'three_months',
-			logRetentionRetryOptions: { maxRetries: 100 },
-			tracing: 'disabled',
-			environment: {
-				// https://docs.powertools.aws.dev/lambda/typescript/latest/#environment-variables
-				POWERTOOLS_DEV: app.local ? 'true' : 'false',
-				POWERTOOLS_LOG_LEVEL: app.local
-					? 'DEBUG'
-					: isProd(app) || isStaging(app)
-						? 'WARN'
-						: 'INFO'
+		// stacks
+		await import('./domains/transaction/features/deposit/stack')
+		const api = await import('./infra/api')
+
+		// dev commands visible when running sst dev
+		new sst.x.DevCommand('tRPC', {
+			link: [api.tRPCAPI],
+			dev: {
+				autostart: true,
+				command: 'pnpm --filter @purple-stack/trpc-api start:panel'
 			}
 		})
 
-		app
-			.stack(ResourcesStack)
-			.stack(AddTodoStack)
-			.stack(TrpcApiStack)
-			.stack(FrontendStack)
-	}
-}
+		const web = new sst.aws.StaticSite('Web', {
+			build: {
+				command: 'pnpm run --filter @purple-stack/web build',
+				output: 'web/dist'
+			},
+			dev: {
+				autostart: true,
+				command: 'pnpm --filter @purple-stack/web dev',
+				directory: 'web'
+			},
+			environment: {
+				VITE_tRPCAPI_url: api.tRPCAPI.url
+			}
+		})
 
-export default config
+		return {
+			Web: web.url
+		}
+	}
+})

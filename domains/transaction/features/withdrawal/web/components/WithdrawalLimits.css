@@ -1,0 +1,43 @@
+/* Withdrawal limits component styles */
+.withdrawal-limits {
+	display: grid;
+	gap: 1.25rem;
+	min-height: 200px;
+}
+
+.withdrawal-limits__heading {
+	margin: 0;
+	font-size: 1.5rem;
+}
+
+.withdrawal-limits__status {
+	margin: 0;
+	color: rgba(255, 255, 255, 0.72);
+	font-size: 1rem;
+}
+
+.withdrawal-limits__details {
+	display: grid;
+	gap: 0.875rem;
+	margin-top: 0.5rem;
+}
+
+.withdrawal-limits__item {
+	margin: 0;
+	padding: 0.875rem;
+	background: rgba(255, 255, 255, 0.03);
+	border-radius: 8px;
+	border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.withdrawal-limits__item strong {
+	color: rgba(255, 255, 255, 0.85);
+	margin-right: 0.5rem;
+}
+
+.withdrawal-limits__max {
+	background: rgba(100, 108, 255, 0.08);
+	border: 1px solid rgba(100, 108, 255, 0.2);
+	font-size: 1.125rem;
+	font-weight: 600;
+}

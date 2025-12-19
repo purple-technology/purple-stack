@@ -1,0 +1,19 @@
+{
+	"name": "@purple-stack/core",
+	"type": "module",
+	"version": "0.0.0",
+	"scripts": {
+		"test": "vitest --run",
+		"typecheck": "tsc --build"
+	},
+	"exports": {
+		"./deposit": "./src/deposit/deposit.ts"
+	},
+	"dependencies": {
+		"sst": "catalog:"
+	},
+	"devDependencies": {
+		"vitest": "3.2.4",
+		"@purple-stack/tsconfig": "workspace:*"
+	}
+}

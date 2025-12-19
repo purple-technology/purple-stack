@@ -1,0 +1,34 @@
+---
+description: Code quality requirements - run linter, typecheck, and tests after code changes
+globs: "**/*.{ts,tsx,js,jsx}"
+alwaysApply: true
+---
+
+# Code Quality Requirements
+
+After making ANY code changes besides configuration, tooling or github action definition changes, you MUST:
+
+1. **Check `mise.toml` for available tasks:**
+   - Read the `mise.toml` file to find the correct task names
+   - Use `mise run <task-name>` to execute tasks defined in mise.toml
+   - This ensures proper tool version management and environment setup
+
+2. **Run Biome linter and formatter:**
+   ```bash
+   mise run lint:fix
+   ```
+   (This runs the `lint:fix` task defined in `mise.toml`)
+
+3. **Run TypeScript type checking:**
+   ```bash
+   mise run typecheck
+   ```
+   (This runs the `typecheck` task defined in `mise.toml`)
+
+4. **Run Tests:**
+   ```bash
+   mise run test
+   ```
+   (This runs the `test` task defined in `mise.toml`)
+
+**Note:** If `mise` is not available in the PATH, use `mise exec -- pnpm run <command>` as a fallback, but prefer using `mise run <task-name>` when tasks are defined in `mise.toml`.

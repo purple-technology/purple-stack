@@ -1,43 +1,28 @@
 {
-	"[html]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"editor.formatOnSave": true,
+	"search.exclude": {
+		"**/.sst": true
 	},
-	"[json]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"[jsonc]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"[typescriptreact]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
-	},
-	"[javascriptreact]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	"editor.codeActionsOnSave": {
+		"source.organizeImports.biome": "explicit",
+		"source.fixAll.biome": "explicit"
 	},
 	"[javascript]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[typescript]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
-	"[css]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
 	},
-	"files.associations": {
-		"*.env": "ini"
+	"[json]": {
+		"editor.defaultFormatter": "biomejs.biome"
 	},
-	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
-	"eslint.format.enable": true,
-	"editor.formatOnSave": true,
-	"prettier.ignorePath": ".eslintignore",
-	"prettier.useEditorConfig": true,
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"search.exclude": {
-		"**/.sst": true,
-		"**/.next": true,
-		"**/.open-next": true
-	},
-	"npm.packageManager": "pnpm",
-	// Due to custom next.js eslint settings
-	"eslint.workingDirectories": ["/**/*", "services/frontend"]
+	"[jsonc]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	}
 }

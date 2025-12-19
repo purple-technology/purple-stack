@@ -1,0 +1,9 @@
+/* Withdrawal page specific styles */
+.withdrawal-page__content {
+	gap: 2rem;
+}
+
+.withdrawal-actions {
+	display: flex;
+	justify-content: flex-start;
+}

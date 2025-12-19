@@ -1,0 +1,200 @@
+.app-shell {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.app-nav {
+	display: flex;
+	gap: 0.75rem;
+	padding: 1.5rem clamp(1rem, 4vw, 2.5rem);
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(
+		135deg,
+		rgba(20, 20, 36, 0.95),
+		rgba(40, 40, 68, 0.95)
+	);
+	backdrop-filter: blur(12px);
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+.app-nav__link {
+	border: none;
+	border-radius: 999px;
+	padding: 0.65rem 1.5rem;
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: rgba(255, 255, 255, 0.85);
+	background: rgba(255, 255, 255, 0.08);
+	cursor: pointer;
+	transition:
+		background 0.2s ease,
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+.app-nav__link:hover {
+	background: rgba(255, 255, 255, 0.14);
+	transform: translateY(-1px);
+}
+
+.app-nav__link--active {
+	background: linear-gradient(135deg, #646cff, #3f47ff);
+	box-shadow: 0 8px 20px rgba(100, 108, 255, 0.35);
+	color: white;
+}
+
+.app-content {
+	flex: 1;
+	display: flex;
+	padding: clamp(2rem, 6vw, 4rem);
+}
+
+.app-content > * {
+	flex: 1;
+}
+
+.landing {
+	margin: 0 auto;
+	max-width: 960px;
+	padding: clamp(2rem, 6vw, 4rem);
+	text-align: center;
+	background: rgba(255, 255, 255, 0.03);
+	border-radius: 18px;
+	box-shadow: 0 25px 60px rgba(10, 10, 30, 0.45);
+	backdrop-filter: blur(12px);
+	display: grid;
+	gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+.landing__logos-container {
+	display: flex;
+	flex-direction: column;
+	gap: clamp(1.5rem, 3vw, 2.5rem);
+	align-items: center;
+}
+
+.landing__logos {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.logo-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.logo-label {
+	font-size: 0.75rem;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 0.6);
+	text-align: center;
+	white-space: nowrap;
+}
+
+.card {
+	padding: clamp(1.25rem, 4vw, 2rem);
+	background: rgba(255, 255, 255, 0.04);
+	border-radius: 12px;
+	display: grid;
+	gap: 0.75rem;
+}
+
+.card button {
+	border-radius: 999px;
+	border: none;
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	background: linear-gradient(135deg, #646cff, #3f47ff);
+	color: white;
+	cursor: pointer;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+.card button:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 8px 20px rgba(100, 108, 255, 0.35);
+}
+
+.read-the-docs {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.logo {
+	height: clamp(3rem, 6vw, 4.5rem);
+	padding: 0.5rem;
+	will-change: filter;
+	transition: filter 300ms;
+}
+
+.logo:hover {
+	filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+	filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.logo.tanstack:hover {
+	filter: drop-shadow(0 0 2em #00c7b7aa);
+}
+
+.logo.trpc:hover {
+	filter: drop-shadow(0 0 2em #398ccbaa);
+}
+
+.logo.sst:hover {
+	filter: drop-shadow(0 0 2em #e27152aa);
+}
+
+.logo.vitest:hover {
+	filter: drop-shadow(0 0 2em #729b1aaa);
+}
+
+.logo.mise:hover {
+	filter: drop-shadow(0 0 2em #ff6b6baa);
+}
+
+.logo.biome:hover {
+	filter: drop-shadow(0 0 2em #60a5faaa);
+}
+
+.logo.zod:hover {
+	filter: drop-shadow(0 0 2em #3b82f6aa);
+}
+
+@keyframes logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	a:nth-of-type(2) .logo {
+		animation: logo-spin infinite 20s linear;
+	}
+}
+
+.landing h1 {
+	margin: 0;
+	font-size: clamp(2rem, 6vw, 3.2rem);
+}
+
+.landing p {
+	margin: 0;
+}

@@ -1,0 +1,11 @@
+name: Configure AWS credentials
+
+runs:
+  using: composite
+  steps:
+    - name: Do configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: todo-change-me
+        aws-region: eu-central-1
+        role-session-name: purple-stack-github-actions-deployment

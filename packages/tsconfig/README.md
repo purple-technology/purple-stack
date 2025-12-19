@@ -1,0 +1,1 @@
+Tsconfig in monorepo inspired by https://nx.dev/blog/managing-ts-packages-in-monorepos#combining-typescript-project-references-and-package-manager-workspaces.

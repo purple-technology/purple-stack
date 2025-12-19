@@ -1,0 +1,32 @@
+{
+	"name": "@purple-stack/trpc-api",
+	"version": "0.0.0",
+	"type": "module",
+	"exports": {
+		"./trpc": "./src/trpc.ts",
+		"./appRouter": "./src/appRouter.ts",
+		"./trpcClient": "./src/trpcClient.ts",
+		"./trpcUi": "./src/trpcUi.ts"
+	},
+	"scripts": {
+		"start:panel": "tsx src/trpcUi.ts",
+		"typecheck": "tsc --build"
+	},
+	"dependencies": {
+		"@purple-stack/core": "workspace:*",
+		"@trpc/client": "catalog:",
+		"@trpc/server": "catalog:",
+		"sst": "catalog:",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@types/aws-lambda": "catalog:",
+		"@types/express": "5.0.3",
+		"express": "5.1.0",
+		"trpc-ui": "npm:trpc-ui-zod4@1.1.0",
+		"tsx": "4.20.6",
+		"@purple-stack/tsconfig": "workspace:^",
+		"typescript": "catalog:",
+		"vite": "catalog:"
+	}
+}

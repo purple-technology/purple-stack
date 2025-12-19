@@ -1,0 +1,66 @@
+/* Shared transaction domain styles */
+
+/* Page layout pattern used across transaction features */
+.transaction-page {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	padding: 3rem clamp(1rem, 5vw, 4rem);
+	max-width: 960px;
+	margin: 0 auto;
+	background: rgba(255, 255, 255, 0.04);
+	border-radius: 16px;
+	box-shadow: 0 20px 60px rgba(15, 15, 20, 0.4);
+}
+
+.transaction-page__header h1 {
+	margin: 0;
+	font-size: clamp(2rem, 5vw, 3rem);
+	letter-spacing: -0.03em;
+}
+
+.transaction-page__header p {
+	margin: 0.25rem 0 0;
+	color: rgba(255, 255, 255, 0.72);
+}
+
+.transaction-page__content {
+	display: grid;
+	gap: 2.5rem;
+}
+
+/* Shared card pattern for forms and info panels */
+.transaction-card {
+	padding: 1.5rem;
+	background: rgba(21, 21, 32, 0.9);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 12px;
+}
+
+.transaction-card--dark {
+	background: rgba(15, 15, 28, 0.9);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Shared input styles */
+.transaction-input {
+	border-radius: 8px;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	padding: 0.75rem 1rem;
+	background: rgba(255, 255, 255, 0.04);
+	color: inherit;
+	font-size: 1rem;
+}
+
+.transaction-input:focus {
+	outline: 2px solid #646cff;
+	outline-offset: 2px;
+}
+
+/* Responsive utilities */
+@media (max-width: 600px) {
+	.transaction-page {
+		padding: 2rem 1.25rem;
+	}
+}

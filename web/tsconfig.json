@@ -1,0 +1,19 @@
+{
+	"extends": "@purple-stack/tsconfig/base.json",
+	"compilerOptions": {
+		"composite": true,
+		"outDir": "dist",
+		"jsx": "react-jsx",
+		"lib": ["ES2020", "DOM", "DOM.Iterable"],
+		"types": ["node"],
+		"noEmit": true,
+		"allowImportingTsExtensions": true,
+		"strictNullChecks": true
+	},
+	"include": ["src", "src/vite-env.d.ts", "sst-env.d.ts"],
+	"exclude": ["node_modules", "dist"],
+	"references": [
+		{ "path": "./tsconfig.node.json" },
+		{ "path": "../domains/transaction" }
+	]
+}

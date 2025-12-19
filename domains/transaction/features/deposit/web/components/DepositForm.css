@@ -1,0 +1,15 @@
+/* Deposit form component styles */
+.deposit-form {
+	display: grid;
+	gap: 1rem;
+}
+
+.deposit-form__label {
+	font-weight: 600;
+}
+
+.deposit-form__error {
+	margin: 0;
+	color: #ff6b6b;
+	font-size: 0.9rem;
+}
