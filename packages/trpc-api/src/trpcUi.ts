@@ -8,16 +8,18 @@ import express from 'express'
 	const { appRouter } = await import('../../../infra/src/apiHandler')
 
 	app.use('/panel', (_, res) => {
-		const trpcApiResource = process.env.SST_RESOURCE_tRPCAPI
-		if (!trpcApiResource) {
-			throw new Error('SST_RESOURCE_tRPCAPI environment variable is missing')
+		const routerResource = process.env.SST_RESOURCE_Main
+		if (!routerResource) {
+			throw new Error('SST_RESOURCE_Main environment variable is missing')
 		}
 
-		const parsedResource = JSON.parse(trpcApiResource)
-		const url = parsedResource.url
-		if (!url) {
-			throw new Error('URL not found in SST_RESOURCE_tRPCAPI resource')
+		const parsedResource = JSON.parse(routerResource)
+		const routerUrl = parsedResource.url
+		if (!routerUrl) {
+			throw new Error('URL not found in SST_RESOURCE_Main resource')
 		}
+
+		const url = `${routerUrl}/api`
 
 		return res.send(
 			renderTrpcPanel(appRouter, {
