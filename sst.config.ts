@@ -22,20 +22,29 @@ export default $config({
 			args.runtime = 'nodejs22.x'
 		})
 
+		const router = new sst.aws.Router('Main', {
+			// "oac-with-edge-signing" (not plain "oac") so POST requests work.
+			// "oac" alone requires every client to send x-amz-content-sha256 on
+			// each POST; edge-signing adds a Lambda@Edge that handles it for us.
+			protection: 'oac-with-edge-signing'
+		})
+
 		// stacks
 		await import('./domains/transaction/features/deposit/stack')
-		const api = await import('./infra/api')
+		const { createApi } = await import('./infra/api')
+		const tRPCAPI = createApi(router)
 
 		// dev commands visible when running sst dev
 		new sst.x.DevCommand('tRPC', {
-			link: [api.tRPCAPI],
+			link: [tRPCAPI, router],
 			dev: {
 				autostart: true,
 				command: 'pnpm --filter @purple-stack/trpc-api start:panel'
 			}
 		})
 
-		const web = new sst.aws.StaticSite('Web', {
+		new sst.aws.StaticSite('Web', {
+			router: { instance: router },
 			build: {
 				command: 'pnpm run --filter @purple-stack/web build',
 				output: 'web/dist'
@@ -46,12 +55,12 @@ export default $config({
 				directory: 'web'
 			},
 			environment: {
-				VITE_tRPCAPI_url: api.tRPCAPI.url
+				VITE_tRPCAPI_url: $interpolate`${router.url}/api`
 			}
 		})
 
 		return {
-			Web: web.url
+			Url: router.url
 		}
 	}
 })

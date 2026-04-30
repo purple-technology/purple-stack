@@ -14,6 +14,10 @@ declare module "sst" {
       "name": string
       "type": "sst.aws.Function"
     }
+    "Main": {
+      "type": "sst.aws.Router"
+      "url": string
+    }
     "Web": {
       "type": "sst.aws.StaticSite"
       "url": string
