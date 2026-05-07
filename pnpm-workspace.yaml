@@ -1,3 +1,22 @@
+strictDepBuilds: true
+
+allowBuilds:
+  esbuild: true
+  core-js: false
+  core-js-pure: false
+  es5-ext: false
+
+minimumReleaseAge: 10080
+
+minimumReleaseAgeExclude:
+  - '@purple/*'
+  - '@package/*'
+
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 525600
+
+blockExoticSubdeps: true
+
 packages:
   - 'packages/*'
   - 'domains/*'
