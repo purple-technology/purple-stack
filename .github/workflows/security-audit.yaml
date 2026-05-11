@@ -23,5 +23,4 @@ jobs:
       - name: Setup Node.js and pnpm
         uses: "./.github/actions/setup_node_and_pnpm"
       - name: pnpm audit
-        continue-on-error: true
         run: pnpm audit --audit-level ${{ inputs.audit-level }}
