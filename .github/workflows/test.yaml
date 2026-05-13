@@ -24,3 +24,7 @@ jobs:
 
       - name: Unit Tests
         run: mise test
+
+  security-audit:
+    uses: ./.github/workflows/security-audit.yaml
+    secrets: inherit

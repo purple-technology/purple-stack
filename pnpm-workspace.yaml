@@ -1,11 +1,30 @@
+strictDepBuilds: true
+
+allowBuilds:
+  esbuild: true
+  core-js: false
+  core-js-pure: false
+  es5-ext: false
+
+minimumReleaseAge: 10080
+
+minimumReleaseAgeExclude:
+  - '@purple/*'
+  - '@package/*'
+
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 525600
+
+blockExoticSubdeps: true
+
 packages:
   - 'packages/*'
   - 'domains/*'
   - 'web'
 catalog:
   "@tanstack/react-router": 1.132.47
-  "@trpc/client": 11.6.0
-  "@trpc/server": 11.6.0
+  "@trpc/client": 11.17.0
+  "@trpc/server": 11.17.0
   "@tsconfig/node22": 22.0.2
   "@types/aws-lambda": 8.10.155
   "@types/react": 19.2.2
@@ -14,5 +33,5 @@ catalog:
   "react-dom": 19.2.0
   "sst": 4.3.6
   "typescript": 5.9.3
-  "vite": 7.1.9
+  "vite": 7.3.2
   "zod": 4.1.12
